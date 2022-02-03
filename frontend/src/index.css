@@ -2,3 +2,7 @@
 body {
   box-sizing: content-box;
 }
+
+li {
+  list-style: none;
+}
