@@ -1,6 +1,15 @@
+import LoginFormPage from "./components/LoginFormPage";
+
+const { Switch, Route } = require("react-router-dom");
+
+
 function App() {
   return (
-    <h1>Hello from App</h1>
+    <Switch>
+      <Route path='/login'>
+        <LoginFormPage />
+      </Route>
+    </Switch>
   );
 }
 
