@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom';
 
 import './LoginForm.css'
 
-function LoginFormPage() {
+export default function LoginForm() {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const [credential, setCredential] = useState('');
@@ -32,23 +32,21 @@ function LoginFormPage() {
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
       <label>Username or Email</label>
-        <input
-          type="text"
-          value={credential}
-          onChange={e => setCredential(e.target.value)}
-          required
-        />
+      <input
+        type="text"
+        value={credential}
+        onChange={e => setCredential(e.target.value)}
+        required
+      />
       <label>Password</label>
-        <input
-          type="password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          required
-        />
+      <input
+        type="password"
+        value={password}
+        onChange={e => setPassword(e.target.value)}
+        required
+      />
 
       <button type="submit">Log In</button>
     </form>
   );
-}
-
-export default LoginFormPage;
+};

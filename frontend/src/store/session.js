@@ -63,7 +63,7 @@ export const logout = () => async dispatch => {
 const initialState = { user: null };
 
 const sessionReducer = (state = initialState, action) => {
-  let stateCopy;
+  // let stateCopy;
   switch (action.type) {
     case SET_USER:
       return {...state, user: action.user}
