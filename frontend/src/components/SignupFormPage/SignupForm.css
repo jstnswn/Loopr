@@ -1,0 +1,21 @@
+.signup-form {
+  height: 430px;
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-form input {
+  height: 20px;
+}
+
+.signup-form label,
+.signup-form button {
+  margin-top: 5px;
+}
+
+.signup-form button {
+  width: 100px;
+  height: 30px;
+  align-self: center;
+}
