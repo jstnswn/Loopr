@@ -36,7 +36,7 @@ export default function UploadPhotos() {
     //   headers: {'Content-Type': 'application/json'}
     // });
 
-    const csrfPost = await csrfFetch('/api/hey', {
+    const csrfPost = await csrfFetch('/api/photo-upload-test', {
       method: 'POST',
       body: formData,
       headers: { 'Content-Type': 'multipart/form-data' }
