@@ -5,7 +5,7 @@ import { signup } from "../../store/session";
 
 import './SignupForm.css';
 
-function SignupFormPage() {
+export default function SignupForm() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState('');
@@ -35,36 +35,34 @@ function SignupFormPage() {
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
       <label>Username</label>
-        <input
-          type='text'
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-          required
-        />
+      <input
+        type='text'
+        value={username}
+        onChange={e => setUsername(e.target.value)}
+        required
+      />
       <label>Email</label>
-        <input
-          type='text'
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          required
-        />
+      <input
+        type='text'
+        value={email}
+        onChange={e => setEmail(e.target.value)}
+        required
+      />
       <label>Password</label>
-        <input
-          type='password'
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          required
-        />
+      <input
+        type='password'
+        value={password}
+        onChange={e => setPassword(e.target.value)}
+        required
+      />
       <label>Confirm Password</label>
-        <input
-          type='password'
-          value={confirmPassword}
-          onChange={e => setConfirmPassword(e.target.value)}
-          required
-        />
+      <input
+        type='password'
+        value={confirmPassword}
+        onChange={e => setConfirmPassword(e.target.value)}
+        required
+      />
       <button type='submit'>Sign Up</button>
     </form>
   );
-}
-
-export default SignupFormPage;
+};
