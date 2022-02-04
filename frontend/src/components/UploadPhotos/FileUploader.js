@@ -5,6 +5,8 @@ export default function FileUploader({ selectFile }) {
 
   const handleFileInput = (e) => {
     const file = e.target.files[0];
+    // console.log('e.target.files[0]: ', e.target.files[0]);
+    console.log('file: ', file);
     selectFile(file);
   };
 
