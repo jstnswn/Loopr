@@ -13,21 +13,20 @@ export default function UploadPhotos() {
     e.preventDefault();
     const formData = new FormData();
     formData.append('name', name);
-    formData.append('file', selectedFile);
+    formData.append('image', selectedFile);
     // console.log('formData: ', formData)
     console.log('selectedFile: ', selectedFile)
-    console.log('formdata entries: ', formData.entries());
 
     for (let pair of formData.entries()) {
-      console.log('PAIRS: ', pair[0] + ', ' + JSON.stringify(pair[1]));
+      console.log('PAIRS: ', pair[0] + ', ' + pair[1]);
     }
     // console.log('selected file', selectedFile)
 
-    // const post = await axios.post('/api/hey', formData, {
-    //   headers: {
-    //     'Content-Type': 'multipart/form-data'
-    //   }
-    // });
+    const post = await axios.post('/api/hey', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
 
     // const axiosPost = await axios.post('/api/hey', {hey: 'there'})
 
@@ -37,11 +36,11 @@ export default function UploadPhotos() {
     //   headers: {'Content-Type': 'application/json'}
     // });
 
-    const csrfPost = await csrfFetch('/api/hey', {
-      method: 'POST',
-      body: formData,
-      headers: { 'Content-Type': 'multipart/form-data' }
-    })
+    // const csrfPost = await csrfFetch('/api/hey', {
+    //   method: 'POST',
+    //   body: formData,
+    //   headers: { 'Content-Type': 'multipart/form-data' }
+    // })
 
     // console.log('post: ', post)
 
