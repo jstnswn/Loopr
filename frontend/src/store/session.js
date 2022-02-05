@@ -16,6 +16,32 @@ const removeUser = () => {
   };
 };
 
+export const createUser = (user) => async dispatch => {
+  const { image, username, email, password } = user;
+  const res = await csrfFetch('/api/users', {
+    method: 'POST',
+    body: JSON.stringify({ username, email, password }),
+  });
+
+  let data = await res.json();
+
+  if (image) {
+    const formData = new FormData();
+    formData.append('image', image);
+
+    const res2 = await csrfFetch(`/api/users/${data.user.id}/profile-image`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'multipart/form-data' },
+      body: formData,
+    });
+
+    data = await res2.json();
+    dispatch(setUser(data.updatedUser));
+  } else {
+    dispatch(setUser(data.user));
+  }
+};
+
 export const login = (user) => async dispatch => {
   const { credential, password } = user;
 
