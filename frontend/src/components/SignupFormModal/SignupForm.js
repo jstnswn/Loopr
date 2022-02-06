@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
-import { signup } from "../../store/session";
+import { createUser, signup } from "../../store/session";
 
 import './SignupForm.css';
 
@@ -10,6 +10,7 @@ export default function SignupForm() {
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
+  const [image, setImage] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState([]);
@@ -20,13 +21,18 @@ export default function SignupForm() {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
-      return dispatch(signup({ email, username, password }))
+      return dispatch(createUser({ email, username, image, password }))
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
         });
     }
     return setErrors(['Password and Confirm Password do not match']);
+  };
+
+  const updateFile = (e) => {
+    const file = e.target.files[0];
+    if (file) setImage(file);
   };
 
   return (
@@ -62,6 +68,8 @@ export default function SignupForm() {
         onChange={e => setConfirmPassword(e.target.value)}
         required
       />
+      <label>Profile Image (optional)</label>
+      <input type='file' onChange={updateFile}/>
       <button type='submit'>Sign Up</button>
     </form>
   );

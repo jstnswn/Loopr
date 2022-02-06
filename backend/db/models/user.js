@@ -24,6 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         len: [3, 256]
       }
     },
+    imageUrl: DataTypes.STRING,
     hashedPassword: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -89,7 +90,7 @@ module.exports = (sequelize, DataTypes) => {
     return await User.scope('currentUser').findByPk(user.id);
   };
 
-  
+
   User.associate = function(models) {
     // associations can be defined here
   };

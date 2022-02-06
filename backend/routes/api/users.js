@@ -30,33 +30,29 @@ const validateSignup = [
   handleValidationErrors
 ];
 
-router.post('/photo',
-  singleMulterUpload('image'),
-  validateSignup,
-  asyncHandler(async (req, res) => {
-    const { email, password, username } = req.body;
-    const profileImageUrl = await singlePublicFileUpload(req.file);
-    const user = await User.signup({ email, password, username, profileImageUrl });
-
-    await setTokenCookie(res, user);
-
-    return res.json({
-      user
-    });
-  })
-);
-
 router.post('/',
   validateSignup,
-  asyncHandler(async (req, res, next) => {
+  asyncHandler(async (req, res) => {
     const { email, password, username } = req.body;
     const user = await User.signup({ email, password, username });
 
     await setTokenCookie(res, user);
 
-    return res.json({
-      user
-    });
+    return res.json({ user });
+  })
+);
+
+router.patch('/:userId/profile-image',
+  singleMulterUpload('image'),
+  asyncHandler(async (req, res) => {
+    const userId = parseInt(req.params.userId, 10);
+
+    const imageUrl = await singlePublicFileUpload(req.file);
+
+    const user = await User.findByPk(userId)
+    const updatedUser = await user.update({ imageUrl });
+
+    return res.json({ updatedUser });
   })
 );
 
