@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import Navigation from './components/Navigation';
-import UploadPhotos from './components/UploadPhotos';
 import { restoreUser } from './store/session';
 
 
@@ -26,13 +25,13 @@ function App() {
     <>
       <Navigation isLoaded={isLoaded} />
       {/* <UploadPhotos /> */}
-      {user?.imageUrl && (
+      {/* {user?.imageUrl && (
         <img
           style={{ width: "150px" }}
           src={user.imageUrl}
           alt="profile"
         />
-      )}
+      )} */}
       {isLoaded && (
         <Switch>
 
