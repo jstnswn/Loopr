@@ -25,7 +25,7 @@ function App() {
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      <UploadPhotos />
+      {/* <UploadPhotos /> */}
       {user?.imageUrl && (
         <img
           style={{ width: "150px" }}

@@ -1,13 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link, NavLink } from 'react-router-dom';
 import ProfileButton from './ProfileButton';
 
 import './Navigation.css';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import { loginDemo } from '../../store/session';
 
 export default function Navigation({ isLoaded }) {
+  const dispatch = useDispatch();
   const sessionUser = useSelector(({ session }) => session.user);
 
   let sessionLinks;
@@ -19,6 +21,7 @@ export default function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <LoginFormModal />
+        <Link onClick={() => dispatch(loginDemo())}>Demo</Link>
         <SignupFormModal />
       </>
     );
