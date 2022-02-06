@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import Navigation from './components/Navigation';
+import SplashPage from './components/SplashPage';
+import BottomBar from './components/SplashPage/BottomBar';
 import { restoreUser } from './store/session';
 
 
@@ -34,9 +36,12 @@ function App() {
       )} */}
       {isLoaded && (
         <Switch>
-
+          <Route exact path='/'>
+            <SplashPage />
+          </Route>
         </Switch>
       )}
+      <BottomBar />
     </>
   )
 }
