@@ -1,13 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
+:root {
+  --grey-border: #e2e2e2;
+}
+
 /* TODO Add site wide styles */
+
 /* #root {
+  height: 100%;
+  width: 100%;
 } */
 
 body {
-  /* width: 50px; */
+  margin: 0;
 }
 
 * {
   box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
 }
 
 a {

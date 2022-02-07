@@ -1,6 +1,9 @@
 .upload-photos-form {
-  position: fixed;
-  top: 100px;
+  position: absolute;
+  top: 70px;
   right: 0;
   left: 0;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
 }

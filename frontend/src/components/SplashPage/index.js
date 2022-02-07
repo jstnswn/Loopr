@@ -29,7 +29,7 @@ export default function SplashPage() {
   }, [isLoaded, albums, key])
 
   return images && (
-    <div className='splash-image-container'>
+    <div className='splash-container'>
       {/* <ImageCarousel images={images}/> */}
 
       {key === 1 && <ImageCarousel2 images={images} />}
