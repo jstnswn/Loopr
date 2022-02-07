@@ -36,7 +36,6 @@ export default function Dashboard() {
         <p>link</p>
       </div>
       <div className='dashboard-body'>
-        Body
         <UploadPhotos />
       </div>
     </div>
