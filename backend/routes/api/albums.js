@@ -28,5 +28,21 @@ router.get('/users/current',
   })
 );
 
+router.post('/users/current',
+  restoreUser,
+  asyncHandler(
+    async (req, res) => {
+      const { user } = req;
+      const { title, description } = req.body;
+
+      const album = await albumServices.createAlbum(user.id, title, description);
+
+      if (album) {
+        res.status(201);
+        res.json({album});
+      }
+    })
+);
+
 
 module.exports = router;

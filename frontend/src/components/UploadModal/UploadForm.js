@@ -23,20 +23,22 @@ export default function UploadForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('title', imageTitle);
-    formData.append('description', description);
-    formData.append('image', selectedFile);
-    if (newAlbumOption) formData.append('albumTitle', albumTitle);
-    else formData.append('albumId', albumId);
+    // const formData = new FormData();
+    // formData.append('title', imageTitle);
+    // formData.append('description', description);
+    // formData.append('image', selectedFile);
+    // if (newAlbumOption) formData.append('albumTitle', albumTitle);
+    // else formData.append('albumId', albumId);
 
-    const csrfPost = await csrfFetch('/api/photo-upload-test', {
-      method: 'POST',
-      body: formData,
-      headers: { 'Content-Type': 'multipart/form-data' }
-    })
-
-    dispatch(postImages());
+    const payload = {
+      title: imageTitle,
+      description,
+      imageFile: selectedFile,
+    };
+    if (newAlbumOption) payload.albumTitle = albumTitle;
+    else payload.albumId = albumId;
+    
+    dispatch(postImages(payload));
   };
 
   useEffect(() => {
@@ -65,7 +67,7 @@ export default function UploadForm() {
         >
           <option>-Select an Album-</option>
           {userAlbums?.map(album => (
-            <option key={album.id}>{album.title}</option>
+            <option value={album.id} key={album.id}>{album.title}</option>
           ))}
           <option>-Create New Album-</option>
 

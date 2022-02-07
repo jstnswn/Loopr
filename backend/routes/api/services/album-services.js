@@ -14,9 +14,14 @@ async function getAlbumsByUserId(userId) {
   });
 };
 
+async function createAlbum(userId, title, description) {
+  return await db.Album.create({ userId, title, description });
+};
+
 module.exports = {
   getSplashAlbums,
   getAlbumsByUserId,
+  createAlbum,
 };
 
 
