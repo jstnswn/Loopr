@@ -14,8 +14,7 @@ export default function UploadPhotos() {
     const formData = new FormData();
     formData.append('name', name);
     formData.append('image', selectedFile);
-    // console.log('formData: ', formData)
-    console.log('selectedFile: ', selectedFile)
+
 
     for (let pair of formData.entries()) {
       console.log('PAIRS: ', pair[0] + ', ' + pair[1]);

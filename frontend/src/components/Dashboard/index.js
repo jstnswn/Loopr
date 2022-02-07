@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import './Dashboard.css';
 
 import UploadPhotos from '../UploadPhotos';
+import DashboardBody from './DashboardBody';
 
 export default function Dashboard() {
 
@@ -31,13 +32,12 @@ export default function Dashboard() {
         </div>
       </div>
       <div className='dashboard-nav'>
-        <p>link</p>
-        <p>link</p>
-        <p>link</p>
+        <p>Photostream</p>
+        <p>Albums</p>
+        <p>Faves</p>
+        <p>Loop Station</p>
       </div>
-      <div className='dashboard-body'>
-        <UploadPhotos />
-      </div>
+      <DashboardBody />
     </div>
   );
 }
