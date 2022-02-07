@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import Home from './components/Home';
+import Dashboard from './components/Dashboard';
 import Navigation from './components/Navigation';
 import SplashPage from './components/SplashPage';
 import BottomBar from './components/SplashPage/BottomBar';
@@ -36,7 +36,7 @@ function App() {
         <Switch>
           <Route exact path='/'>
             {!user && <SplashPage />}
-            {user && <Home />}
+            {user && <Dashboard />}
           </Route>
           <Route>
 

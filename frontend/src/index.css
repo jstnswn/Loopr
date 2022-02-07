@@ -1,9 +1,12 @@
 /* TODO Add site wide styles */
+
 /* #root {
+  height: 100%;
+  width: 100%;
 } */
 
 body {
-  /* width: 50px; */
+  margin: 0;
 }
 
 * {
