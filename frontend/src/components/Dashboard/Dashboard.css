@@ -63,14 +63,6 @@
   padding-right: 20px;
 }
 
-.test {
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* border: red solid 1px; */
-
-}
-
 .cover-more-button {
   border: #fff 2px solid;
   border-radius: 3px;
@@ -82,10 +74,13 @@
 }
 
 .dashboard-nav {
+  position: sticky;
+  top: 50px;
   grid-row-start: 2;
   width: 100%;
-  z-index: 2;
+  z-index: 3;
   background-color: white;
+  border-bottom: 1px solid var(--grey-border);
   display: flex;
   align-items: center;
   justify-content: space-evenly;
