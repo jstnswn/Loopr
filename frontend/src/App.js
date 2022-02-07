@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
+import Home from './components/Home';
 import Navigation from './components/Navigation';
 import SplashPage from './components/SplashPage';
 import BottomBar from './components/SplashPage/BottomBar';
@@ -11,8 +12,8 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   // Temp:
-  // const session = useSelector(({ session }) => session);
-  // const user = session.user;
+  const session = useSelector(({ session }) => session);
+  const user = session.user;
 
   useEffect(() => {
     dispatch(restoreUser())
@@ -34,7 +35,11 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path='/'>
-            <SplashPage />
+            {!user && <SplashPage />}
+            {user && <Home />}
+          </Route>
+          <Route>
+
           </Route>
         </Switch>
       )}

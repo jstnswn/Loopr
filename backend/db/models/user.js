@@ -50,9 +50,10 @@ module.exports = (sequelize, DataTypes) => {
   });
 
 
+
   User.prototype.toSafeObject = function () {
-    const { id, username, email } = this; // context will be the User instance
-    return { id, username, email };
+    const { id, username, email, imageUrl } = this; // context will be the User instance
+    return { id, username, email, imageUrl };
   };
 
   User.prototype.validatePassword = function (password) {
@@ -92,7 +93,7 @@ module.exports = (sequelize, DataTypes) => {
 
 
   User.associate = function(models) {
-    User.hasMany(models.Album, { foreignKey: 'albumId' });
+    User.hasMany(models.Album, { foreignKey: 'userId' });
     User.hasMany(models.Image, { foreignKey: 'userId' });
   };
   return User;

@@ -1,32 +1,33 @@
 import { csrfFetch } from "./csrf";
 
-const LOAD_CAROUSEL = 'splash/LOAD_CAROUSEL';
+const LOAD_Albums = 'splash/LOAD_Albums';
 
-const loadCarousel = (images) => {
+const loadAlbums = (albums) => {
   return {
-    type: LOAD_CAROUSEL,
-    images
+    type: LOAD_Albums,
+    albums
   };
 };
 
-export const getSplashImages = () => async dispatch => {
-  const res = await csrfFetch('/api/images/splash');
+export const getSplashAlbums = () => async dispatch => {
+  const res = await csrfFetch('/api/albums/splash');
 
-  const images = await res.json();
-  dispatch(loadCarousel(images));
+  const albums = await res.json();
+  dispatch(loadAlbums(albums));
   return res;
 };
 
 const initialState = {
-  carouselImages: null,
+  albums: null,
 };
 
 const splashReducer = (state = initialState, action) => {
   switch (action.type) {
-    case LOAD_CAROUSEL:
+    case LOAD_Albums:
+      const formatted = splashAlbumFormatter(action.albums);
       return {
         ...state,
-        carouselImages: action.images
+        albums: formatted
       }
     default:
       return state;
@@ -34,3 +35,15 @@ const splashReducer = (state = initialState, action) => {
 };
 
 export default splashReducer;
+
+function splashAlbumFormatter(albums) {
+  return albums.reduce((acc, album) => {
+    acc[album.id] = {
+      title: album.title,
+      id: album.id,
+      images: album.Images
+    }
+
+    return acc;
+  }, {})
+};
