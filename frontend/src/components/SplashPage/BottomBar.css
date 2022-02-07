@@ -7,6 +7,7 @@
   width: 100%;
   padding: 5px 20px;
   background-color: black;
+  z-index: 1000;
 }
 
 .bottom-bar a {

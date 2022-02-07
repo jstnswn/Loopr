@@ -6,16 +6,13 @@ import SplashPage from './components/SplashPage';
 import BottomBar from './components/SplashPage/BottomBar';
 import { restoreUser } from './store/session';
 
-
-
-
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
 
   // Temp:
-  const session = useSelector(({ session }) => session);
-  const user = session.user;
+  // const session = useSelector(({ session }) => session);
+  // const user = session.user;
 
   useEffect(() => {
     dispatch(restoreUser())

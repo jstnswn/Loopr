@@ -21,7 +21,7 @@ export default function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <LoginFormModal />
-        <Link onClick={() => dispatch(loginDemo())}>Demo</Link>
+        <div onClick={() => dispatch(loginDemo())}>Demo</div>
         <SignupFormModal />
       </>
     );
