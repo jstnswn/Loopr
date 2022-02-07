@@ -1,10 +1,21 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
+const { check } = require('express-validator');
 const { restoreUser } = require('../../utils/auth');
 
 const router = express.Router();
 
 const albumServices = require('./services/album-services');
+
+const validateAlbum = [
+  check('title')
+    .exists({ checkFalsy: true })
+    .isLength({ min: 1, max: 30 })
+    .withMessage('Title must be between 1 and 30 characters'),
+  check('description')
+    .isLength({ max: 300 })
+    .withMessage('Description must be less than 300 characters')
+];
 
 router.get('/splash',
   asyncHandler(async (req, res) => {
@@ -29,6 +40,7 @@ router.get('/users/current',
 );
 
 router.post('/users/current',
+  validateAlbum,
   restoreUser,
   asyncHandler(
     async (req, res) => {
