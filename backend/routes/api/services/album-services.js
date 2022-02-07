@@ -1,9 +1,12 @@
 const db = require('../../../db/models');
 
 async function getSplashAlbums() {
-  console.log('qwer')
-  return await db.Album.findByPk(1);
-  console.log("TWOOO")
+  // return await db.Album.findByPk(1);
+  // return await db.Image.findAll({ limit: 5 });
+  return await db.Album.findAll({
+    limit: 3,
+    include: [db.Image],
+  })
 };
 
 module.exports = {
