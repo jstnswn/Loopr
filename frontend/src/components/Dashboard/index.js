@@ -19,7 +19,10 @@ export default function Dashboard() {
           <div className='dashboard-user-info'>
             <div className='top'>
               <h2>{user.username}</h2>
-              <i className='fas fa-ellipsis-h cover-more-button'></i>
+              <div className='test'>
+                <i className='fas fa-ellipsis-h cover-more-button'></i>
+
+              </div>
             </div>
 
             <ul className='bottom'>
