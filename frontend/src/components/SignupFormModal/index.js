@@ -14,7 +14,7 @@ export default function SignupFormModal() {
 
   return (
     <>
-      <button onClick={openModal}>Sign Up</button>
+      <button className='nav-signup' onClick={openModal}>Sign Up</button>
       {showModal && (
         <Modal onClose={closeModal}>
           <SignupForm />

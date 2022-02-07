@@ -10,9 +10,10 @@ const loadCarousel = (images) => {
 };
 
 export const getSplashImages = () => async dispatch => {
-  const res = await csrfFetch('/api/images/splash');
+  const res = await csrfFetch('/api/albums/splash');
 
   const images = await res.json();
+  console.log('images: ', images)
   dispatch(loadCarousel(images));
   return res;
 };

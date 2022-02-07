@@ -5,6 +5,11 @@ import * as sessionActions from '../../store/session';
 export default function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showDropdown, setShowDropdown] = useState(false);
+  console.log('user: ', user)
+
+  const imageUrl = user.imageUrl
+    ? user.imageUrl
+    : '../../public/profile_avitar.png';
 
   const openDropdown = () => {
     if (showDropdown) return;
@@ -31,10 +36,12 @@ export default function ProfileButton({ user }) {
 
   return (
     <>
-      <i
+      <img
         className='fas fa-user-circle profile-button'
         onClick={openDropdown}
-      ></i>
+        src={imageUrl}
+        alt='profile'
+      ></img>
       {showDropdown && (
         <ul className='profile-dropdown'>
           <li>{user.username}</li>

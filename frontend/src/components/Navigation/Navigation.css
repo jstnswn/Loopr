@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  padding: 5px;
+  padding: 5px 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -11,6 +11,13 @@
   /* border: 1px rgb(0, 0, 0) solid; */
   background-color: rgba(0, 0, 0, 0.55);
   z-index: 1000;
+}
+
+.navbar a,
+.navbar div {
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .profile-dropdown {
@@ -26,4 +33,22 @@
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   /* margin-right: 5px; */
+}
+
+
+.profile-button {
+  cursor: pointer;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+}
+
+.nav-signup {
+  width: 95px;
+  height: 30px;
+  background-color: white;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
 }

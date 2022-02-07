@@ -39,10 +39,38 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
+
+      {
+        title: 'Space Travel',
+        description: null,
+        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/47264397312_d991cc6ef6_k.jpeg',
+        albumId: 2,
+        userId: 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        title: 'Strawberry Milky Way',
+        description: null,
+        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/47264397422_b3ed6b1c0b_o.jpeg',
+        albumId: 2,
+        userId: 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        title: 'Wish',
+        description: null,
+        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/34119722743_d6f061775d_k.jpeg',
+        albumId: 2,
+        userId: 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
     ]);
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('People', null, {});
+    return queryInterface.bulkDelete('Images', null, {});
   }
 };

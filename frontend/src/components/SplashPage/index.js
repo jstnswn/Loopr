@@ -11,6 +11,9 @@ import './Splash.css'
 export default function SplashPage() {
   const dispatch = useDispatch();
   // const [isLoaded, setIsLoaded] = useState(false);
+  const [splashAlbum, setSplashAlbum] = useState();
+
+  // Create button to toggle splashAlbum state
 
 
   const images = useSelector(({ splash }) => splash.carouselImages);
