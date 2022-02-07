@@ -8,7 +8,8 @@ export default function ProfileButton({ user }) {
 
   const imageUrl = user.imageUrl
     ? user.imageUrl
-    : '../../public/profile_avitar.png';
+    : 'images/profile_avatar.png';
+    console.log('imgUrl: ', imageUrl)
 
   const openDropdown = () => {
     if (showDropdown) return;
@@ -39,6 +40,7 @@ export default function ProfileButton({ user }) {
         className='fas fa-user-circle profile-button'
         onClick={openDropdown}
         src={imageUrl}
+        // src=''
         alt='profile'
       ></img>
       {showDropdown && (
