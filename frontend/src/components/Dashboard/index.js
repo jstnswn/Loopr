@@ -1,17 +1,23 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import './Dashboard.css';
 
-import UploadPhotos from '../UploadPhotos';
+import UploadPhotos from '../UploadModal';
 import DashboardBody from './DashboardBody';
+import { getUserAlbums } from '../../store/dashboard';
 
 export default function Dashboard() {
-
+  const dispatch = useDispatch();
+  const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector(({ session }) => session.user)
-  console.log(user)
 
-  return (
+  useEffect(() => {
+    dispatch(getUserAlbums())
+      .then(() => setIsLoaded(true));
+  },[dispatch])
+
+  return isLoaded && (
     <div className='dashboard-container'>
       <div className='cover-container'>
         <img className='cover-image' src='images/cover-placeholder.jpeg' alt='cover'></img>

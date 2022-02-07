@@ -1,16 +1,22 @@
 const db = require('../../../db/models');
 
 async function getSplashAlbums() {
-  // return await db.Album.findByPk(1);
-  // return await db.Image.findAll({ limit: 5 });
   return await db.Album.findAll({
     limit: 3,
     include: [db.Image],
   })
 };
 
+async function getAlbumsByUserId(userId) {
+  return await db.Album.findAll({
+    where: { userId },
+    include: [db.Image]
+  });
+};
+
 module.exports = {
-  getSplashAlbums
+  getSplashAlbums,
+  getAlbumsByUserId,
 };
 
 
