@@ -7,7 +7,7 @@ module.exports = {
         title: 'Blur',
         description: null,
         imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/30828267453_47de3ddac0_o.jpeg',
-        albumId: null,
+        albumId: 1,
         userId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -25,7 +25,7 @@ module.exports = {
         title: 'Meow Spectrum',
         description: null,
         imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/51819764685_0326502e86_o.jpeg',
-        albumId: null,
+        albumId: 1,
         userId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
