@@ -5,7 +5,6 @@ import * as sessionActions from '../../store/session';
 export default function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showDropdown, setShowDropdown] = useState(false);
-  console.log('user: ', user)
 
   const imageUrl = user.imageUrl
     ? user.imageUrl

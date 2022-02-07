@@ -12,12 +12,8 @@ import './Splash.css'
 export default function SplashPage() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  // const [splashAlbum, setSplashAlbum] = useState();
   const [images, setImages] = useState(null);
   const [key, setKey] = useState(1);
-
-  // Create button to toggle splashAlbum state
-
 
   const albums = useSelector(({ splash }) => splash.albums);
   useEffect(() => {
@@ -39,7 +35,7 @@ export default function SplashPage() {
       {key === 1 && <ImageCarousel2 images={images} />}
       {key === 2 && <ImageCarousel2 images={images} />}
 
-      <Selector setKey={setKey} />
+      <Selector albums={Object.values(albums)} setKey={setKey} />
     </div>
   );
 }

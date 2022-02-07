@@ -1,5 +1,4 @@
 .splash-selector-container {
-  border: red 1px solid;
   width: 50%;
   z-index: 1000;
   position: absolute;
@@ -11,4 +10,8 @@
   bottom: 20%;
   display: flex;
   justify-content: space-between;
+}
+
+.splash-album-selector {
+  cursor: pointer;
 }

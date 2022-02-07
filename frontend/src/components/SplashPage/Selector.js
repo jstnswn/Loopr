@@ -2,16 +2,16 @@ import React from 'react';
 
 import './Selector.css'
 
-export default function Selector({ setKey }) {
+export default function Selector({ albums, setKey }) {
   return (
     <div className='splash-selector-container'>
-      {new Array(3).fill('x').map((val, idx) => (
+      {albums.map((album, idx) => (
         <div
           key={idx}
           className='splash-album-selector'
           onClick={() => setKey(idx + 1)}
         >
-          dfadfa
+          {album.title}
         </div>
       ))}
 
