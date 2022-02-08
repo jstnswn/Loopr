@@ -15,7 +15,10 @@ export default function Navigation({ isLoaded }) {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton user={sessionUser}/>
+      <>
+        <NavLink to='/dashboard' activeClassName='active-nav'>Dashboard</NavLink>
+        <ProfileButton user={sessionUser} />
+      </>
     );
   } else {
     sessionLinks = (
@@ -28,10 +31,10 @@ export default function Navigation({ isLoaded }) {
   }
 
   return (
-   <nav className={`navbar ${sessionUser && 'logged-in'}`}>
-     <NavLink exact to='/'>Home</NavLink>
-     {isLoaded && sessionLinks}
-   </nav>
+    <nav className={`navbar ${sessionUser && 'logged-in'}`}>
+      <NavLink exact to='/'>Home</NavLink>
+      {isLoaded && sessionLinks}
+    </nav>
 
   );
 }

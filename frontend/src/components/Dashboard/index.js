@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink, Route, Switch, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './Dashboard.css';
@@ -9,8 +10,15 @@ import { loadDashboard } from '../../store/dashboard';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector(({ session }) => session.user)
+
+  console.log('history: ', history)
+  if (history.location.pathname.endsWith('/dashboard')) {
+    history.push('/dashboard/photostream');
+  }
+  // history.push('/dashboard');
 
   useEffect(() => {
     dispatch(loadDashboard())
@@ -37,12 +45,13 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-      <div className='dashboard-nav'>
-        <p>Photostream</p>
-        <p>Albums</p>
-        <p>Faves</p>
-        <p>Loop Station</p>
-      </div>
+      <nav className='dashboard-nav'>
+        <NavLink to='/dashboard/photostream'>Photostream</NavLink>
+        {/* <NavLink>Albums</NavLink>
+        <NavLink>Faves</NavLink>
+        <NavLink>Loop Station</NavLink> */}
+      </nav>
+
       <DashboardBody />
     </div>
   );
