@@ -66,5 +66,17 @@ router.post('/users/current',
     })
 );
 
+router.delete('/:imageId(\\d+)',
+  asyncHandler(async (req, res) => {
+    const { imageId } = req.params;
+
+    const deleted = await imageServices.deleteImage(imageId);
+
+    if (deleted) {
+      res.status(204).end();
+    }
+  })
+);
+
 
 module.exports = router;

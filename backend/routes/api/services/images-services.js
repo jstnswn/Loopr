@@ -20,9 +20,16 @@ async function getImagesByUserId(userId) {
   return await db.Image.findAll({ where: { userId } });
 };
 
+async function deleteImage(imageId) {
+  const image = await db.Image.findByPk(imageId);
+
+  if (image) return await image.destroy();
+};
+
 
 module.exports = {
   getSplashImages,
   createImage,
   getImagesByUserId,
+  deleteImage,
 }

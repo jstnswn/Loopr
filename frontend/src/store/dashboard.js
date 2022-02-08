@@ -4,8 +4,32 @@ const { csrfFetch } = require("./csrf");
 
 const LOAD_IMAGE = 'dashboard/LOAD_IMAGE';
 const LOAD_IMAGES = 'dashboard/LOAD_IMAGES';
+const REMOVE_IMAGE = 'dashboard/REMOVE_IMAGE';
+
 const LOAD_ALBUM = 'dashboard/LOAD_ALBUM';
 const LOAD_ALBUMS = 'dashboard/LOAD_ALBUMS';
+
+
+const loadImage = (image) => {
+  return {
+    type: LOAD_IMAGE,
+    image
+  }
+};
+
+const loadImages = (images) => {
+  return {
+    type: LOAD_IMAGES,
+    images
+  }
+};
+
+const removeImage = (imageId) => {
+  return {
+    type: REMOVE_IMAGE,
+    imageId
+  }
+}
 
 const loadAlbum = (album) => {
   return {
@@ -21,19 +45,7 @@ const loadAlbums = (albums) => {
   };
 };
 
-const loadImage = (image) => {
-  return {
-    type: LOAD_IMAGE,
-    image
-  }
-};
 
-const loadImages = (images) => {
-  return {
-    type: LOAD_IMAGES,
-    images
-  }
-};
 
 export const postAlbum = (payload) => async dispatch => {
   const { title, description } = payload;
@@ -75,6 +87,17 @@ export const postImage = (payload) => async dispatch => {
   return res;
 };
 
+export const deleteImage = (imageId) => async dispatch => {
+  const res = await csrfFetch(`/api/images/${imageId}`, {
+    method: 'DELETE',
+  });
+
+  if (res.ok) {
+    dispatch(removeImage(imageId));
+    return res;
+  }
+};
+
 export const getUserAlbums = () => async dispatch => {
   const res = await csrfFetch('/api/albums/users/current');
   const albums = await res.json();
@@ -110,6 +133,7 @@ const initialState = {
 };
 
 const dashboardReducer = (state = initialState, action) => {
+  let stateCopy;
   let formatted;
 
   switch(action.type) {
@@ -131,6 +155,11 @@ const dashboardReducer = (state = initialState, action) => {
           ...formatted
         }
       }
+    case REMOVE_IMAGE:
+      // TODO: may need to delete image from albums too
+      stateCopy = {...state};
+      delete stateCopy.userImages[action.imageId];
+      return stateCopy;
     case LOAD_ALBUM:
       return {
         ...state,

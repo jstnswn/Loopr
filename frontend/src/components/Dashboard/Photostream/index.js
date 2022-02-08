@@ -7,7 +7,6 @@ import ImageView from '../../ImageModal/ImageView';
 
 
 export default function Photostream() {
-  const [showModal, setShowModal] = useState(false)
   const [showIdx, setShowIdx] = useState(null);
   const images = useSelector(getUserImagesArray);
   const images2 = [...images, ...images, ...images].reverse();
@@ -16,19 +15,19 @@ export default function Photostream() {
   const closeModal = () => setShowIdx(null);
 
 
-
   return (
     <div className='photostream'>
       {images2.map((image, idx) => {
 
         return (
-          <>
+          <div key={idx}>
           <img
             className='stream-image'
             key={idx}
             src={image.imageUrl}
             alt={image.title}
             onClick={() => openModal(idx)}
+
             style={{
               gridColumnStart: idx % 4 + 1,
             }}
@@ -36,10 +35,10 @@ export default function Photostream() {
           </img>
             {showIdx === idx && (
               <Modal onClose={closeModal}>
-                <ImageView image={image} />
+                <ImageView image={image} closeModal={closeModal}/>
               </Modal>
             )}
-            </>
+            </div>
        )
 })}
     </div>
