@@ -1,8 +1,9 @@
-import { normalizeAlbums } from "./utils";
+import { normalizeAlbums, normalizeImages } from "./utils";
 
 const { csrfFetch } = require("./csrf");
 
 const LOAD_IMAGE = 'dashboard/LOAD_IMAGE';
+const LOAD_IMAGES = 'dashboard/LOAD_IMAGES';
 const LOAD_ALBUM = 'dashboard/LOAD_ALBUM';
 const LOAD_ALBUMS = 'dashboard/LOAD_ALBUMS';
 
@@ -24,6 +25,13 @@ const loadImage = (image) => {
   return {
     type: LOAD_IMAGE,
     image
+  }
+};
+
+const loadImages = (images) => {
+  return {
+    type: LOAD_IMAGES,
+    images
   }
 };
 
@@ -77,6 +85,15 @@ export const getUserAlbums = () => async dispatch => {
   return res;
 };
 
+export const getUserImages = () => async dispatch => {
+  const res = await csrfFetch(('/api/images/users/current'));
+
+  const images = await res.json();
+  dispatch(loadImages(images));
+
+  return res;
+};
+
 export const getUserAlbumsArray = (state) => Object.values(state.dashboard.userAlbums);
 
 
@@ -95,6 +112,15 @@ const dashboardReducer = (state = initialState, action) => {
         userImages: {
           ...state.userImages,
           [action.image.id]: action.image
+        }
+      }
+    case LOAD_IMAGES:
+      formatted = normalizeImages(action.images);
+      return {
+        ...state,
+        userImages: {
+          ...state.userImages,
+          ...formatted
         }
       }
     case LOAD_ALBUM:

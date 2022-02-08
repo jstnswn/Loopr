@@ -22,7 +22,13 @@ async function createImage(userId, title, description, albumId, imageUrl) {
   });
 };
 
+async function getImagesByUserId(userId) {
+  return await db.Image.findAll({ where: { userId } });
+};
+
+
 module.exports = {
   getSplashImages,
   createImage,
+  getImagesByUserId,
 }
