@@ -3,6 +3,7 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { singleMulterUpload, singlePublicFileUpload } = require('../../awsS3');
 const { restoreUser } = require('../../utils/auth');
+const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
 
@@ -18,7 +19,8 @@ const validateImage = [
     .withMessage('Description must be less than 300 characters'),
   check('imageUrl')
     .exists({ checkFalsy: true })
-    .withMessage('Image upload requires an image')
+    .withMessage('Image upload requires an image'),
+    handleValidationErrors
 ];
 
 

@@ -1,34 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 import './UploadPhotos.css'
 import FileUploader from './FileUploader';
-import { csrfFetch } from '../../store/csrf';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserAlbumsArray, postImages } from '../../store/dashboard';
 
-export default function UploadForm() {
+
+export default function UploadForm({ closeModal }) {
   const dispatch = useDispatch();
   const [imageTitle, setImageTitle] = useState('');
   const [albumTitle, setAlbumTitle] = useState('');
   const [newAlbumOption, setNewAlbumOption] = useState(false);
   const [description, setDescription] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
-  const [albumId, setAlbumId] = useState('--Select an Album--')
+  const [albumId, setAlbumId] = useState('--Select an Album--');
+  const [errors, setErrors] = useState([]);
+  const [showErrors, setShowErrors] = useState(false);
 
-  // const dashboard = useSelector(({ dashboard }) => dashboard);
-  // const userAlbums = dashboard.userAlbums;
-  // const userAlbumsArray = Object.values(userAlbums);
   const userAlbums = useSelector(getUserAlbumsArray);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const formData = new FormData();
-    // formData.append('title', imageTitle);
-    // formData.append('description', description);
-    // formData.append('image', selectedFile);
-    // if (newAlbumOption) formData.append('albumTitle', albumTitle);
-    // else formData.append('albumId', albumId);
 
     const payload = {
       title: imageTitle,
@@ -37,9 +29,32 @@ export default function UploadForm() {
     };
     if (newAlbumOption) payload.albumTitle = albumTitle;
     else payload.albumId = albumId;
-    
-    dispatch(postImages(payload));
+
+
+    return dispatch(postImages(payload))
+    .then(() => closeModal())
+    .catch(() => setShowErrors(true))
   };
+
+  useEffect(() => {
+    const errors = [];
+
+    if (imageTitle.length > 30 || !imageTitle.length) {
+      errors.push('Image title must be between 1 and 30 characters');
+    }
+    if (!selectedFile) {
+      errors.push('Please select and image to upload');
+    }
+    if (newAlbumOption && !albumTitle.length) {
+      errors.push('Album title must be between 1 and 30 characters');
+    }
+    if (albumId === '--Select an Album--') {
+      errors.push('Please select an album for your image');
+    }
+
+    setErrors(errors);
+
+  }, [imageTitle, albumTitle, selectedFile, newAlbumOption, albumId])
 
   useEffect(() => {
     if (newAlbumOption) return;
@@ -79,6 +94,9 @@ export default function UploadForm() {
   return (
     <div>
       <form className='upload-photos-form' onSubmit={handleSubmit}>
+        <ul>
+          {showErrors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
         <label>Image Title</label>
         <input
           type='text'
@@ -91,14 +109,6 @@ export default function UploadForm() {
           onChange={e => setDescription(e.target.value)}
         />
         {albumOption}
-        {/* <select
-          value={albumId}
-          onChange={e => setAlbumId(e.target.value)}
-        >
-          <option>-Select an Album-</option>
-          <option>-Create New Album-</option>
-
-        </select> */}
         <FileUploader
           selectFile={file => setSelectedFile(file)}
         />
