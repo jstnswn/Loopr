@@ -1,6 +1,4 @@
-const { sequelize } = require('../../../db/models');
 const db = require('../../../db/models');
-const album = require('../../../db/models/album');
 
 async function getSplashImages() {
   return await db.Image.findAll({
@@ -17,12 +15,35 @@ async function createImage(userId, title, description, albumId, imageUrl) {
 };
 
 async function getImagesByUserId(userId) {
-  return await db.Image.findAll({ where: { userId } });
+  return await db.Image.findAll({
+    where: { userId },
+    include: [db.Album]
+  });
 };
+
+async function deleteImage(imageId) {
+  const image = await db.Image.findByPk(imageId);
+
+  if (image) return await image.destroy();
+};
+
+async function patchImage(imageId, updates) {
+  const image = await db.Image.findByPk(imageId);
+
+  if (image) await image.update(updates)
+
+  const updated = await db.Image.findByPk(imageId, {
+    include: [db.Album]
+  });
+
+  return updated;
+}
 
 
 module.exports = {
   getSplashImages,
   createImage,
   getImagesByUserId,
+  deleteImage,
+  patchImage,
 }

@@ -4,22 +4,11 @@ const { csrfFetch } = require("./csrf");
 
 const LOAD_IMAGE = 'dashboard/LOAD_IMAGE';
 const LOAD_IMAGES = 'dashboard/LOAD_IMAGES';
+const REMOVE_IMAGE = 'dashboard/REMOVE_IMAGE';
+
 const LOAD_ALBUM = 'dashboard/LOAD_ALBUM';
 const LOAD_ALBUMS = 'dashboard/LOAD_ALBUMS';
 
-const loadAlbum = (album) => {
-  return {
-    type: LOAD_ALBUM,
-    album,
-  }
-}
-
-const loadAlbums = (albums) => {
-  return {
-    type: LOAD_ALBUMS,
-    albums
-  };
-};
 
 const loadImage = (image) => {
   return {
@@ -34,6 +23,36 @@ const loadImages = (images) => {
     images
   }
 };
+
+const removeImage = (imageId) => {
+  return {
+    type: REMOVE_IMAGE,
+    imageId
+  };
+};
+
+// const updateImage = (imageId) => {
+//   return {
+//     type: UPDATE_IMAGE,
+
+//   }
+// };
+
+const loadAlbum = (album) => {
+  return {
+    type: LOAD_ALBUM,
+    album,
+  };
+};
+
+const loadAlbums = (albums) => {
+  return {
+    type: LOAD_ALBUMS,
+    albums
+  };
+};
+
+
 
 export const postAlbum = (payload) => async dispatch => {
   const { title, description } = payload;
@@ -50,6 +69,7 @@ export const postAlbum = (payload) => async dispatch => {
 
 export const postImage = (payload) => async dispatch => {
   let { title, description, imageFile, albumTitle, albumId } = payload;
+
   if (albumTitle) {
     const newAlbum = await dispatch(postAlbum({ title: albumTitle }));
     albumId = newAlbum.id;
@@ -75,6 +95,17 @@ export const postImage = (payload) => async dispatch => {
   return res;
 };
 
+export const deleteImage = (imageId) => async dispatch => {
+  const res = await csrfFetch(`/api/images/${imageId}`, {
+    method: 'DELETE',
+  });
+
+  if (res.ok) {
+    dispatch(removeImage(imageId));
+    return res;
+  }
+};
+
 export const getUserAlbums = () => async dispatch => {
   const res = await csrfFetch('/api/albums/users/current');
   const albums = await res.json();
@@ -88,6 +119,28 @@ export const getUserImages = () => async dispatch => {
 
   const images = await res.json();
   dispatch(loadImages(images));
+
+  return res;
+};
+
+export const updateImage = (payload) => async dispatch => {
+  let { imageId, title, description, albumTitle, albumId } = payload;
+
+  if (albumTitle) {
+    const newAlbum = await dispatch(postAlbum({ title: albumTitle }));
+    albumId = newAlbum.id;
+  }
+
+  const body = {title, description, albumId};
+
+  const res = await csrfFetch(`/api/images/${imageId}`, {
+    method: 'PATCH',
+    body: JSON.stringify(body)
+  });
+
+  const { image } = await res.json();
+  console.log('IMAGE: ', image)
+  dispatch(loadImage(image));
 
   return res;
 };
@@ -110,6 +163,7 @@ const initialState = {
 };
 
 const dashboardReducer = (state = initialState, action) => {
+  let stateCopy;
   let formatted;
 
   switch(action.type) {
@@ -131,6 +185,11 @@ const dashboardReducer = (state = initialState, action) => {
           ...formatted
         }
       }
+    case REMOVE_IMAGE:
+      // TODO: may need to delete image from albums too
+      stateCopy = {...state};
+      delete stateCopy.userImages[action.imageId];
+      return stateCopy;
     case LOAD_ALBUM:
       return {
         ...state,

@@ -1,0 +1,51 @@
+.edit-image-form {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 30%;
+  width: 40%;
+  height: 50%;
+  padding-top: 20px;
+  /* z-index: 3; */
+  background-color: rgba(19, 22, 24, .9);
+  color: white;
+  /* text-align: center; */
+  border-radius: 5px;
+}
+
+.edit-image-form label {
+  /* width: 50%; */
+  padding: 10px 35px;
+}
+
+/* .edit-image-form input,
+.edit-image-form select {
+
+} */
+
+.edit-image-form input,
+.edit-image-form select,
+.edit-image-form textarea {
+  /* width: 80%; */
+  /* padding: 10px; */
+  height: 30px;
+  margin: 0 35px;
+}
+
+.edit-image-form textarea {
+  transition: 0.5s;
+}
+
+.edit-image-form h2 {
+  text-align: center;
+}
+
+.edit-image-form button {
+  width: 110px;
+  height: 30px;
+  border-radius: 5px;
+  border: none;
+  margin-top: 30px;
+  align-self: center;
+
+}

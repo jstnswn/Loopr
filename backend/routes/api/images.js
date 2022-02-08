@@ -17,9 +17,9 @@ const validateImage = [
   check('description')
     .isLength({ max: 300 })
     .withMessage('Description must be less than 300 characters'),
-  check('imageUrl')
-    .exists({ checkFalsy: true })
-    .withMessage('Image upload requires an image'),
+  // check('imageUrl')
+  //   .exists({ checkFalsy: true })
+  //   .withMessage('Image upload requires an image'),
     handleValidationErrors
 ];
 
@@ -60,11 +60,38 @@ router.post('/users/current',
         .createImage(user.id, title, description, albumId, imageUrl);
 
       if (image) {
-        res.status(201);
+        res.status(200);
         res.json({ image });
       }
     })
 );
 
+router.delete('/:imageId(\\d+)',
+  asyncHandler(async (req, res) => {
+    const { imageId } = req.params;
+
+    const deleted = await imageServices.deleteImage(imageId);
+
+    if (deleted) {
+      res.status(204).end();
+    }
+  })
+);
+
+router.patch('/:imageId(\\d+)',
+  validateImage,
+  asyncHandler(async (req, res) => {
+    const { imageId } = req.params;
+    const { title, description, albumId } = req.body;
+    const updates = {title, description, albumId };
+
+    const image = await imageServices.patchImage(imageId, updates);
+
+    if (image) {
+      res.status(201)
+      res.json({image});
+    }
+  })
+);
 
 module.exports = router;
