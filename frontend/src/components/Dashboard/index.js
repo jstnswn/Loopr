@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink, Route, Switch, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './Dashboard.css';
@@ -9,8 +10,14 @@ import { loadDashboard } from '../../store/dashboard';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector(({ session }) => session.user)
+
+  if (history.location.pathname.endsWith('/dashboard')) {
+    // history.push('/dashboard/photostream');
+  }
+  // history.push('/dashboard');
 
   useEffect(() => {
     dispatch(loadDashboard())
@@ -20,7 +27,7 @@ export default function Dashboard() {
   return isLoaded && (
     <div className='dashboard-container'>
       <div className='cover-container'>
-        <img className='cover-image' src='images/cover-placeholder.jpeg' alt='cover'></img>
+        <img className='cover-image' src='/images/cover-placeholder.jpeg' alt='cover'></img>
         <div className='cover-user-container'>
           <img className='dashboard-avatar' src={user.imageUrl} alt='avatar'></img>
           <div className='dashboard-user-info'>
@@ -37,12 +44,16 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-      <div className='dashboard-nav'>
-        <p>Photostream</p>
+      <nav className='dashboard-nav'>
+        <NavLink activeClassName='active-nav' to='/dashboard/photostream'>Photostream</NavLink>
+        {/* <NavLink>Albums</NavLink>
+        <NavLink>Faves</NavLink>
+        <NavLink>Loop Station</NavLink> */}
         <p>Albums</p>
         <p>Faves</p>
-        <p>Loop Station</p>
-      </div>
+        <p>Loop</p>
+      </nav>
+
       <DashboardBody />
     </div>
   );

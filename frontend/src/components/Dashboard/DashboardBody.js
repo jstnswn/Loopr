@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import UploadPhotos from '../UploadModal';
 import Photostream from './Photostream';
 
@@ -11,7 +12,11 @@ export default function DashboardBody() {
         <UploadPhotos />
       </div>
       <div className='dashboard-body-content'>
-        <Photostream />
+        <Switch>
+          <Route path='/dashboard/photostream'>
+            <Photostream />
+          </Route>
+        </Switch>
       </div>
     </div>
   )

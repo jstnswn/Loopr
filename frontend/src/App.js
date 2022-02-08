@@ -38,8 +38,11 @@ function App() {
             {!user && <SplashPage />}
             {user && <Dashboard />}
           </Route>
+          <Route path='/dashboard'>
+            {user && <Dashboard />}
+          </Route>
           <Route>
-
+            <h2>Page Not Found</h2>
           </Route>
         </Switch>
       )}
