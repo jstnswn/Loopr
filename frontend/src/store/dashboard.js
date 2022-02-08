@@ -94,8 +94,17 @@ export const getUserImages = () => async dispatch => {
   return res;
 };
 
-export const getUserAlbumsArray = (state) => Object.values(state.dashboard.userAlbums);
+// Bulk dispatch
+export const loadDashboard = () => async dispatch => {
+  await Promise.all([
+    dispatch(getUserAlbums()),
+    dispatch(getUserImages())
+  ]);
+};
 
+// Helper Functions
+export const getUserAlbumsArray = (state) => Object.values(state.dashboard.userAlbums);
+export const getUserImagesArray = (state) => Object.values(state.dashboard.userImages);
 
 const initialState = {
   userAlbums: null,
@@ -116,6 +125,7 @@ const dashboardReducer = (state = initialState, action) => {
       }
     case LOAD_IMAGES:
       formatted = normalizeImages(action.images);
+      console.log('formatted: ', formatted);
       return {
         ...state,
         userImages: {

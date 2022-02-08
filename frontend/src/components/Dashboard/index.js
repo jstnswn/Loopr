@@ -5,7 +5,7 @@ import './Dashboard.css';
 
 // import UploadPhotos from '../UploadModal';
 import DashboardBody from './DashboardBody';
-import { getUserAlbums, getUserImages } from '../../store/dashboard';
+import { loadDashboard } from '../../store/dashboard';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -13,8 +13,7 @@ export default function Dashboard() {
   const user = useSelector(({ session }) => session.user)
 
   useEffect(() => {
-    dispatch(getUserImages())
-    dispatch(getUserAlbums())
+    dispatch(loadDashboard())
       .then(() => setIsLoaded(true));
   },[dispatch])
 

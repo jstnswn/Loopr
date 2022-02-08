@@ -13,6 +13,7 @@ export function normalizeAlbums(albums) {
 export function normalizeImages(images) {
   return images.reduce((acc, image) => {
     acc[image.id] = image;
+    console.log('red: ', acc)
     return acc;
-  });
+  }, {});
 };
