@@ -2,41 +2,44 @@ import React, { useState } from 'react';
 import './Photostream.css';
 import { useSelector } from 'react-redux';
 import { getUserImagesArray } from '../../../store/dashboard';
+import { Modal } from '../../../context/Modal';
+import ImageView from '../../ImageModal/ImageView';
 
 
 export default function Photostream() {
+  const [showModal, setShowModal] = useState(false)
+  const [showIdx, setShowIdx] = useState(null);
   const images = useSelector(getUserImagesArray);
   const images2 = [...images, ...images, ...images].reverse();
 
-  const onHover = (e) => {
-    // e.target.style.height = '12rem';
-    // e.target.style.width = '12rem';
-    // e.target.style.padding = '2px'
-  };
+  const openModal = (idx) => setShowIdx(idx);
+  const closeModal = () => setShowIdx(null);
 
-  const onExit = (e) => {
-    // e.target.style.height = '11rem';
-    // e.target.style.width = '11rem';
-    // e.target.style.padding = '5px'
-  };
+
 
   return (
     <div className='photostream'>
       {images2.map((image, idx) => {
 
         return (
+          <>
           <img
             className='stream-image'
             key={idx}
             src={image.imageUrl}
             alt={image.title}
-            onMouseEnter={onHover}
-            onMouseLeave={onExit}
+            onClick={() => openModal(idx)}
             style={{
               gridColumnStart: idx % 4 + 1,
             }}
           >
           </img>
+            {showIdx === idx && (
+              <Modal onClose={closeModal}>
+                <ImageView image={image} />
+              </Modal>
+            )}
+            </>
        )
 })}
     </div>
