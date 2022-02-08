@@ -1,4 +1,5 @@
 import { csrfFetch } from "./csrf";
+import { normalizeAlbums } from "./utils";
 
 const LOAD_Albums = 'splash/LOAD_Albums';
 
@@ -22,9 +23,11 @@ const initialState = {
 };
 
 const splashReducer = (state = initialState, action) => {
+  let formatted;
+  
   switch (action.type) {
     case LOAD_Albums:
-      const formatted = splashAlbumFormatter(action.albums);
+      formatted = normalizeAlbums(action.albums);
       return {
         ...state,
         albums: formatted
@@ -35,15 +38,3 @@ const splashReducer = (state = initialState, action) => {
 };
 
 export default splashReducer;
-
-function splashAlbumFormatter(albums) {
-  return albums.reduce((acc, album) => {
-    acc[album.id] = {
-      title: album.title,
-      id: album.id,
-      images: album.Images
-    }
-
-    return acc;
-  }, {})
-};

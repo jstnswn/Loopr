@@ -3,10 +3,12 @@ import thunk from 'redux-thunk';
 
 import sessionReducer from './session';
 import splashReducer from './splash';
+import dashboardReducer from './dashboard';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   splash: splashReducer,
+  dashboard: dashboardReducer,
 });
 
 let enhancer;

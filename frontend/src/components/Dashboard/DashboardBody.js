@@ -1,5 +1,5 @@
 import React from 'react';
-import UploadPhotos from '../UploadPhotos';
+import UploadPhotos from '../UploadModal';
 import Photostream from './Photostream';
 
 export default function DashboardBody() {

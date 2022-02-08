@@ -9,7 +9,6 @@ export default function ProfileButton({ user }) {
   const imageUrl = user.imageUrl
     ? user.imageUrl
     : 'images/profile_avatar.png';
-    console.log('imgUrl: ', imageUrl)
 
   const openDropdown = () => {
     if (showDropdown) return;
