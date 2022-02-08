@@ -1,0 +1,29 @@
+.photostream {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  /* height: 90%; */
+  /* margin-left: 20px; */
+  /* padding */
+  border: red 1px solid;
+  /* justify-content: center; */
+}
+
+.stream-image-container {
+  height: 11rem;
+  width: 11rem;
+}
+
+.stream-image {
+  /* max-width: 11rem;
+  min-width: 7rem;
+  max-height: 11rem;
+  min-height: 7rem; */
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  padding: 5px;
+  display: flex;
+  /* justify-content: center; */
+  /* justify-self: flex-start */
+}
