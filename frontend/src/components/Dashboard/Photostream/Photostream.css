@@ -1,0 +1,25 @@
+.photostream {
+  display: grid;
+  /* flex-wrap: wrap; */
+  width: 100%;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-self: center;
+}
+
+
+.stream-image {
+  height: 11rem;
+  width: 11rem;
+  object-fit: cover;
+  padding: 5px;
+  display: flex;
+  transition: .5s;
+  cursor: pointer;
+}
+
+.stream-image:hover {
+  /* height: 11.2rem; */
+  /* width: 11.2rem; */
+  padding: 3px;
+  /* border: red 1px solid; */
+}

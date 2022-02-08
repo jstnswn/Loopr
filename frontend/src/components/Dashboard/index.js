@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import './Dashboard.css';
 
-import UploadPhotos from '../UploadModal';
+// import UploadPhotos from '../UploadModal';
 import DashboardBody from './DashboardBody';
-import { getUserAlbums } from '../../store/dashboard';
+import { loadDashboard } from '../../store/dashboard';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ export default function Dashboard() {
   const user = useSelector(({ session }) => session.user)
 
   useEffect(() => {
-    dispatch(getUserAlbums())
+    dispatch(loadDashboard())
       .then(() => setIsLoaded(true));
   },[dispatch])
 

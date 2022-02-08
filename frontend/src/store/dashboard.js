@@ -1,8 +1,9 @@
-import { normalizeAlbums } from "./utils";
+import { normalizeAlbums, normalizeImages } from "./utils";
 
 const { csrfFetch } = require("./csrf");
 
 const LOAD_IMAGE = 'dashboard/LOAD_IMAGE';
+const LOAD_IMAGES = 'dashboard/LOAD_IMAGES';
 const LOAD_ALBUM = 'dashboard/LOAD_ALBUM';
 const LOAD_ALBUMS = 'dashboard/LOAD_ALBUMS';
 
@@ -27,6 +28,13 @@ const loadImage = (image) => {
   }
 };
 
+const loadImages = (images) => {
+  return {
+    type: LOAD_IMAGES,
+    images
+  }
+};
+
 export const postAlbum = (payload) => async dispatch => {
   const { title, description } = payload;
   const res = await csrfFetch('/api/albums/users/current', {
@@ -40,9 +48,8 @@ export const postAlbum = (payload) => async dispatch => {
   return album;
 };
 
-export const postImages = (payload) => async dispatch => {
+export const postImage = (payload) => async dispatch => {
   let { title, description, imageFile, albumTitle, albumId } = payload;
-
   if (albumTitle) {
     const newAlbum = await dispatch(postAlbum({ title: albumTitle }));
     albumId = newAlbum.id;
@@ -63,9 +70,8 @@ export const postImages = (payload) => async dispatch => {
     body: formData,
   });
 
-  const image = await res.json();
+  const { image } = await res.json();
   dispatch(loadImage(image));
-
   return res;
 };
 
@@ -77,8 +83,26 @@ export const getUserAlbums = () => async dispatch => {
   return res;
 };
 
-export const getUserAlbumsArray = (state) => Object.values(state.dashboard.userAlbums);
+export const getUserImages = () => async dispatch => {
+  const res = await csrfFetch(('/api/images/users/current'));
 
+  const images = await res.json();
+  dispatch(loadImages(images));
+
+  return res;
+};
+
+// Bulk dispatch
+export const loadDashboard = () => async dispatch => {
+  await Promise.all([
+    dispatch(getUserAlbums()),
+    dispatch(getUserImages())
+  ]);
+};
+
+// Helper Functions
+export const getUserAlbumsArray = (state) => Object.values(state.dashboard.userAlbums);
+export const getUserImagesArray = (state) => Object.values(state.dashboard.userImages);
 
 const initialState = {
   userAlbums: null,
@@ -90,11 +114,21 @@ const dashboardReducer = (state = initialState, action) => {
 
   switch(action.type) {
     case LOAD_IMAGE:
+      console.log('actionImage: ', action.image)
       return {
         ...state,
         userImages: {
           ...state.userImages,
           [action.image.id]: action.image
+        }
+      }
+    case LOAD_IMAGES:
+      formatted = normalizeImages(action.images);
+      return {
+        ...state,
+        userImages: {
+          ...state.userImages,
+          ...formatted
         }
       }
     case LOAD_ALBUM:

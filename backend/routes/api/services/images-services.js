@@ -6,13 +6,7 @@ async function getSplashImages() {
   return await db.Image.findAll({
     where: { albumId: 1 },
     limit: 5,
-    include: [
-      {
-        model: db.Album,
-        // where: sequelize.and({ 'active': true }),
-        required: false
-      }
-    ]
+    include: [db.Album]
   });
 };
 
@@ -22,7 +16,13 @@ async function createImage(userId, title, description, albumId, imageUrl) {
   });
 };
 
+async function getImagesByUserId(userId) {
+  return await db.Image.findAll({ where: { userId } });
+};
+
+
 module.exports = {
   getSplashImages,
   createImage,
+  getImagesByUserId,
 }

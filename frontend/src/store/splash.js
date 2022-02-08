@@ -24,7 +24,7 @@ const initialState = {
 
 const splashReducer = (state = initialState, action) => {
   let formatted;
-  
+
   switch (action.type) {
     case LOAD_Albums:
       formatted = normalizeAlbums(action.albums);

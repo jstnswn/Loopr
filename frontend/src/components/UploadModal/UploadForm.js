@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './UploadPhotos.css'
 import FileUploader from './FileUploader';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserAlbumsArray, postImages } from '../../store/dashboard';
+import { getUserAlbumsArray, postImage } from '../../store/dashboard';
 
 
 export default function UploadForm({ closeModal }) {
@@ -31,7 +31,7 @@ export default function UploadForm({ closeModal }) {
     else payload.albumId = albumId;
 
 
-    return dispatch(postImages(payload))
+    return dispatch(postImage(payload))
     .then(() => closeModal())
     .catch(() => setShowErrors(true))
   };

@@ -33,12 +33,25 @@ router.get('/splash',
   })
 );
 
-router.post('/users/current',
-  validateImage,
+router.get('/users/current',
   restoreUser,
+  asyncHandler(async (req, res) => {
+    const { user } = req;
+
+    const images = await imageServices.getImagesByUserId(user.id);
+
+    if (images) {
+      res.status(200);
+      res.json(images);
+    }
+  })
+);
+
+router.post('/users/current',
+  restoreUser,
+// validateImage,
   singleMulterUpload('image'),
-  asyncHandler(
-    async (req, res) => {
+  asyncHandler(async (req, res) => {
       const { user } = req;
       const { title, description, albumId } = req.body;
       const imageUrl = await singlePublicFileUpload(req.file);
