@@ -14,9 +14,8 @@ export default function Dashboard() {
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector(({ session }) => session.user)
 
-  console.log('history: ', history)
   if (history.location.pathname.endsWith('/dashboard')) {
-    history.push('/dashboard/photostream');
+    // history.push('/dashboard/photostream');
   }
   // history.push('/dashboard');
 
@@ -28,7 +27,7 @@ export default function Dashboard() {
   return isLoaded && (
     <div className='dashboard-container'>
       <div className='cover-container'>
-        <img className='cover-image' src='images/cover-placeholder.jpeg' alt='cover'></img>
+        <img className='cover-image' src='/images/cover-placeholder.jpeg' alt='cover'></img>
         <div className='cover-user-container'>
           <img className='dashboard-avatar' src={user.imageUrl} alt='avatar'></img>
           <div className='dashboard-user-info'>
@@ -46,10 +45,13 @@ export default function Dashboard() {
         </div>
       </div>
       <nav className='dashboard-nav'>
-        <NavLink to='/dashboard/photostream'>Photostream</NavLink>
+        <NavLink activeClassName='active-nav' to='/dashboard/photostream'>Photostream</NavLink>
         {/* <NavLink>Albums</NavLink>
         <NavLink>Faves</NavLink>
         <NavLink>Loop Station</NavLink> */}
+        <p>Albums</p>
+        <p>Faves</p>
+        <p>Loop</p>
       </nav>
 
       <DashboardBody />
