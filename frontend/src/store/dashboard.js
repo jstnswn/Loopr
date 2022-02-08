@@ -48,9 +48,8 @@ export const postAlbum = (payload) => async dispatch => {
   return album;
 };
 
-export const postImages = (payload) => async dispatch => {
+export const postImage = (payload) => async dispatch => {
   let { title, description, imageFile, albumTitle, albumId } = payload;
-
   if (albumTitle) {
     const newAlbum = await dispatch(postAlbum({ title: albumTitle }));
     albumId = newAlbum.id;
@@ -71,9 +70,8 @@ export const postImages = (payload) => async dispatch => {
     body: formData,
   });
 
-  const image = await res.json();
+  const { image } = await res.json();
   dispatch(loadImage(image));
-
   return res;
 };
 
@@ -116,6 +114,7 @@ const dashboardReducer = (state = initialState, action) => {
 
   switch(action.type) {
     case LOAD_IMAGE:
+      console.log('actionImage: ', action.image)
       return {
         ...state,
         userImages: {
@@ -125,7 +124,6 @@ const dashboardReducer = (state = initialState, action) => {
       }
     case LOAD_IMAGES:
       formatted = normalizeImages(action.images);
-      console.log('formatted: ', formatted);
       return {
         ...state,
         userImages: {

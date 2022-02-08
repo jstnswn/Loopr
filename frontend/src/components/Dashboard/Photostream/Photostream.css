@@ -1,29 +1,25 @@
 .photostream {
-  display: flex;
-  flex-wrap: wrap;
-  width: 90%;
-  /* height: 90%; */
-  /* margin-left: 20px; */
-  /* padding */
-  border: red 1px solid;
-  /* justify-content: center; */
+  display: grid;
+  /* flex-wrap: wrap; */
+  width: 100%;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-self: center;
 }
 
-.stream-image-container {
-  height: 11rem;
-  width: 11rem;
-}
 
 .stream-image {
-  /* max-width: 11rem;
-  min-width: 7rem;
-  max-height: 11rem;
-  min-height: 7rem; */
-  height: 100%;
-  width: 100%;
+  height: 11rem;
+  width: 11rem;
   object-fit: cover;
   padding: 5px;
   display: flex;
-  /* justify-content: center; */
-  /* justify-self: flex-start */
+  transition: .5s;
+  cursor: pointer;
+}
+
+.stream-image:hover {
+  /* height: 11.2rem; */
+  /* width: 11.2rem; */
+  padding: 3px;
+  /* border: red 1px solid; */
 }

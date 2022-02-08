@@ -48,8 +48,8 @@ router.get('/users/current',
 );
 
 router.post('/users/current',
-  validateImage,
   restoreUser,
+// validateImage,
   singleMulterUpload('image'),
   asyncHandler(async (req, res) => {
       const { user } = req;
