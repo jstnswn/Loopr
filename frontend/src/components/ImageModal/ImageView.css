@@ -88,3 +88,25 @@
   color: white;
 }
 
+.image-view-footer > p {
+  font-style: italic;
+}
+
+/* .image-info {
+  width: 500px;
+} */
+
+/* .top {
+  display: flex;
+  width: 100%;
+  width: 500px;
+  margin-bottom: -12px;
+}
+
+.top i {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  padding-top: 4px;
+  font-size: 14px;
+} */

@@ -41,7 +41,9 @@ export default function ImageView({ image, closeModal }) {
         <div className='image-info'>
           <p>{image.title}</p>
           <p>{image.Album.title}</p>
+
         </div>
+        <p>{image.description}</p>
         <div className='image-view-icons'>
           <i className='far fa-star'></i>
           <i className='far fa-edit' onClick={openEditForm}></i>
@@ -58,7 +60,7 @@ export default function ImageView({ image, closeModal }) {
           </div>
         </div>
       )}
-      {showEdit && <EditImageForm image={image} setShowEdit={setShowEdit}/>}
+      {showEdit && <EditImageForm image={image} setShowEdit={setShowEdit} />}
     </div>
     // <h2 className='test'>hi</h2>
   )
