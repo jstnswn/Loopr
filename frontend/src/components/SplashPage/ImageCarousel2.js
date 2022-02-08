@@ -18,7 +18,6 @@ export default function ImageCarousel2({ images }) {
       let current = domImages.length - 1;
 
       const interval = setInterval(async () => {
-        console.log('images', images)
         let nextImage = (current + 1) % domImages.length;
 
         domImages[current].style.zIndex = topZIndex + 1;

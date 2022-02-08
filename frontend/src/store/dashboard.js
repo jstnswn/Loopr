@@ -28,15 +28,22 @@ const removeImage = (imageId) => {
   return {
     type: REMOVE_IMAGE,
     imageId
-  }
-}
+  };
+};
+
+// const updateImage = (imageId) => {
+//   return {
+//     type: UPDATE_IMAGE,
+
+//   }
+// };
 
 const loadAlbum = (album) => {
   return {
     type: LOAD_ALBUM,
     album,
-  }
-}
+  };
+};
 
 const loadAlbums = (albums) => {
   return {
@@ -62,6 +69,7 @@ export const postAlbum = (payload) => async dispatch => {
 
 export const postImage = (payload) => async dispatch => {
   let { title, description, imageFile, albumTitle, albumId } = payload;
+
   if (albumTitle) {
     const newAlbum = await dispatch(postAlbum({ title: albumTitle }));
     albumId = newAlbum.id;
@@ -111,6 +119,28 @@ export const getUserImages = () => async dispatch => {
 
   const images = await res.json();
   dispatch(loadImages(images));
+
+  return res;
+};
+
+export const updateImage = (payload) => async dispatch => {
+  let { imageId, title, description, albumTitle, albumId } = payload;
+
+  if (albumTitle) {
+    const newAlbum = await dispatch(postAlbum({ title: albumTitle }));
+    albumId = newAlbum.id;
+  }
+
+  const body = {title, description, albumId};
+
+  const res = await csrfFetch(`/api/images/${imageId}`, {
+    method: 'PATCH',
+    body: JSON.stringify(body)
+  });
+
+  const { image } = await res.json();
+  console.log('IMAGE: ', image)
+  dispatch(loadImage(image));
 
   return res;
 };

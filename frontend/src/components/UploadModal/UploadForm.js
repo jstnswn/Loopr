@@ -45,6 +45,9 @@ export default function UploadForm({ closeModal }) {
     if (!selectedFile) {
       errors.push('Please select and image to upload');
     }
+    if (description.length > 300) {
+      errors.push('Description must be less than 300 characters');
+    }
     if (newAlbumOption && !albumTitle.length) {
       errors.push('Album title must be between 1 and 30 characters');
     }
