@@ -60,9 +60,7 @@
 
 .confirm-delete {
   position: absolute;
-  /* justify-self: center; */
   top: 50%;
-  left: 50%;
   z-index: 3;
   background-color: rgb(19, 22, 24);
   width: 200px;
@@ -74,7 +72,6 @@
 .confirm-delete div{
   display: flex;
   justify-content: center;
-  /* text-align: center; */
 }
 
 .confirm-delete div p {

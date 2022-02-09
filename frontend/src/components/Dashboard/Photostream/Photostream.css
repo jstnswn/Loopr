@@ -1,9 +1,9 @@
-.photostream {
+.photostream-grid {
   display: grid;
-  /* flex-wrap: wrap; */
-  width: 100%;
+  /* width: 100%; */
   grid-template-columns: 1fr 1fr 1fr 1fr;
   align-self: center;
+  margin-top: 35px;
 }
 
 
