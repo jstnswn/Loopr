@@ -1,0 +1,131 @@
+.album-grid {
+  display: grid;
+  /* width: 100%; */
+  grid-template-columns: 1fr 1fr 1fr;
+  align-self: center;
+}
+
+.album-grid-image {
+  height: 18rem;
+  width: 18rem;
+  object-fit: cover;
+  /* padding: 10px; */
+  /* padding-top: 2px; */
+  margin: 0 15px;
+  margin-bottom: 10px;
+  display: flex;
+  transition: .5s;
+  cursor: pointer;
+  z-index: 10;
+
+  /* background-color: black; */
+}
+
+.album-overlay {
+  position: absolute;
+  height: 5rem;
+  width: 18rem;
+  margin: 0 15px;
+  margin-bottom: 10px;
+  bottom: 0;
+  background: linear-gradient(
+    rgba(0, 0, 0, .1),
+    rgba(0, 0, 0, .4),
+    rgba(0, 0, 0, .5),
+    rgba(0, 0, 0, .8),
+    rgba(0, 0, 0, .9)
+  );
+  pointer-events: none;
+}
+
+
+
+/* .album-grid-image:after {
+  position: absolute;
+  width: 1000px;
+  height: 1000px;
+  right: 0;
+} */
+
+/* .album-grid-image:hover {
+  padding: 8px;
+} */
+
+.album-options {
+  /* border: red 1px solid; */
+  height: 50px;
+  width: 100vw;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 100px;
+}
+
+.add-new-album {
+  color: var(--light-gray-text);
+  transition: .2s;
+  cursor: pointer;
+}
+
+.add-new-album:hover {
+  color: black;
+}
+
+.album-container {
+  position: relative;
+}
+
+.album-info {
+  position: absolute;
+  bottom: -23px;
+  left: 0px;
+  color: white;
+  padding: 0 10px;
+  margin: 0 5px;
+  transition: .2s;
+  width: 100%;
+  pointer-events: none;
+  /* z-index: 3; */
+  /* background-color: rgba(0, 0, 0, .1); */
+}
+
+.album-info *{
+  font-weight: 400;
+  color: rgb(230, 227, 227);
+  height: 25px;
+}
+
+.album-info h4 {
+  margin-bottom: -20px;
+  font-size: 17px;
+  letter-spacing: .02em;
+  margin-left: 15px;
+  padding: 0;
+}
+
+.album-info p {
+  margin-left: 15px;
+  font-size: 13px;
+  padding-top: 3px;
+}
+
+.album-actions {
+  margin-top: -5px;
+  margin-bottom: 5px;
+  width: 100%;
+  z-index: -1;
+  color: var(--body-color);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  transition: .5s;
+  /* background-color: rgb(0, 0, 0); */
+}
+
+.album-actions * {
+  color: var(--body-color);
+  font-size: 20px;
+  margin: 0;
+  padding: 0 20px;
+  /* justify-self: flex-end; */
+}

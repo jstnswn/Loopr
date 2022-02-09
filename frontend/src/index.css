@@ -1,6 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 :root {
-  --grey-border: #e2e2e2;
+  --gray-border: #e2e2e2;
+  --light-gray-text: #737b80;
+  --main-blue: #128FDC;
+  --body-color: rgb(242, 242, 242);
 }
 
 /* TODO Add site wide styles */
@@ -30,6 +33,3 @@ a {
 li {
   list-style: none;
 }
-
-
-

@@ -11,6 +11,7 @@
 
 .cover-image {
   width: 100%;
+  max-height: 50vh;
 }
 
 .cover-user-container {
@@ -80,7 +81,7 @@
   width: 100%;
   z-index: 3;
   background-color: white;
-  border-bottom: 1px solid var(--grey-border);
+  border-bottom: 1px solid var(--gray-border);
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -93,8 +94,8 @@
 .dashboard-body {
   grid-row-start: 3;
   width: 100%;
-  height: 1000px;
-  background-color: rgb(242, 242, 242);
+  min-height: 67vh;
+  background-color: var(--body-color);
   z-index: 2;
   position: relative;
   display: flex;
@@ -118,4 +119,33 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+
+.active-dash-nav {
+  position: relative;
+}
+
+.active-dash-nav:after {
+  position: absolute;
+  content: '';
+  border: 1px solid var(--main-blue);
+  width: 100%;
+  left: 0;
+  bottom: -16.45px;
+}
+
+.dashboard-body-header button {
+  margin-top: 5px;
+  width: 170px;
+  height: 36px;
+  align-self: center;
+  justify-self: center;
+  font-weight: 700;
+  font-size: 15px;
+  background-color: var(--main-blue);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  /* padding-bottom: 40px; */
 }

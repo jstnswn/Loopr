@@ -4,43 +4,35 @@ import { useSelector } from 'react-redux';
 import { getUserImagesArray } from '../../../store/dashboard';
 import { Modal } from '../../../context/Modal';
 import ImageView from '../../ImageModal/ImageView';
+import UploadPhotos from '../../UploadModal';
+import PhotostreamGrid from './PhotostreamGrid';
 
 
 export default function Photostream() {
-  const [showIdx, setShowIdx] = useState(null);
   const images = useSelector(getUserImagesArray);
-  const images2 = [...images, ...images, ...images].reverse();
+  const imagesLoaded = images.length > 0;
+  let header;
+  if (!imagesLoaded) header = 'You don\'t have any images';
+  else header = 'Your Images';
 
-  const openModal = (idx) => setShowIdx(idx);
-  const closeModal = () => setShowIdx(null);
-
+  let subHeader;
+  if (!images.length) subHeader = 'Your photostream is your public-facing portfolio. Start by uploading your first image!';
+  else subHeader = 'Your photostream is your public-facing portfolio. Set your photos to public using the Camera Roll to populate your photostream.';
 
   return (
-    <div className='photostream'>
-      {images2.map((image, idx) => {
 
-        return (
-          <div key={idx}>
-          <img
-            className='stream-image'
-            key={idx}
-            src={image.imageUrl}
-            alt={image.title}
-            onClick={() => openModal(idx)}
+    <div className='dashboard-body'>
+      <div className='dashboard-body-header'>
+        <h2>{header}</h2>
+        <p>{subHeader}</p>
+        <UploadPhotos />
+      </div>
+      <div className='dashboard-body-content'>
 
-            style={{
-              gridColumnStart: idx % 4 + 1,
-            }}
-          >
-          </img>
-            {showIdx === idx && (
-              <Modal onClose={closeModal}>
-                <ImageView image={image} closeModal={closeModal}/>
-              </Modal>
-            )}
-            </div>
-       )
-})}
+        {imagesLoaded && <PhotostreamGrid images={images} />}
+
+
+      </div>
     </div>
-  )
+  );
 }

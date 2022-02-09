@@ -1,23 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { Redirect, useHistory, useLocation } from 'react-router-dom';
 import * as sessionActions from '../../store/session';
 
 export default function ProfileButton({ user }) {
+  // const history = useHistory();
   const dispatch = useDispatch();
   const [showDropdown, setShowDropdown] = useState(false);
 
   const imageUrl = user.imageUrl
     ? user.imageUrl
-    : 'images/profile_avatar.png';
+    : '/images/profile_avatar.png';
 
   const openDropdown = () => {
     if (showDropdown) return;
     setShowDropdown(true);
   };
 
-  const logout = (e) => {
+  const logout = async (e) => {
     e.preventDefault();
-    dispatch(sessionActions.logout());
+    await dispatch(sessionActions.logout())
+      .then(() => window.location.href = '/');
   };
 
   useEffect(() => {
@@ -39,7 +42,6 @@ export default function ProfileButton({ user }) {
         className='fas fa-user-circle profile-button'
         onClick={openDropdown}
         src={imageUrl}
-        // src=''
         alt='profile'
       ></img>
       {showDropdown && (
