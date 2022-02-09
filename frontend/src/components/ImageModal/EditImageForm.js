@@ -70,6 +70,10 @@ export default function EditImageForm({ image, setShowEdit }) {
     )
   }
 
+  const handleCancle = (e) => {
+    setShowEdit(false);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -117,8 +121,13 @@ export default function EditImageForm({ image, setShowEdit }) {
         onFocus={e => e.target.style.height = '50px'}
         onBlur={e => e.target.style.height = '30px'}
       />
-      <button>Submit</button>
+      <div className='edit-form-buttons'>
+        <button className='submit' type='submit'>Submit</button>
+        <div></div>
+        <button className='cancel' onClick={handleCancle}>Cancel</button>
+      </div>
     </form>
+
         </>
   )
 }

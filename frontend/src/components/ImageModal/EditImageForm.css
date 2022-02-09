@@ -13,6 +13,21 @@
   border-radius: 5px;
 }
 
+.edit-form-buttons {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.edit-form-buttons .cancel,
+.edit-form-buttons .submit {
+  cursor: pointer;
+  margin-right: 13px;
+  margin-left: 13px;
+}
+
+
 .edit-image-form label {
   /* width: 50%; */
   padding: 10px 35px;
@@ -30,6 +45,10 @@
   /* padding: 10px; */
   height: 30px;
   margin: 0 35px;
+}
+
+.edit-image-form select {
+  cursor: pointer;
 }
 
 .edit-image-form textarea {

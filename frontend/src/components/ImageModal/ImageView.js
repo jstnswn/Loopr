@@ -21,17 +21,21 @@ export default function ImageView({ image, closeModal }) {
     setShowEdit(true);
   };
 
-  const closeMenu = () => setShowDelConfirm(false);
+
+  const closeMenu = () => {
+    setShowDelConfirm(false);
+    console.log("click")
+  }
 
   useEffect(() => {
     if (!showDelConfirm) return;
-
+    console.log('useEffect  ')
     document.addEventListener('click', closeMenu);
 
     return () => document.removeEventListener('click', closeMenu)
   }, [showDelConfirm]);
 
-  console.log('image: ', image)
+
 
   return (
     <div className='modal-image-container'>
