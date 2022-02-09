@@ -37,7 +37,6 @@ router.get('/users/current',
   restoreUser,
   asyncHandler(async (req, res) => {
     const { user } = req;
-    console.log('user: 🍄', user)
 
     const images = await imageServices.getImagesByUserId(user.id);
 

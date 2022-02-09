@@ -81,6 +81,7 @@ export default function EditImageForm({ image, setShowEdit }) {
       imageId: image.id,
       title,
       description,
+      originalImage: image
     };
 
     if (newAlbumOption) payload.albumTitle = albumTitle;
