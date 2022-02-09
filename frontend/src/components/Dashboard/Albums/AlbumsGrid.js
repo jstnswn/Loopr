@@ -6,7 +6,7 @@ export default function AlbumsGrid({ albums }) {
   const [showIdx, setShowIdx] = useState(null);
 
 
-  const albums2 = albums.reverse();
+  const albums2 = [...albums].reverse();
 
   const openModal = (idx) => setShowIdx(idx);
   const closeModal = () => setShowIdx(null);

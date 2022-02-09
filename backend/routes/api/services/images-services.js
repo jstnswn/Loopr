@@ -9,8 +9,14 @@ async function getSplashImages() {
 };
 
 async function createImage(userId, title, description, albumId, imageUrl) {
-  return await db.Image.create({
+  const image = await db.Image.create({
     userId, title, description, albumId, imageUrl
+  });
+
+  return await db.Image.findByPk(image.id, {
+    include: [
+      {model: db.Album, include: [db.Image]}
+    ]
   });
 };
 

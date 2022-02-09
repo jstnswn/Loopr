@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Redirect, useHistory, useLocation } from 'react-router-dom';
+import { clearDashboard } from '../../store/dashboard';
 import * as sessionActions from '../../store/session';
 
 export default function ProfileButton({ user }) {
-  // const history = useHistory();
+  const history = useHistory();
   const dispatch = useDispatch();
   const [showDropdown, setShowDropdown] = useState(false);
 
@@ -20,7 +21,9 @@ export default function ProfileButton({ user }) {
   const logout = async (e) => {
     e.preventDefault();
     await dispatch(sessionActions.logout())
-      .then(() => window.location.href = '/');
+      .then(() => dispatch(clearDashboard()))
+      .then(() => history.push('/'));
+      // .then(() => window.location.href = '/');
   };
 
   useEffect(() => {

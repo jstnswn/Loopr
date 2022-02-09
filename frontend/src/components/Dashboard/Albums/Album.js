@@ -8,7 +8,7 @@ export default function Album({ album, idx }) {
     console.log('hover', showDiv)
     setShowDiv(idx);
   };
-  
+
   const hideOptions = (idx) => {
     if (showDiv === null) return;
     setShowDiv(null);
@@ -24,7 +24,7 @@ export default function Album({ album, idx }) {
       <img
         className='album-grid-image'
         alt={album.title}
-        src={album.images[0].imageUrl}
+        src={album.images[0]?.imageUrl}
         style={{
           gridColumnStart: idx % 3 + 1
         }}

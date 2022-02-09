@@ -1,4 +1,4 @@
-import { normalizeAlbums, normalizeImages } from "./utils";
+import { normalizeAlbum, normalizeAlbums, normalizeImages } from "./utils";
 
 const { csrfFetch } = require("./csrf");
 
@@ -9,6 +9,7 @@ const REMOVE_IMAGE = 'dashboard/REMOVE_IMAGE';
 const LOAD_ALBUM = 'dashboard/LOAD_ALBUM';
 const LOAD_ALBUMS = 'dashboard/LOAD_ALBUMS';
 
+const CLEAR_DASHBOARD = 'dashboard/CLEAR_DASHBOARD';
 
 const loadImage = (image) => {
   return {
@@ -52,6 +53,12 @@ const loadAlbums = (albums) => {
   };
 };
 
+export const clearDashboard = () => {
+  return {
+    type: CLEAR_DASHBOARD
+  };
+};
+
 
 
 export const postAlbum = (payload) => async dispatch => {
@@ -70,9 +77,16 @@ export const postAlbum = (payload) => async dispatch => {
 export const postImage = (payload) => async dispatch => {
   let { title, description, imageFile, albumTitle, albumId } = payload;
 
+  // let album;
   if (albumTitle) {
-    const newAlbum = await dispatch(postAlbum({ title: albumTitle }));
-    albumId = newAlbum.id;
+    // const newAlbum = await dispatch(postAlbum({ title: albumTitle }));
+    const albumRes = await csrfFetch('/api/albums/users/current', {
+      method: 'POST',
+      body: JSON.stringify({ title: albumTitle })
+    });
+
+    const { album } = await albumRes.json();
+    albumId = album.id;
   }
 
   const formData = new FormData();
@@ -91,6 +105,9 @@ export const postImage = (payload) => async dispatch => {
   });
 
   const { image } = await res.json();
+  // console.log('IMAGE!', image);
+
+  if (albumTitle) dispatch(loadAlbum(image.Album))
   dispatch(loadImage(image));
   return res;
 };
@@ -191,11 +208,13 @@ const dashboardReducer = (state = initialState, action) => {
       delete stateCopy.userImages[action.imageId];
       return stateCopy;
     case LOAD_ALBUM:
+      formatted = normalizeAlbum(action.album);
+      console.log('formatted: ', formatted);
       return {
         ...state,
         userAlbums: {
           ...state.userAlbums,
-          [action.album.id]: action.album
+          ...formatted
         }
       }
     case LOAD_ALBUMS:
@@ -207,6 +226,8 @@ const dashboardReducer = (state = initialState, action) => {
           ...formatted
         }
       }
+    case CLEAR_DASHBOARD:
+      return initialState;
     default:
       return state;
   }
