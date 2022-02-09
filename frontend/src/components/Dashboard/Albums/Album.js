@@ -5,7 +5,6 @@ export default function Album({ album, idx }) {
 
   const showOptions = (idx) => {
     if (showDiv) return;
-    console.log('hover', showDiv)
     setShowDiv(idx);
   };
 
@@ -14,13 +13,10 @@ export default function Album({ album, idx }) {
     setShowDiv(null);
   };
 
-  // useEffect(() => {
-  //   console.log('idx', showDiv)
-  // }, [showDiv])
-
   return (
     <div className='album-container'>
       <div className='album-overlay'></div>
+      <div className='icon-cover'></div>
       <img
         className='album-grid-image'
         alt={album.title}
