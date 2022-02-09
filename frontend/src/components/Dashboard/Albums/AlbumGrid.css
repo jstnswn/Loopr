@@ -9,16 +9,11 @@
   height: 18rem;
   width: 18rem;
   object-fit: cover;
-  /* padding: 10px; */
-  /* padding-top: 2px; */
   margin: 0 15px;
   margin-bottom: 10px;
   display: flex;
   transition: .5s;
   cursor: pointer;
-  z-index: 10;
-
-  /* background-color: black; */
 }
 
 .album-overlay {
@@ -52,9 +47,8 @@
 } */
 
 .album-options {
-  /* border: red 1px solid; */
   height: 50px;
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
