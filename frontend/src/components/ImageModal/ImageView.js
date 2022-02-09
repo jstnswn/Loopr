@@ -9,6 +9,7 @@ export default function ImageView({ image, closeModal }) {
   const [showEdit, setShowEdit] = useState(false);
   const dispatch = useDispatch();
 
+
   const openDelConfirm = (e) => {
     e.stopPropagation()
     if (showDelConfirm) return;
@@ -24,12 +25,10 @@ export default function ImageView({ image, closeModal }) {
 
   const closeMenu = () => {
     setShowDelConfirm(false);
-    console.log("click")
   }
 
   useEffect(() => {
     if (!showDelConfirm) return;
-    console.log('useEffect  ')
     document.addEventListener('click', closeMenu);
 
     return () => document.removeEventListener('click', closeMenu)
@@ -60,7 +59,7 @@ export default function ImageView({ image, closeModal }) {
           <p>Delete image?</p>
           <div>
             <p onClick={closeMenu}>No</p>
-            <p onClick={() => dispatch(deleteImage(image.id))}>Yes</p>
+            <p onClick={() => dispatch(deleteImage(image))}>Yes</p>
           </div>
         </div>
       )}

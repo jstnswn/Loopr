@@ -1,4 +1,4 @@
-import { normalizeAlbums, normalizeImages } from "./utils";
+import { normalizeAlbum, normalizeAlbums, normalizeImages } from "./utils";
 
 const { csrfFetch } = require("./csrf");
 
@@ -9,6 +9,7 @@ const REMOVE_IMAGE = 'dashboard/REMOVE_IMAGE';
 const LOAD_ALBUM = 'dashboard/LOAD_ALBUM';
 const LOAD_ALBUMS = 'dashboard/LOAD_ALBUMS';
 
+const CLEAR_DASHBOARD = 'dashboard/CLEAR_DASHBOARD';
 
 const loadImage = (image) => {
   return {
@@ -24,19 +25,14 @@ const loadImages = (images) => {
   }
 };
 
-const removeImage = (imageId) => {
+const removeImage = (imageId, albumId) => {
+  console.log('remove: ', imageId, albumId)
   return {
     type: REMOVE_IMAGE,
-    imageId
+    imageId,
+    albumId
   };
 };
-
-// const updateImage = (imageId) => {
-//   return {
-//     type: UPDATE_IMAGE,
-
-//   }
-// };
 
 const loadAlbum = (album) => {
   return {
@@ -52,7 +48,14 @@ const loadAlbums = (albums) => {
   };
 };
 
+export const clearDashboard = () => {
+  return {
+    type: CLEAR_DASHBOARD
+  };
+};
 
+
+// Thunks
 
 export const postAlbum = (payload) => async dispatch => {
   const { title, description } = payload;
@@ -70,8 +73,17 @@ export const postAlbum = (payload) => async dispatch => {
 export const postImage = (payload) => async dispatch => {
   let { title, description, imageFile, albumTitle, albumId } = payload;
 
+  // let album;
   if (albumTitle) {
+    // const newAlbum = await dispatch(postAlbum({ title: albumTitle }));
+    // const albumRes = await csrfFetch('/api/albums/users/current', {
+    //   method: 'POST',
+    //   body: JSON.stringify({ title: albumTitle })
+    // });
     const newAlbum = await dispatch(postAlbum({ title: albumTitle }));
+
+    // const { album } = await albumRes.json();
+    // albumId = album.id;
     albumId = newAlbum.id;
   }
 
@@ -91,17 +103,19 @@ export const postImage = (payload) => async dispatch => {
   });
 
   const { image } = await res.json();
+
+  // if (albumTitle) dispatch(loadAlbum(image.Album))
   dispatch(loadImage(image));
   return res;
 };
 
-export const deleteImage = (imageId) => async dispatch => {
-  const res = await csrfFetch(`/api/images/${imageId}`, {
+export const deleteImage = (image) => async dispatch => {
+  const res = await csrfFetch(`/api/images/${image.id}`, {
     method: 'DELETE',
   });
 
   if (res.ok) {
-    dispatch(removeImage(imageId));
+    dispatch(removeImage(image.id, image.albumId));
     return res;
   }
 };
@@ -124,7 +138,7 @@ export const getUserImages = () => async dispatch => {
 };
 
 export const updateImage = (payload) => async dispatch => {
-  let { imageId, title, description, albumTitle, albumId } = payload;
+  let { imageId, title, description, albumTitle, albumId, originalImage } = payload;
 
   if (albumTitle) {
     const newAlbum = await dispatch(postAlbum({ title: albumTitle }));
@@ -139,9 +153,11 @@ export const updateImage = (payload) => async dispatch => {
   });
 
   const { image } = await res.json();
-  console.log('IMAGE: ', image)
-  dispatch(loadImage(image));
 
+  await Promise.all([
+    dispatch(removeImage(originalImage.id, originalImage.albumId)),
+    dispatch(loadImage(image))
+  ]);
   return res;
 };
 
@@ -165,17 +181,17 @@ const initialState = {
 const dashboardReducer = (state = initialState, action) => {
   let stateCopy;
   let formatted;
+  let images;
+  let idx;
 
   switch(action.type) {
     case LOAD_IMAGE:
-      console.log('actionImage: ', action.image)
-      return {
-        ...state,
-        userImages: {
-          ...state.userImages,
-          [action.image.id]: action.image
-        }
-      }
+      stateCopy = {...state};
+
+      stateCopy.userImages[action.image.id] = action.image;
+      stateCopy.userAlbums[action.image.albumId].images.push(action.image);
+
+      return stateCopy;
     case LOAD_IMAGES:
       formatted = normalizeImages(action.images);
       return {
@@ -186,16 +202,20 @@ const dashboardReducer = (state = initialState, action) => {
         }
       }
     case REMOVE_IMAGE:
-      // TODO: may need to delete image from albums too
       stateCopy = {...state};
+      images = stateCopy.userAlbums[action.albumId].images;
+      idx = images.findIndex(image => image.id === action.imageId);
+
+      images.splice(idx, 1);
       delete stateCopy.userImages[action.imageId];
       return stateCopy;
     case LOAD_ALBUM:
+      formatted = normalizeAlbum(action.album);
       return {
         ...state,
         userAlbums: {
           ...state.userAlbums,
-          [action.album.id]: action.album
+          ...formatted
         }
       }
     case LOAD_ALBUMS:
@@ -207,6 +227,8 @@ const dashboardReducer = (state = initialState, action) => {
           ...formatted
         }
       }
+    case CLEAR_DASHBOARD:
+      return initialState;
     default:
       return state;
   }

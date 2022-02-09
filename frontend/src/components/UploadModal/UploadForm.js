@@ -30,13 +30,19 @@ export default function UploadForm({ closeModal }) {
     if (newAlbumOption) payload.albumTitle = albumTitle;
     else payload.albumId = albumId;
 
+    if (!errors.length) {
+      return dispatch(postImage(payload))
+      .then(() => closeModal())
 
-    return dispatch(postImage(payload))
-    .then(() => closeModal())
-    .catch(() => setShowErrors(true))
+    } else {
+      setShowErrors(true)
+      // setErrors([]);
+    }
   };
 
   useEffect(() => {
+    setErrors([]);
+
     const errors = [];
 
     if (imageTitle.length > 30 || !imageTitle.length) {

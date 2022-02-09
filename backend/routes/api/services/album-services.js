@@ -15,7 +15,11 @@ async function getAlbumsByUserId(userId) {
 };
 
 async function createAlbum(userId, title, description) {
-  return await db.Album.create({ userId, title, description });
+  const newAlbum = await db.Album.create({ userId, title, description });
+  return await db.Album.findByPk(newAlbum.id, {
+     include: [db.Image]
+  });
+
 };
 
 module.exports = {
