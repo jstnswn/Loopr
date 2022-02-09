@@ -20,6 +20,7 @@ export default function Album({ album, idx }) {
 
   return (
     <div className='album-container'>
+      <div className='album-overlay'>f</div>
       <img
         className='album-grid-image'
         alt={album.title}
