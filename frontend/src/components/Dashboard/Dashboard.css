@@ -119,3 +119,16 @@
   justify-content: center;
   align-items: center;
 }
+
+.active-dash-nav {
+  position: relative;
+}
+
+.active-dash-nav:after {
+  position: absolute;
+  content: '';
+  border: 1px solid #128FDC;
+  width: 100%;
+  left: 0;
+  bottom: -16.45px;
+}

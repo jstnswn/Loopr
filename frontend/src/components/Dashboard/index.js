@@ -7,6 +7,9 @@ import './Dashboard.css';
 // import UploadPhotos from '../UploadModal';
 import DashboardBody from './DashboardBody';
 import { loadDashboard } from '../../store/dashboard';
+import Photostream from './Photostream';
+import Albums from './Albums';
+import Favorites from './Favorites';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -24,12 +27,16 @@ export default function Dashboard() {
       .then(() => setIsLoaded(true));
   },[dispatch])
 
+  const avatarUrl = user.imageUrl
+    ? user.imageUrl
+    : '/images/profile_avatar.png';
+
   return isLoaded && (
     <div className='dashboard-container'>
       <div className='cover-container'>
         <img className='cover-image' src='/images/cover-placeholder.jpeg' alt='cover'></img>
         <div className='cover-user-container'>
-          <img className='dashboard-avatar' src={user.imageUrl} alt='avatar'></img>
+          <img className='dashboard-avatar' src={avatarUrl} alt='avatar'></img>
           <div className='dashboard-user-info'>
             <div className='top'>
               <h2>{user.username}</h2>
@@ -45,16 +52,24 @@ export default function Dashboard() {
         </div>
       </div>
       <nav className='dashboard-nav'>
-        <NavLink activeClassName='active-nav' to='/dashboard/photostream'>Photostream</NavLink>
-        {/* <NavLink>Albums</NavLink>
-        <NavLink>Faves</NavLink>
-        <NavLink>Loop Station</NavLink> */}
-        <p>Albums</p>
-        <p>Faves</p>
-        <p>Loop</p>
+        <NavLink activeClassName='active-dash-nav' to='/dashboard/photostream'>Photostream</NavLink>
+        <NavLink activeClassName='active-dash-nav' to='/dashboard/albums'>Albums</NavLink>
+        <NavLink activeClassName='active-dash-nav' to='/dashboard/favorites'>Favorites</NavLink>
+        <NavLink activeClassName='active-dash-nav' to='/dashboard/loop'>Loop Station</NavLink>
       </nav>
 
-      <DashboardBody />
+      {/* <DashboardBody /> */}
+      <Switch>
+        <Route path='/dashboard/photostream'>
+          <Photostream />
+        </Route>
+        <Route path='/dashboard/albums'>
+          <Albums />
+        </Route>
+        <Route path='/dashboard/favorites'>
+          <Favorites />
+        </Route>
+      </Switch>
     </div>
   );
 }
