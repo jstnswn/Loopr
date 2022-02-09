@@ -118,6 +118,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 35px;
 }
 
 .active-dash-nav {
@@ -127,8 +128,23 @@
 .active-dash-nav:after {
   position: absolute;
   content: '';
-  border: 1px solid #128FDC;
+  border: 1px solid var(--main-blue);
   width: 100%;
   left: 0;
   bottom: -16.45px;
+}
+
+.dashboard-body-header button {
+  margin-top: 5px;
+  width: 170px;
+  height: 36px;
+  align-self: center;
+  justify-self: center;
+  font-weight: 700;
+  font-size: 15px;
+  background-color: var(--main-blue);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  /* padding-bottom: 40px; */
 }

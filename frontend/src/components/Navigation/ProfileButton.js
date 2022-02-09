@@ -17,10 +17,10 @@ export default function ProfileButton({ user }) {
     setShowDropdown(true);
   };
 
-  const logout = (e) => {
+  const logout = async (e) => {
     e.preventDefault();
-    dispatch(sessionActions.logout())
-      .then(window.location.href = '/');
+    await dispatch(sessionActions.logout())
+      .then(() => window.location.href = '/');
   };
 
   useEffect(() => {

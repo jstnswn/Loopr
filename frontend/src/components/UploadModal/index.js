@@ -13,7 +13,7 @@ export default function UploadModal() {
 
   return (
     <>
-      <button className='nav-login' onClick={openModal}>Upload Image</button>
+      <button className='modal-button' onClick={openModal}>Upload Image</button>
       {showModal && (
         <Modal onClose={closeModal}>
           <UploadForm closeModal={closeModal}/>
