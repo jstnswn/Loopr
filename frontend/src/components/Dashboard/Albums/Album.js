@@ -8,15 +8,15 @@ export default function Album({ album, idx }) {
     console.log('hover', showDiv)
     setShowDiv(idx);
   };
+  
   const hideOptions = (idx) => {
     if (showDiv === null) return;
     setShowDiv(null);
   };
 
-  useEffect(() => {
-
-    console.log('idx', showDiv)
-  }, [showDiv])
+  // useEffect(() => {
+  //   console.log('idx', showDiv)
+  // }, [showDiv])
 
   return (
     <div className='album-container'>

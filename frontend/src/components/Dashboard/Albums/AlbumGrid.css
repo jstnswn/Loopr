@@ -9,8 +9,8 @@
   height: 18rem;
   width: 18rem;
   object-fit: cover;
-  margin: 0 15px;
-  margin-bottom: 10px;
+  margin: 2px 15px;
+  margin-bottom: 15px;
   display: flex;
   transition: .5s;
   cursor: pointer;
@@ -20,8 +20,8 @@
   position: absolute;
   height: 5rem;
   width: 18rem;
-  margin: 0 15px;
-  margin-bottom: 10px;
+  margin: 2px 15px;
+  margin-bottom: 15px;
   bottom: 0;
   background: linear-gradient(
     rgba(0, 0, 0, .1),
