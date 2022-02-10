@@ -19,13 +19,18 @@ async function createAlbum(userId, title, description) {
   return await db.Album.findByPk(newAlbum.id, {
      include: [db.Image]
   });
+};
 
+async function deleteAlbum(albumId) {
+  const album = await db.Album.findByPk(albumId);
+  return await album.destroy();
 };
 
 module.exports = {
   getSplashAlbums,
   getAlbumsByUserId,
   createAlbum,
+  deleteAlbum,
 };
 
 

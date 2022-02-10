@@ -8,6 +8,7 @@ const REMOVE_IMAGE = 'dashboard/REMOVE_IMAGE';
 
 const LOAD_ALBUM = 'dashboard/LOAD_ALBUM';
 const LOAD_ALBUMS = 'dashboard/LOAD_ALBUMS';
+const REMOVE_ALBUM = 'dashboard/REMOVE_ALBUM';
 
 const CLEAR_DASHBOARD = 'dashboard/CLEAR_DASHBOARD';
 
@@ -48,6 +49,13 @@ const loadAlbums = (albums) => {
   };
 };
 
+const removeAlbum = (albumId) => {
+  return {
+    type: REMOVE_ALBUM,
+    albumId
+  }
+}
+
 export const clearDashboard = () => {
   return {
     type: CLEAR_DASHBOARD
@@ -75,15 +83,8 @@ export const postImage = (payload) => async dispatch => {
 
   // let album;
   if (albumTitle) {
-    // const newAlbum = await dispatch(postAlbum({ title: albumTitle }));
-    // const albumRes = await csrfFetch('/api/albums/users/current', {
-    //   method: 'POST',
-    //   body: JSON.stringify({ title: albumTitle })
-    // });
     const newAlbum = await dispatch(postAlbum({ title: albumTitle }));
 
-    // const { album } = await albumRes.json();
-    // albumId = album.id;
     albumId = newAlbum.id;
   }
 
@@ -104,8 +105,21 @@ export const postImage = (payload) => async dispatch => {
 
   const { image } = await res.json();
 
-  // if (albumTitle) dispatch(loadAlbum(image.Album))
   dispatch(loadImage(image));
+  return res;
+};
+
+export const deleteAlbum = (albumId) => async dispatch => {
+  const res = await csrfFetch(`/api/albums/${albumId}`, {
+    method: 'DELETE'
+  });
+
+  if (res.ok) {
+
+    await dispatch(removeAlbum(albumId))
+    await dispatch(getUserImages());
+    // Re-load user images as temp solution for album-assiciated image removal
+  }
   return res;
 };
 
@@ -227,6 +241,22 @@ const dashboardReducer = (state = initialState, action) => {
           ...formatted
         }
       }
+    case REMOVE_ALBUM:
+      stateCopy = {...state};
+
+      // Del idv images
+      delete stateCopy.userAlbums[action.albumId];
+
+      // Del from albums
+      for (let key in stateCopy.userImages) {
+        let image = stateCopy.userImages[key];
+
+        if (image.albumId === action.albumId) {
+          delete stateCopy.userImages[key];
+        }
+      }
+      return stateCopy;
+
     case CLEAR_DASHBOARD:
       return initialState;
     default:

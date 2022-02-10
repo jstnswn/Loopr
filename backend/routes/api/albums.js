@@ -56,5 +56,17 @@ router.post('/users/current',
     })
 );
 
+router.delete('/:albumId(\\d+)',
+  asyncHandler(async (req, res) => {
+    const { albumId } = req.params;
+
+    const deleted = await albumServices.deleteAlbum(albumId);
+
+    if (deleted) {
+      res.status(204).end();
+    }
+  })
+);
+
 
 module.exports = router;

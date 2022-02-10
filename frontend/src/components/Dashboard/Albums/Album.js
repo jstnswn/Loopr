@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Modal } from '../../../context/Modal';
+import { deleteAlbum } from '../../../store/dashboard';
 
 export default function Album({ album, idx }) {
+  const dispatch = useDispatch();
   const [hovered1, setHovered1] = useState(false);
   const [hovered2, setHovered2] = useState(false);
   const [showConfirmDel, setShowConfirmDel] = useState(false);
@@ -13,7 +16,12 @@ export default function Album({ album, idx }) {
   const closeConfirm = () => {
     console.log('click');
     setShowConfirmDel(false);
-  }
+  };
+
+  const handleDelete = async () => {
+    dispatch(deleteAlbum(album.id))
+      .then(() => setShowConfirmDel(false));
+  };
 
   return (
     <div className='album-container'>
@@ -27,17 +35,13 @@ export default function Album({ album, idx }) {
           gridColumnStart: idx % 3 + 1
         }}
         onMouseEnter={() => setHovered1(true)}
-        onMouseLeave={(e) => {
-          setHovered1(false);
-        }}
+        onMouseLeave={() => setHovered1(false)}
       />
       <div
         className='album-info'
         style={{ bottom: hovered1 || hovered2 ? '10px' : '-23px' }}
         onMouseEnter={() => setHovered2(true)}
-        onMouseLeave={(e) => {
-          setHovered2(false);
-        }}
+        onMouseLeave={() => setHovered2(false)}
       >
         <h4>{album.title}</h4>
         <p>{`${album.images.length} images`}</p>
@@ -53,8 +57,8 @@ export default function Album({ album, idx }) {
           <div className='confirm-delete-album'>
             <p>Delete album and all of it's images?</p>
             <div>
-              <p className='test'>No</p>
-              <p>Yes</p>
+              <p onClick={closeConfirm} className='test'>No</p>
+              <p onClick={handleDelete}>Yes</p>
             </div>
           </div>
         </Modal>
