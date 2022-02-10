@@ -58,7 +58,7 @@
   color: white
 }
 
-.confirm-delete {
+.confirm-delete-image {
   position: absolute;
   top: 50%;
   z-index: 3;
@@ -69,19 +69,19 @@
   border-radius: 5px;
 }
 
-.confirm-delete div{
+.confirm-delete-image div{
   display: flex;
   justify-content: center;
 }
 
-.confirm-delete div p {
+.confirm-delete-image div p {
   color: rgb(167, 167, 167);
   cursor: pointer;
   transition: 0.4s;
   padding: 0 20px;
 }
 
-.confirm-delete div p:hover {
+.confirm-delete-image div p:hover {
   color: white;
 }
 

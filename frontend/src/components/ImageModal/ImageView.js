@@ -5,15 +5,15 @@ import { deleteImage } from '../../store/dashboard';
 import EditImageForm from './EditImageForm';
 
 export default function ImageView({ image, closeModal }) {
-  const [showDelConfirm, setShowDelConfirm] = useState(false);
+  const [showConfirmDel, setShowConfirmDel] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const dispatch = useDispatch();
 
 
   const openDelConfirm = (e) => {
     e.stopPropagation()
-    if (showDelConfirm) return;
-    setShowDelConfirm(true);
+    if (showConfirmDel) return;
+    setShowConfirmDel(true);
   };
 
   const openEditForm = (e) => {
@@ -24,15 +24,15 @@ export default function ImageView({ image, closeModal }) {
 
 
   const closeMenu = () => {
-    setShowDelConfirm(false);
+    setShowConfirmDel(false);
   }
 
   useEffect(() => {
-    if (!showDelConfirm) return;
+    if (!showConfirmDel) return;
     document.addEventListener('click', closeMenu);
 
     return () => document.removeEventListener('click', closeMenu)
-  }, [showDelConfirm]);
+  }, [showConfirmDel]);
 
 
 
@@ -54,8 +54,8 @@ export default function ImageView({ image, closeModal }) {
         </div>
 
       </div>
-      {showDelConfirm && (
-        <div className='confirm-delete'>
+      {showConfirmDel && (
+        <div className='confirm-delete-image'>
           <p>Delete image?</p>
           <div>
             <p onClick={closeMenu}>No</p>
@@ -66,5 +66,5 @@ export default function ImageView({ image, closeModal }) {
       {showEdit && <EditImageForm image={image} setShowEdit={setShowEdit} />}
     </div>
     // <h2 className='test'>hi</h2>
-  )
-}
+  );
+};
