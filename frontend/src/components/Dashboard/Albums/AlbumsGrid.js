@@ -3,13 +3,13 @@ import Album from './Album';
 import './AlbumGrid.css';
 
 export default function AlbumsGrid({ albums }) {
-  const [showIdx, setShowIdx] = useState(null);
+  // const [showIdx, setShowIdx] = useState(null);
 
 
   const albums2 = [...albums].reverse();
 
-  const openModal = (idx) => setShowIdx(idx);
-  const closeModal = () => setShowIdx(null);
+  // const openModal = (idx) => setShowIdx(idx);
+  // const closeModal = () => setShowIdx(null);
 
 
 

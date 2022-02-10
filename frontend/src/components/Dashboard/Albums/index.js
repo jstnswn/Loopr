@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getUserAlbumsArray } from '../../../store/dashboard';
-import AlbumModal from '../../AlbumModal';
+import AlbumModal from '../../AlbumModalUpload';
 import AlbumsGrid from './AlbumsGrid';
 
 export default function Albums() {
