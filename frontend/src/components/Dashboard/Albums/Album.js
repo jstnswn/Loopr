@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Modal } from '../../../context/Modal';
 import { deleteAlbum } from '../../../store/dashboard';
-import EditAlbumForm from './EditAlbumForm';
+import AddImagesForm from '../../AlbumUpload/AddImagesForm';
+import EditAlbumForm from '../../AlbumEdit/EditAlbumForm';
 
 export default function Album({ album, idx }) {
   const dispatch = useDispatch();
@@ -10,11 +11,14 @@ export default function Album({ album, idx }) {
   const [hovered2, setHovered2] = useState(false);
   const [showConfirmDel, setShowConfirmDel] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
+  const [showAddImages, setShowAddImages] = useState(false);
 
   const showConfirm = () => setShowConfirmDel(true);
   const closeConfirm = () => setShowConfirmDel(false);
   const showEdit = () => setShowEditForm(true);
   const closeEdit = () => setShowEditForm(false);
+  const showAdd = () => setShowAddImages(true);
+  const closeAdd = () => setShowAddImages(false);
 
 
 
@@ -57,9 +61,10 @@ export default function Album({ album, idx }) {
         >
           <i onClick={showConfirm} className='fal fa-trash'></i>
           <i onClick={showEdit} className='far fa-edit'></i>
-          <i className='far fa-layer-plus'></i>
+          <i onClick={showAdd} className='far fa-layer-plus'></i>
         </div>
       </div>
+
       {showConfirmDel && (
         <Modal onClose={closeConfirm}>
           <div className='confirm-delete-album'>
@@ -71,9 +76,16 @@ export default function Album({ album, idx }) {
           </div>
         </Modal>
       )}
+
       {showEditForm && (
         <Modal onClose={closeEdit}>
           <EditAlbumForm album={album} closeEdit={closeEdit}/>
+        </Modal>
+      )}
+
+      {showAddImages && (
+        <Modal onClose={closeAdd}>
+          <AddImagesForm album={album} closeAdd={closeAdd}/>
         </Modal>
       )}
     </div>

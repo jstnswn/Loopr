@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Modal } from '../../../context/Modal';
 import { getUserAlbumsArray } from '../../../store/dashboard';
-import AlbumModal from '../../AlbumModal';
+import UploadAlbumForm from '../../AlbumUpload/UploadAlbumForm';
 import AlbumsGrid from './AlbumsGrid';
 
 export default function Albums() {
-  const [showIdx, setShowIdx] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   const albums = useSelector(getUserAlbumsArray);
   const hasAlbums = albums.length > 0;
+
+  const openModal = () => setShowModal(true)
+  const closeModal = () => setShowModal(false);
 
   return (
 
@@ -25,9 +29,12 @@ export default function Albums() {
           <>
             <div className='album-options'>
               <div>
-                {/* <i className='fa-solid fa-plus'></i> */}
-                {/* <div className='add-new-album'>+ New album</div> */}
-                <AlbumModal />
+                <div className='album-upload modal-button add-new-album' onClick={openModal}>+ New Album</div>
+                {showModal && (
+                  <Modal onClose={closeModal}>
+                    <UploadAlbumForm closeModal={closeModal} />
+                  </Modal>
+                )}
               </div>
             </div>
             <AlbumsGrid albums={albums} />

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import Select from 'react-select';
-import { deleteImages, patchAlbum, patchAlbumWithImageDel } from '../../../store/dashboard';
+import { deleteImages, patchAlbum, patchAlbumWithImageDel } from '../../store/dashboard';
 
 import './AlbumEditForm.css'
 
@@ -9,11 +9,9 @@ export default function EditAlbumForm({ album, closeEdit }) {
   const dispatch = useDispatch();
   const [title, setTitle] = useState(album.title || '');
   const [description, setDescription] = useState(album.description || '');
-  const [multiValue, setMultiValue] = useState({ option: []});
+  const [multiValue, setMultiValue] = useState({ option: [] });
   const [errors, setErrors] = useState([]);
   const [showErrors, setShowErrors] = useState(false);
-
-  const [imageIds, setImageIds] = useState();
 
   useEffect(() => {
     setErrors([]);
@@ -87,18 +85,9 @@ export default function EditAlbumForm({ album, closeEdit }) {
         onChange={e => setDescription(e.target.value)}
       />
       <label>Remove Image(s)</label>
-      {/* <select
-      >
-        {album.images?.map(image => (
-          <option
-            key={image.id}>{image.title}
-            style={{backgroundImage: `url(${image.imageUrl})`}}
-          </option>
-        ))}
-      </select> */}
       <Select
-        values={multiValue}
         className='select'
+        values={multiValue}
         options={options}
         onChange={handleMultiChange}
         isMulti

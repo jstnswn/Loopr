@@ -1,18 +1,14 @@
 .edit-album-form {
-  /* position: absolute; */
   display: flex;
   flex-direction: column;
   width: 600px;
   height: 470px;
   padding-top: 20px;
-  /* background-color: var(--background-black); */
-  /* color: white; */
   border-radius: 5px;
 }
 
 .edit-album-form h2 {
   text-align: center;
-  /* margin: 0; */
 }
 
 .edit-album-form label {
@@ -27,14 +23,12 @@
 }
 
 .edit-album-form .select {
-  display: block;
-  /* margin: 10px; */
   margin-bottom: 40px;
   cursor: pointer;
 }
 
 .css-26l3qy-menu {
-  transform: translateY(12px);
+  transform: translateY(7px);
 }
 
 .edit-album-form button {

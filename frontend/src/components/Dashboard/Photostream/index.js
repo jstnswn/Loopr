@@ -3,7 +3,7 @@ import './Photostream.css';
 import { useSelector } from 'react-redux';
 import { getUserImagesArray } from '../../../store/dashboard';
 import { Modal } from '../../../context/Modal';
-import ImageView from '../../ImageModal/ImageView';
+import ImageView from '../../ImageView/ImageView';
 import UploadPhotos from '../../UploadImageModal';
 import PhotostreamGrid from './PhotostreamGrid';
 
