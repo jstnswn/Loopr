@@ -5,7 +5,7 @@ import FileUploader from './FileUploader';
 
 import './UploadAlbum.css';
 
-export default function UploadAlbumForm() {
+export default function UploadAlbumForm({ closeModal }) {
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -24,7 +24,8 @@ export default function UploadAlbumForm() {
 
     if (!errors.length) {
 
-      return dispatch(createAlbumWithImages(payload));
+      return dispatch(createAlbumWithImages(payload))
+        .then(() => closeModal(true));
     }
 
     setShowErrors(true);
@@ -50,6 +51,7 @@ export default function UploadAlbumForm() {
 
   return (
     <form onSubmit={handleSubmit} className='upload-album-form'>
+      <h2>Create New Album</h2>
       <ul>
         {showErrors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
@@ -68,7 +70,7 @@ export default function UploadAlbumForm() {
       {/* {files && files.map((index, file) =>(
         <input type='text' placeholder='song name'/>
       ))} */}
-      <button>Create Album</button>
+      <button>Create</button>
     </form>
   )
 }

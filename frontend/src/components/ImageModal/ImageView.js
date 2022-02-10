@@ -65,6 +65,5 @@ export default function ImageView({ image, closeModal }) {
       )}
       {showEdit && <EditImageForm image={image} setShowEdit={setShowEdit} />}
     </div>
-    // <h2 className='test'>hi</h2>
   );
 };

@@ -123,12 +123,13 @@ export const postImage = (payload) => async dispatch => {
 export const postImages = (images, albumId) => async dispatch => {
   const formData = new FormData();
 
-  if (images && images.length > 0) {
+  if (images) {
     for (let image of images) {
       formData.append('images', image);
     }
   }
-  if (images && images.length === 1) formData.append('image', images[0]);
+  // if (images && images.length === 1) formData.append('image', images[0]);
+  if (!images.length) images = [images];
 
   formData.append('albumId', albumId);
 
@@ -264,10 +265,11 @@ const dashboardReducer = (state = initialState, action) => {
 
     case REMOVE_IMAGE:
       stateCopy = {...state};
-      images = stateCopy.userAlbums[action.albumId].images;
-      idx = images.findIndex(image => image.id === action.imageId);
+      const imagesCopy = stateCopy.userAlbums[action.albumId].images;
+      // images = stateCopy.userAlbums[action.albumId].images;
+      idx = imagesCopy.findIndex(image => image.id === action.imageId);
 
-      images.splice(idx, 1);
+      imagesCopy.splice(idx, 1);
       delete stateCopy.userImages[action.imageId];
       return stateCopy;
     case LOAD_ALBUM:

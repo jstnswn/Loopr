@@ -14,7 +14,6 @@ export default function Album({ album, idx }) {
   };
 
   const closeConfirm = () => {
-    console.log('click');
     setShowConfirmDel(false);
   };
 
@@ -22,6 +21,13 @@ export default function Album({ album, idx }) {
     dispatch(deleteAlbum(album.id))
       .then(() => setShowConfirmDel(false));
   };
+
+  let message;
+  if (album.images.length) {
+    message = 'Delete album and all of it\'s images ?'
+  } else {
+    message = 'Delete Album?'
+  }
 
   return (
     <div className='album-container'>
@@ -55,9 +61,9 @@ export default function Album({ album, idx }) {
       {showConfirmDel && (
         <Modal onClose={closeConfirm}>
           <div className='confirm-delete-album'>
-            <p>Delete album and all of it's images?</p>
+            <p>{message}</p>
             <div>
-              <p onClick={closeConfirm} className='test'>No</p>
+              <p onClick={closeConfirm}>No</p>
               <p onClick={handleDelete}>Yes</p>
             </div>
           </div>
