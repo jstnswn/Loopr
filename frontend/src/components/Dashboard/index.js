@@ -3,9 +3,6 @@ import { NavLink, Route, Switch, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './Dashboard.css';
-
-// import UploadPhotos from '../UploadModal';
-import DashboardBody from './DashboardBody';
 import { loadDashboard } from '../../store/dashboard';
 import Photostream from './Photostream';
 import Albums from './Albums';
@@ -55,7 +52,7 @@ export default function Dashboard() {
         <NavLink activeClassName='active-dash-nav' to='/dashboard/photostream'>Photostream</NavLink>
         <NavLink activeClassName='active-dash-nav' to='/dashboard/albums'>Albums</NavLink>
         <NavLink activeClassName='active-dash-nav' to='/dashboard/favorites'>Favorites</NavLink>
-        <NavLink activeClassName='active-dash-nav' to='/dashboard/loop'>Loop Station</NavLink>
+        {/* <NavLink activeClassName='active-dash-nav' to=''>Loop Station</NavLink> */}
       </nav>
 
       {/* <DashboardBody /> */}

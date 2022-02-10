@@ -50,7 +50,7 @@ function App() {
         <Switch>
           <Route exact path='/'>
             {!user && <SplashPage />}
-            {user && <Dashboard />}
+            {/* {user && <Dashboard />} */}
           </Route>
           <Route path='/home'>
             <Home />

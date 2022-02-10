@@ -16,7 +16,7 @@ export default function Navigation({ isLoaded }) {
   if (sessionUser) {
     sessionLinks = (
       <>
-        <NavLink to='/dashboard' activeClassName='active-nav'>Dashboard</NavLink>
+        <NavLink to='/dashboard/photostream' activeClassName='active-nav'>Dashboard</NavLink>
         <ProfileButton user={sessionUser} />
       </>
     );
