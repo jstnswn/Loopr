@@ -9,6 +9,7 @@ const REMOVE_IMAGE = 'dashboard/REMOVE_IMAGE';
 const LOAD_ALBUM = 'dashboard/LOAD_ALBUM';
 const LOAD_ALBUMS = 'dashboard/LOAD_ALBUMS';
 const REMOVE_ALBUM = 'dashboard/REMOVE_ALBUM';
+const ADD_IMAGES_TO_ALBUM = 'dashboard/ADD_IMAGES_TO_ALBUM';
 
 const CLEAR_DASHBOARD = 'dashboard/CLEAR_DASHBOARD';
 
@@ -47,6 +48,14 @@ const loadAlbums = (albums) => {
     type: LOAD_ALBUMS,
     albums
   };
+};
+
+const addImagesToAlbum = (images, albumId) => {
+  return {
+    type: ADD_IMAGES_TO_ALBUM,
+    images,
+    albumId
+  }
 };
 
 const removeAlbum = (albumId) => {
@@ -95,7 +104,7 @@ export const postImage = (payload) => async dispatch => {
   formData.append('albumId', albumId);
 
 
-  const res = await csrfFetch('/api/images/users/current', {
+  const res = await csrfFetch('/api/images/users/current/single-upload', {
     method: "POST",
     headers: {
       "Content-Type": "multipart/form-data",
@@ -109,16 +118,50 @@ export const postImage = (payload) => async dispatch => {
   return res;
 };
 
+
+
+export const postImages = (images, albumId) => async dispatch => {
+  const formData = new FormData();
+
+  if (images && images.length > 0) {
+    for (let image of images) {
+      formData.append('images', image);
+    }
+  }
+  if (images && images.length === 1) formData.append('image', images[0]);
+
+  formData.append('albumId', albumId);
+
+  const res = await csrfFetch('/api/images/users/current/multi-upload', {
+    method: 'POST',
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    body: formData,
+  });
+
+  const data = await res.json();
+  dispatch(loadImages(data.images));
+  dispatch(addImagesToAlbum(data.images, albumId));
+
+  return res;
+};
+
+export const createAlbumWithImages = (payload) => async dispatch => {
+  const { title, description, images } = payload;
+
+  const newAlbum = await dispatch(postAlbum({ title, description }));
+  // dispatch(postAlbum({ title, description })),
+  return dispatch(postImages(images, newAlbum.id));
+};
+
 export const deleteAlbum = (albumId) => async dispatch => {
   const res = await csrfFetch(`/api/albums/${albumId}`, {
     method: 'DELETE'
   });
 
   if (res.ok) {
-
-    await dispatch(removeAlbum(albumId))
-    await dispatch(getUserImages());
-    // Re-load user images as temp solution for album-assiciated image removal
+    dispatch(removeAlbum(albumId))
   }
   return res;
 };
@@ -183,6 +226,8 @@ export const loadDashboard = () => async dispatch => {
   ]);
 };
 
+
+
 // Helper Functions
 export const getUserAlbumsArray = (state) => Object.values(state.dashboard.userAlbums);
 export const getUserImagesArray = (state) => Object.values(state.dashboard.userImages);
@@ -208,6 +253,7 @@ const dashboardReducer = (state = initialState, action) => {
       return stateCopy;
     case LOAD_IMAGES:
       formatted = normalizeImages(action.images);
+      // stateCopy.userAlbums[]
       return {
         ...state,
         userImages: {
@@ -215,6 +261,7 @@ const dashboardReducer = (state = initialState, action) => {
           ...formatted
         }
       }
+
     case REMOVE_IMAGE:
       stateCopy = {...state};
       images = stateCopy.userAlbums[action.albumId].images;
@@ -241,6 +288,15 @@ const dashboardReducer = (state = initialState, action) => {
           ...formatted
         }
       }
+    case ADD_IMAGES_TO_ALBUM:
+      stateCopy = {...state};
+      formatted = normalizeImages(action.images);
+
+      const images = stateCopy.userAlbums[action.albumId].images;
+      stateCopy.userAlbums[action.albumId].images = [...images, ...action.images];
+
+      return stateCopy;
+
     case REMOVE_ALBUM:
       stateCopy = {...state};
 

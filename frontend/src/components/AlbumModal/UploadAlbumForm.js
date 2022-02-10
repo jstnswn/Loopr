@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createAlbumWithImages } from '../../store/dashboard';
 import FileUploader from './FileUploader';
 
 import './UploadAlbum.css';
 
 export default function UploadAlbumForm() {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [files, setFiles] = useState(null)
@@ -16,12 +19,12 @@ export default function UploadAlbumForm() {
     const payload = {
       title,
       description,
-      files
+      images: files
     };
 
     if (!errors.length) {
-      console.log('Payload deployed: ', payload);
-      return
+
+      return dispatch(createAlbumWithImages(payload));
     }
 
     setShowErrors(true);
@@ -60,9 +63,11 @@ export default function UploadAlbumForm() {
         value={description}
         onChange={e => setDescription(e.target.value)}
       />
-      <label>Song(s)</label>
+      <label>Images(s)</label>
       <FileUploader setFiles={setFiles}/>
-
+      {/* {files && files.map((index, file) =>(
+        <input type='text' placeholder='song name'/>
+      ))} */}
       <button>Create Album</button>
     </form>
   )

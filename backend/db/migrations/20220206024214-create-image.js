@@ -10,6 +10,7 @@ module.exports = {
       },
       title: {
         allowNull: false,
+        defaultValue: 'Untitled',
         type: Sequelize.STRING(30)
       },
       description: {

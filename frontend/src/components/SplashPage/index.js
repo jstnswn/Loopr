@@ -24,10 +24,11 @@ export default function SplashPage() {
 
   useEffect(() => {
     if (isLoaded) {
-      setImages(albums[key].images)
+      setImages(albums[key]?.images)
     }
   }, [isLoaded, albums, key])
 
+  // if (!images) return <h2>Sorry, there has been a database error</h2>
   return images && (
     <div className='splash-container'>
       {/* <ImageCarousel images={images}/> */}

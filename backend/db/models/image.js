@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     title: {
       type: DataTypes.STRING(30),
       allowNull: false,
+      defaultValue: 'Untitled',
       validate: {
         len: [1, 30]
       }
