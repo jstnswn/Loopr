@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import Select from 'react-select';
-import { deleteImages, patchAlbum, patchAlbumWithImageDel } from '../../../store/dashboard';
+import { deleteImages, patchAlbum, patchAlbumWithImageDel } from '../../store/dashboard';
 
 import './AlbumEditForm.css'
 

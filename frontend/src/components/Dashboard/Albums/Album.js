@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Modal } from '../../../context/Modal';
 import { deleteAlbum } from '../../../store/dashboard';
-import AddImagesForm from '../../AlbumModalUpload/AddImagesForm';
-import EditAlbumForm from './EditAlbumForm';
+import AddImagesForm from '../../AlbumUpload/AddImagesForm';
+import EditAlbumForm from '../../AlbumEdit/EditAlbumForm';
 
 export default function Album({ album, idx }) {
   const dispatch = useDispatch();

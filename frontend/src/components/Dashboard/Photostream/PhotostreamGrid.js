@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getUserImagesArray } from '../../../store/dashboard';
 import { Modal } from '../../../context/Modal';
-import ImageView from '../../ImageModal/ImageView';
+import ImageView from '../../ImageView/ImageView';
 
 export default function PhotostreamGrid({ images }) {
   const [showIdx, setShowIdx] = useState(null);
