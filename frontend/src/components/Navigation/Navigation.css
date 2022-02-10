@@ -60,3 +60,14 @@
 .active-nav {
   text-decoration: underline;
 }
+
+.upload.nav {
+  color: white;
+  font-size: 25px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.upload.nav:hover {
+  color: var(--main-blue)
+}

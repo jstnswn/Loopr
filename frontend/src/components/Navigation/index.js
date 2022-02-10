@@ -7,6 +7,7 @@ import './Navigation.css';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
 import { loginDemo } from '../../store/session';
+import UploadImageModal from '../UploadImageModal';
 
 export default function Navigation({ isLoaded }) {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ export default function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <NavLink to='/dashboard/photostream' activeClassName='active-nav'>Dashboard</NavLink>
+        <UploadImageModal option={'icon'}/>
         <ProfileButton user={sessionUser} />
       </>
     );

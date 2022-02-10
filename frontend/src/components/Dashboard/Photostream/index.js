@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 import { getUserImagesArray } from '../../../store/dashboard';
 import { Modal } from '../../../context/Modal';
 import ImageView from '../../ImageView/ImageView';
-import UploadPhotos from '../../UploadImageModal';
 import PhotostreamGrid from './PhotostreamGrid';
+import UploadImageModal from '../../UploadImageModal';
 
 
 export default function Photostream() {
@@ -25,7 +25,8 @@ export default function Photostream() {
       <div className='dashboard-body-header'>
         <h2>{header}</h2>
         <p>{subHeader}</p>
-        <UploadPhotos />
+        {/* <UploadPhotos /> */}
+        <UploadImageModal />
       </div>
       <div className='dashboard-body-content'>
 
