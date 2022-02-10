@@ -68,5 +68,20 @@ router.delete('/:albumId(\\d+)',
   })
 );
 
+router.patch('/:albumId(\\d+)',
+  asyncHandler(async (req, res) => {
+    const { albumId } = req.params;
+    const { title, description } = req.body
+    const updates = { title, description };
+
+    const album = await albumServices.patchAlbum(albumId, updates);
+
+    if (album) {
+      res.status(201);
+      res.json({album})
+    }
+  })
+);
+
 
 module.exports = router;

@@ -53,6 +53,13 @@ async function deleteImage(imageId) {
   if (image) return await image.destroy();
 };
 
+async function deleteImages(imageIds) {
+  for (let imageId of imageIds) {
+    deleteImage(imageId);
+  }
+  // Currently no return
+};
+
 async function patchImage(imageId, updates) {
   const image = await db.Image.findByPk(imageId);
 
@@ -73,4 +80,5 @@ module.exports = {
   getImagesByUserId,
   deleteImage,
   patchImage,
+  deleteImages,
 }

@@ -26,11 +26,24 @@ async function deleteAlbum(albumId) {
   return await album.destroy();
 };
 
+async function patchAlbum(albumId, updates) {
+  const album = await db.Album.findByPk(albumId);
+
+  if (album) await album.update(updates);
+
+  const updated = await db.Album.findByPk(albumId, {
+    include: [db.Image]
+  })
+
+  return updated;
+};
+
 module.exports = {
   getSplashAlbums,
   getAlbumsByUserId,
   createAlbum,
   deleteAlbum,
+  patchAlbum,
 };
 
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
 import Navigation from './components/Navigation';
 import SplashPage from './components/SplashPage';
@@ -15,7 +15,8 @@ function App() {
   const history = useHistory();
   const session = useSelector(({ session }) => session);
   const user = session.user;
-  // if (user) history.push('/dashboard/photostream')
+
+
 
 
   useEffect(() => {
@@ -23,6 +24,13 @@ function App() {
       .then(() => setIsLoaded(true));
   }, [dispatch])
 
+
+  useEffect(() => {
+    if (user) {
+      history.push('/dashboard/photostream');
+    }
+      // <Redirect to="/dashboard/photostream" />
+  }, [user, history])
 
   return (
     <>

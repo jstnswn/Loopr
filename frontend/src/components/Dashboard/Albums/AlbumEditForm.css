@@ -1,0 +1,50 @@
+.edit-album-form {
+  /* position: absolute; */
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  height: 470px;
+  padding-top: 20px;
+  /* background-color: var(--background-black); */
+  /* color: white; */
+  border-radius: 5px;
+}
+
+.edit-album-form h2 {
+  text-align: center;
+  /* margin: 0; */
+}
+
+.edit-album-form label {
+  padding: 10px 35px;
+}
+
+.edit-album-form input,
+.edit-album-form .select,
+.edit-album-form textarea {
+  height: 30px;
+  margin: 0 35px;
+}
+
+.edit-album-form .select {
+  display: block;
+  /* margin: 10px; */
+  margin-bottom: 40px;
+  cursor: pointer;
+}
+
+.css-26l3qy-menu {
+  transform: translateY(12px);
+}
+
+.edit-album-form button {
+  cursor: pointer;
+  margin-top: 10px;
+  width: 170px;
+  height: 36px;
+  border-radius: 5px;
+  border: none;
+  align-self: center;
+  background-color: var(--main-blue);
+  color: white;
+}
