@@ -44,8 +44,8 @@ export default function Dashboard() {
             </div>
 
             <ul className='bottom'>
-              <li>Follower</li>
-              <li>Following</li>
+              {/* <li>Follower</li>
+              <li>Following</li> */}
             </ul>
 
           </div>
