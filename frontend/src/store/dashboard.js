@@ -28,7 +28,6 @@ const loadImages = (images) => {
 };
 
 const removeImage = (imageId, albumId) => {
-  console.log('remove: ', imageId, albumId)
   return {
     type: REMOVE_IMAGE,
     imageId,
@@ -224,7 +223,7 @@ export const deleteImage = (image) => async dispatch => {
 export const deleteImages = (imageIds, albumId) => async dispatch => {
   const res = await csrfFetch(`/api/images/multi-delete/`, {
     method: 'DELETE',
-    body: JSON.stringify(imageIds)
+    body: JSON.stringify({ imageIds })
   });
 
   if (res.ok) {
@@ -238,7 +237,6 @@ export const deleteImages = (imageIds, albumId) => async dispatch => {
 export const patchAlbum = (payload) => async dispatch => {
   const { title, description, albumId } = payload;
   const body = { title, description };
-  console.log('thunk body: ', body)
 
   const res = await csrfFetch(`/api/albums/${albumId}`, {
     method: 'PATCH',

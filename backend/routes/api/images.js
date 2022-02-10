@@ -97,6 +97,17 @@ router.delete('/:imageId(\\d+)',
   })
 );
 
+router.delete('/multi-delete',
+  asyncHandler(async (req, res) => {
+    const { imageIds } = req.body;
+
+    await imageServices.deleteImages(imageIds)
+    // Currently no return from deleteImages
+
+    res.status(204).end();
+  })
+);
+
 router.patch('/:imageId(\\d+)',
   validateImage,
   asyncHandler(async (req, res) => {

@@ -73,7 +73,7 @@ export default function Album({ album, idx }) {
       )}
       {showEditForm && (
         <Modal onClose={closeEdit}>
-          <EditAlbumForm album={album}/>
+          <EditAlbumForm album={album} closeEdit={closeEdit}/>
         </Modal>
       )}
     </div>

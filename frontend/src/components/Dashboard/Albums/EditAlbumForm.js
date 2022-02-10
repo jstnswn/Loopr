@@ -5,16 +5,15 @@ import { deleteImages, patchAlbum, patchAlbumWithImageDel } from '../../../store
 
 import './AlbumEditForm.css'
 
-export default function EditAlbumForm({ album }) {
+export default function EditAlbumForm({ album, closeEdit }) {
   const dispatch = useDispatch();
   const [title, setTitle] = useState(album.title || '');
   const [description, setDescription] = useState(album.description || '');
-  const [multiValue, setMultiValue] = useState([{ value: 'hey', label: 'bruh'}]);
+  const [multiValue, setMultiValue] = useState({ option: []});
   const [errors, setErrors] = useState([]);
   const [showErrors, setShowErrors] = useState(false);
 
   const [imageIds, setImageIds] = useState();
-  console.log('albuM: ', album)
 
   useEffect(() => {
     setErrors([]);
@@ -26,14 +25,14 @@ export default function EditAlbumForm({ album }) {
     if (description.length > 300) {
       errors.push('Description must be less than 300 characters');
     }
-    if (title === album.title && (
+    if (title === album.title && !multiValue.option.length && (
       (!description && !album.description) || description === album.description)
     ) {
       errors.push('No changes have been made')
     }
 
     setErrors(errors);
-  }, [title, description, album])
+  }, [title, description, album, multiValue])
 
 
   const handleMultiChange = (option) => {
@@ -42,8 +41,6 @@ export default function EditAlbumForm({ album }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-
 
     if (!errors.length) {
       const payload = {
@@ -55,9 +52,11 @@ export default function EditAlbumForm({ album }) {
 
       if (payload.imageIds && payload.imageIds.length) {
         return dispatch(patchAlbumWithImageDel(payload))
+          .then(() => closeEdit());
       }
-      console.log('payload: ', payload)
-      return dispatch(patchAlbum(payload));
+
+      return dispatch(patchAlbum(payload))
+        .then(() => closeEdit());
     }
 
     setShowErrors(true);
