@@ -29,7 +29,5 @@ module.exports = (sequelize, DataTypes) => {
     Image.belongsTo(models.Album, { foreignKey: 'albumId' });
     Image.belongsTo(models.User, { foreignKey: 'userId' });
   };
-
-  sequelize.sync({force:true})
   return Image;
 };

@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { createAlbumWithImages } from '../../store/dashboard';
 import FileUploader from './FileUploader';
 
 import './UploadAlbum.css';
 
 export default function UploadAlbumForm() {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [files, setFiles] = useState(null)
@@ -20,8 +23,8 @@ export default function UploadAlbumForm() {
     };
 
     if (!errors.length) {
-      console.log('Payload deployed: ', payload, files.length);
-      return
+
+      return dispatch(createAlbumWithImages(payload));
     }
 
     setShowErrors(true);

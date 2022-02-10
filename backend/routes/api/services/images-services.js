@@ -1,4 +1,6 @@
+const Sequelize = require('sequelize');
 const db = require('../../../db/models');
+const Op = Sequelize.Op;
 
 async function getSplashImages() {
   return await db.Image.findAll({
@@ -20,17 +22,22 @@ async function createImage(userId, title, description, albumId, imageUrl) {
   });
 };
 
-async function createImages(userId, imageUrls) {
-  console.log(3, 'Image Services: ');
+async function createImages(imageUrls, albumId, userId) {
   const imageIds = [];
 
   for (let imageUrl of imageUrls) {
-    const newImage = await db.Image.create({ imageUrl })
+    const newImage = await db.Image.create({ imageUrl, userId, albumId })
     imageIds.push(newImage.id);
   }
 
-  console.log(4, 'imageIds: ', imageIds);
-
+  return await db.Image.findAll({
+    where: {
+      id: {
+        [Op.or]: imageIds
+      }
+    },
+    include: [db.Album]
+  })
 };
 
 async function getImagesByUserId(userId) {

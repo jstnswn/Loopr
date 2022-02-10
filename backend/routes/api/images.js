@@ -66,18 +66,24 @@ router.post('/users/current/single-upload',
     })
 );
 
-// router.post('/users/current/multi-upload',
-//   restoreUser,
-//   multipleMulterUpload('images'),
-//   asyncHandler(async (req, res) => {
-//     const { user } = req;
-//     const imageUrls = await multiplePublicFileUpload(req.file);
+router.post('/users/current/multi-upload',
+  restoreUser,
+  multipleMulterUpload('images'),
+  asyncHandler(async (req, res) => {
+    const { user } = req;
+    const { albumId } = req.body;
+    const imageUrls = await multiplePublicFileUpload(req.files);
 
-//     const images = await imageServices
-//       .createImages(user.id, imageUrls)
+    const images = await imageServices
+      .createImages(imageUrls, albumId, user.id)
 
-//   })
-// );
+    if (images) {
+
+      res.status(200);
+      res.json({ images })
+    }
+  })
+);
 
 router.delete('/:imageId(\\d+)',
   asyncHandler(async (req, res) => {
