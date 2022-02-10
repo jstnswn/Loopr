@@ -6,13 +6,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserAlbumsArray, postImage } from '../../store/dashboard';
 
 
-export default function UploadForm({ closeModal }) {
+export default function UploadImageForm({ closeModal }) {
   const dispatch = useDispatch();
   const [imageTitle, setImageTitle] = useState('');
   const [albumTitle, setAlbumTitle] = useState('');
   const [newAlbumOption, setNewAlbumOption] = useState(false);
   const [description, setDescription] = useState('');
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [file, setFile] = useState(null);
   const [albumId, setAlbumId] = useState('--Select an Album--');
   const [errors, setErrors] = useState([]);
   const [showErrors, setShowErrors] = useState(false);
@@ -25,19 +25,18 @@ export default function UploadForm({ closeModal }) {
     const payload = {
       title: imageTitle,
       description,
-      imageFile: selectedFile,
+      imageFile: file,
     };
+
     if (newAlbumOption) payload.albumTitle = albumTitle;
     else payload.albumId = albumId;
 
     if (!errors.length) {
       return dispatch(postImage(payload))
       .then(() => closeModal())
-
-    } else {
-      setShowErrors(true)
-      // setErrors([]);
     }
+
+    setShowErrors(true)
   };
 
   useEffect(() => {
@@ -48,7 +47,7 @@ export default function UploadForm({ closeModal }) {
     if (imageTitle.length > 30 || !imageTitle.length) {
       errors.push('Image title must be between 1 and 30 characters');
     }
-    if (!selectedFile) {
+    if (!file) {
       errors.push('Please select and image to upload');
     }
     if (description.length > 300) {
@@ -63,7 +62,7 @@ export default function UploadForm({ closeModal }) {
 
     setErrors(errors);
 
-  }, [imageTitle, albumTitle, selectedFile, newAlbumOption, albumId])
+  }, [imageTitle, albumTitle, file, newAlbumOption, albumId, description])
 
   useEffect(() => {
     if (newAlbumOption) return;
@@ -119,7 +118,7 @@ export default function UploadForm({ closeModal }) {
         />
         {albumOption}
         <FileUploader
-          selectFile={file => setSelectedFile(file)}
+          setFile={file => setFile(file)}
         />
         <button>Submit</button>
       </form>

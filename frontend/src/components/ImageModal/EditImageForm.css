@@ -7,7 +7,7 @@
   height: 50%;
   padding-top: 20px;
   /* z-index: 3; */
-  background-color: rgba(19, 22, 24, .9);
+  background-color: var(--background-black);
   color: white;
   /* text-align: center; */
   border-radius: 5px;

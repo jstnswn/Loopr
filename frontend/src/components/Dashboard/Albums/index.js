@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { getUserAlbumsArray } from '../../../store/dashboard';
+import AlbumModal from '../../AlbumModal';
 import AlbumsGrid from './AlbumsGrid';
 
 export default function Albums() {
@@ -25,7 +26,8 @@ export default function Albums() {
             <div className='album-options'>
               <div>
                 {/* <i className='fa-solid fa-plus'></i> */}
-                <div className='add-new-album'>+ New album</div>
+                {/* <div className='add-new-album'>+ New album</div> */}
+                <AlbumModal />
               </div>
             </div>
             <AlbumsGrid albums={albums} />

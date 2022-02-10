@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import UploadPhotos from '../UploadModal';
+import UploadPhotos from '../UploadImageModal';
 import Photostream from './Photostream';
 
 export default function DashboardBody() {
@@ -22,7 +22,7 @@ export default function DashboardBody() {
 
 
 
- 
+
       </div>
     </div>
   )

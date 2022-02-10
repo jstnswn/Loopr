@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { getUserImagesArray } from '../../../store/dashboard';
 import { Modal } from '../../../context/Modal';
 import ImageView from '../../ImageModal/ImageView';
-import UploadPhotos from '../../UploadModal';
+import UploadPhotos from '../../UploadImageModal';
 import PhotostreamGrid from './PhotostreamGrid';
 
 

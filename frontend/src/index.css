@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
 :root {
-  --gray-border: #e2e2e2;
-  --light-gray-text: #737b80;
+  --border-gray: #e2e2e2;
+  --text-light-gray: #737b80;
+  --background-black: rgba(19, 22, 24, .9);
   --main-blue: #128FDC;
   --body-color: rgb(242, 242, 242);
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
-import UploadForm from './UploadForm';
+import UploadImageForm from './UploadImageForm';
 
 export default function UploadModal() {
   const [showModal, setShowModal] = useState(false);
@@ -13,10 +13,10 @@ export default function UploadModal() {
 
   return (
     <>
-      <button className='modal-button' onClick={openModal}>Upload Image</button>
+      <button className='modal-button upload-image button' onClick={openModal}>Upload Image</button>
       {showModal && (
         <Modal onClose={closeModal}>
-          <UploadForm closeModal={closeModal}/>
+          <UploadImageForm closeModal={closeModal}/>
         </Modal>
       )}
     </>

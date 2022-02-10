@@ -19,3 +19,7 @@
   height: 30px;
   align-self: center;
 }
+
+.upload-image.button {
+  cursor: pointer;
+}
