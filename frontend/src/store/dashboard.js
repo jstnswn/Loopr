@@ -82,8 +82,8 @@ export const postAlbum = (payload) => async dispatch => {
   });
 
   const { album } = await res.json();
-  dispatch(loadAlbum(album))
 
+  dispatch(loadAlbum(album))
   return album;
 };
 
@@ -167,17 +167,6 @@ export const deleteAlbum = (albumId) => async dispatch => {
   return res;
 };
 
-export const deleteImage = (image) => async dispatch => {
-  const res = await csrfFetch(`/api/images/${image.id}`, {
-    method: 'DELETE',
-  });
-
-  if (res.ok) {
-    dispatch(removeImage(image.id, image.albumId));
-    return res;
-  }
-};
-
 export const getUserAlbums = () => async dispatch => {
   const res = await csrfFetch('/api/albums/users/current');
   const albums = await res.json();
@@ -212,11 +201,65 @@ export const updateImage = (payload) => async dispatch => {
 
   const { image } = await res.json();
 
-  await Promise.all([
-    dispatch(removeImage(originalImage.id, originalImage.albumId)),
-    dispatch(loadImage(image))
-  ]);
+  if (res.ok) {
+    await Promise.all([
+      dispatch(removeImage(originalImage.id, originalImage.albumId)),
+      dispatch(loadImage(image))
+    ]);
+  }
   return res;
+};
+
+export const deleteImage = (image) => async dispatch => {
+  const res = await csrfFetch(`/api/images/${image.id}`, {
+    method: 'DELETE',
+  });
+
+  if (res.ok) {
+    dispatch(removeImage(image.id, image.albumId));
+  }
+  return res;
+};
+
+export const deleteImages = (imageIds, albumId) => async dispatch => {
+  const res = await csrfFetch(`/api/images/multi-delete/`, {
+    method: 'DELETE',
+    body: JSON.stringify(imageIds)
+  });
+
+  if (res.ok) {
+    for (let imageId of imageIds) {
+      dispatch(removeImage(imageId, albumId));
+    }
+  }
+  return res;
+};
+
+export const patchAlbum = (payload) => async dispatch => {
+  const { title, description, albumId } = payload;
+  const body = { title, description };
+  console.log('thunk body: ', body)
+
+  const res = await csrfFetch(`/api/albums/${albumId}`, {
+    method: 'PATCH',
+    body: JSON.stringify(body)
+  });
+
+
+  if (res.ok) {
+    const { album } = await res.json();
+    dispatch(loadAlbum(album));
+  }
+
+  return res;
+};
+
+export const patchAlbumWithImageDel = (payload) => async dispatch => {
+  const { imageIds, albumId } = payload;
+
+  await dispatch(deleteImages(imageIds, albumId));
+
+  return dispatch(patchAlbum(payload))
 };
 
 // Bulk dispatch
@@ -226,6 +269,7 @@ export const loadDashboard = () => async dispatch => {
     dispatch(getUserImages())
   ]);
 };
+
 
 
 

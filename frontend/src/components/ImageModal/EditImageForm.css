@@ -6,10 +6,8 @@
   width: 40%;
   height: 50%;
   padding-top: 20px;
-  /* z-index: 3; */
   background-color: var(--background-black);
   color: white;
-  /* text-align: center; */
   border-radius: 5px;
 }
 
@@ -41,8 +39,6 @@
 .edit-image-form input,
 .edit-image-form select,
 .edit-image-form textarea {
-  /* width: 80%; */
-  /* padding: 10px; */
   height: 30px;
   margin: 0 35px;
 }

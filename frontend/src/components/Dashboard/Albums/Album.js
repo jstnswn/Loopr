@@ -2,20 +2,21 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Modal } from '../../../context/Modal';
 import { deleteAlbum } from '../../../store/dashboard';
+import EditAlbumForm from './EditAlbumForm';
 
 export default function Album({ album, idx }) {
   const dispatch = useDispatch();
   const [hovered1, setHovered1] = useState(false);
   const [hovered2, setHovered2] = useState(false);
   const [showConfirmDel, setShowConfirmDel] = useState(false);
+  const [showEditForm, setShowEditForm] = useState(false);
 
-  const showConfirm = (e) => {
-    setShowConfirmDel(true);
-  };
+  const showConfirm = () => setShowConfirmDel(true);
+  const closeConfirm = () => setShowConfirmDel(false);
+  const showEdit = () => setShowEditForm(true);
+  const closeEdit = () => setShowEditForm(false);
 
-  const closeConfirm = () => {
-    setShowConfirmDel(false);
-  };
+
 
   const handleDelete = async () => {
     dispatch(deleteAlbum(album.id))
@@ -55,7 +56,8 @@ export default function Album({ album, idx }) {
           className='album-actions'
         >
           <i onClick={showConfirm} className='fal fa-trash'></i>
-          <i className='far fa-edit'></i>
+          <i onClick={showEdit} className='far fa-edit'></i>
+          <i className='far fa-layer-plus'></i>
         </div>
       </div>
       {showConfirmDel && (
@@ -67,6 +69,11 @@ export default function Album({ album, idx }) {
               <p onClick={handleDelete}>Yes</p>
             </div>
           </div>
+        </Modal>
+      )}
+      {showEditForm && (
+        <Modal onClose={closeEdit}>
+          <EditAlbumForm album={album}/>
         </Modal>
       )}
     </div>

@@ -102,12 +102,12 @@ router.patch('/:imageId(\\d+)',
   asyncHandler(async (req, res) => {
     const { imageId } = req.params;
     const { title, description, albumId } = req.body;
-    const updates = {title, description, albumId };
+    const updates = { title, description, albumId };
 
     const image = await imageServices.patchImage(imageId, updates);
 
     if (image) {
-      res.status(201)
+      res.status(201);
       res.json({image});
     }
   })
