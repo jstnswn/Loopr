@@ -1,7 +1,7 @@
 const express = require('express')
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
-const { singleMulterUpload, singlePublicFileUpload } = require('../../awsS3');
+const { singleMulterUpload, singlePublicFileUpload, multipleMulterUpload, multiplePublicFileUpload } = require('../../awsS3');
 const { restoreUser } = require('../../utils/auth');
 const { handleValidationErrors } = require('../../utils/validation');
 
@@ -10,10 +10,10 @@ const router = express.Router();
 const imageServices = require('./services/images-services');
 
 const validateImage = [
-  check('title')
-    .exists({ checkFalsy: true })
-    .isLength({ min: 1, max: 30 })
-    .withMessage('Title must be between 1 and 30 characters'),
+  // check('title')
+  //   .exists({ checkFalsy: true })
+  //   .isLength({ min: 1, max: 30 })
+  //   .withMessage('Title must be between 1 and 30 characters'),
   check('description')
     .isLength({ max: 300 })
     .withMessage('Description must be less than 300 characters'),
@@ -47,7 +47,7 @@ router.get('/users/current',
   })
 );
 
-router.post('/users/current',
+router.post('/users/current/single-upload',
   restoreUser,
 // validateImage,
   singleMulterUpload('image'),
@@ -65,6 +65,19 @@ router.post('/users/current',
       }
     })
 );
+
+// router.post('/users/current/multi-upload',
+//   restoreUser,
+//   multipleMulterUpload('images'),
+//   asyncHandler(async (req, res) => {
+//     const { user } = req;
+//     const imageUrls = await multiplePublicFileUpload(req.file);
+
+//     const images = await imageServices
+//       .createImages(user.id, imageUrls)
+
+//   })
+// );
 
 router.delete('/:imageId(\\d+)',
   asyncHandler(async (req, res) => {

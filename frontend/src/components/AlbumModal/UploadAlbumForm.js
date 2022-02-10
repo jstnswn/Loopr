@@ -16,11 +16,11 @@ export default function UploadAlbumForm() {
     const payload = {
       title,
       description,
-      files
+      images: files
     };
 
     if (!errors.length) {
-      console.log('Payload deployed: ', payload);
+      console.log('Payload deployed: ', payload, files.length);
       return
     }
 
@@ -60,9 +60,11 @@ export default function UploadAlbumForm() {
         value={description}
         onChange={e => setDescription(e.target.value)}
       />
-      <label>Song(s)</label>
+      <label>Images(s)</label>
       <FileUploader setFiles={setFiles}/>
-
+      {/* {files && files.map((index, file) =>(
+        <input type='text' placeholder='song name'/>
+      ))} */}
       <button>Create Album</button>
     </form>
   )

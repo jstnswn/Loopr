@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     title: {
       type: DataTypes.STRING(30),
       allowNull: false,
+      defaultValue: 'Untitled',
       validate: {
         len: [1, 30]
       }
@@ -28,5 +29,7 @@ module.exports = (sequelize, DataTypes) => {
     Image.belongsTo(models.Album, { foreignKey: 'albumId' });
     Image.belongsTo(models.User, { foreignKey: 'userId' });
   };
+
+  sequelize.sync({force:true})
   return Image;
 };

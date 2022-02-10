@@ -20,6 +20,19 @@ async function createImage(userId, title, description, albumId, imageUrl) {
   });
 };
 
+async function createImages(userId, imageUrls) {
+  console.log(3, 'Image Services: ');
+  const imageIds = [];
+
+  for (let imageUrl of imageUrls) {
+    const newImage = await db.Image.create({ imageUrl })
+    imageIds.push(newImage.id);
+  }
+
+  console.log(4, 'imageIds: ', imageIds);
+
+};
+
 async function getImagesByUserId(userId) {
   return await db.Image.findAll({
     where: { userId },
@@ -49,6 +62,7 @@ async function patchImage(imageId, updates) {
 module.exports = {
   getSplashImages,
   createImage,
+  createImages,
   getImagesByUserId,
   deleteImage,
   patchImage,

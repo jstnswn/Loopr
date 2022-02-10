@@ -95,7 +95,7 @@ export const postImage = (payload) => async dispatch => {
   formData.append('albumId', albumId);
 
 
-  const res = await csrfFetch('/api/images/users/current', {
+  const res = await csrfFetch('/api/images/users/current/single-upload', {
     method: "POST",
     headers: {
       "Content-Type": "multipart/form-data",
@@ -109,16 +109,37 @@ export const postImage = (payload) => async dispatch => {
   return res;
 };
 
+export const postImages = (images) => async dispatch => {
+  const formData = new FormData();
+
+  if (images && images.length > 0) {
+    for (let image of images) {
+      formData.append('images', image);
+    }
+  }
+  if (images && images.length === 1) formData.append('image', images[0]);
+
+  const res = await csrfFetch('/api/images/users/current/multi-upload', {
+    method: 'POST',
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+    body: formData,
+  });
+
+  const data = await res.json();;
+  dispatch(loadImages(data.images));
+
+  return res;
+};
+
 export const deleteAlbum = (albumId) => async dispatch => {
   const res = await csrfFetch(`/api/albums/${albumId}`, {
     method: 'DELETE'
   });
 
   if (res.ok) {
-
-    await dispatch(removeAlbum(albumId))
-    await dispatch(getUserImages());
-    // Re-load user images as temp solution for album-assiciated image removal
+    dispatch(removeAlbum(albumId))
   }
   return res;
 };
@@ -180,6 +201,15 @@ export const loadDashboard = () => async dispatch => {
   await Promise.all([
     dispatch(getUserAlbums()),
     dispatch(getUserImages())
+  ]);
+};
+
+export const createAlbumWithImages = (payload) => async dispatch => {
+  const { title, description, images } = payload;
+
+  await Promise.all([
+    dispatch(postAlbum({title, description})),
+    dispatch(postImages(images))
   ]);
 };
 
