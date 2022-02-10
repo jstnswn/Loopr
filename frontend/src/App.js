@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
+import Home from './components/Home';
 import Navigation from './components/Navigation';
 import SplashPage from './components/SplashPage';
 import BottomBar from './components/SplashPage/BottomBar';
@@ -17,8 +18,6 @@ function App() {
   const user = session.user;
 
 
-
-
   useEffect(() => {
     dispatch(restoreUser())
       .then(() => setIsLoaded(true));
@@ -31,6 +30,10 @@ function App() {
     }
       // <Redirect to="/dashboard/photostream" />
   }, [user, history])
+
+  // if (!user) return (
+  //   history.push('/')
+  // );
 
   return (
     <>
@@ -48,6 +51,9 @@ function App() {
           <Route exact path='/'>
             {!user && <SplashPage />}
             {user && <Dashboard />}
+          </Route>
+          <Route path='/home'>
+            <Home />
           </Route>
           <Route path='/dashboard'>
             {user && <Dashboard />}
