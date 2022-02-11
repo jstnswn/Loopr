@@ -62,12 +62,17 @@
 
 
 .favorite-icon {
-  /* color: */
   transition: 0
 }
+
+.favorite-icon:hover {
+  color: white;
+}
+
 .favorite-icon.active {
-  /* color: */
-  transition: 0
+  /* transition: 0 */
+  color: rgb(175, 175, 175);
+  /* border: red 1px solid; */
 }
 
 

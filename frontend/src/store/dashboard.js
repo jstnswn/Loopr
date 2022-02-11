@@ -82,6 +82,13 @@ const addFavoriteImage = (image) => {
   };
 };
 
+const removeFavoriteImage = (image) => {
+  return {
+    type: REMOVE_FAVORITE_IMAGE,
+    image
+  }
+};
+
 export const clearDashboard = () => {
   return {
     type: CLEAR_DASHBOARD
@@ -300,6 +307,18 @@ export const favoriteImage = (image) => async dispatch => {
   return res;
 };
 
+export const unfavoriteImage = (image) => async dispatch => {
+  const res = await csrfFetch(`/api/favorites/images/${image.id}/users/current`, {
+    method: 'DELETE'
+  });
+
+  if (res.ok) {
+    dispatch(removeFavoriteImage(image))
+  }
+
+  return res;
+};
+
 // Bulk dispatch
 export const loadDashboard = () => async dispatch => {
   await Promise.all([
@@ -308,8 +327,6 @@ export const loadDashboard = () => async dispatch => {
     dispatch(getFavoriteImages())
   ]);
 };
-
-
 
 
 // Helper Functions
@@ -419,7 +436,10 @@ const dashboardReducer = (state = initialState, action) => {
           }
         }
 
-      
+      case REMOVE_FAVORITE_IMAGE:
+        stateCopy = {...state};
+        delete stateCopy.favoriteImages[action.image.id];
+        return stateCopy;
 
     case CLEAR_DASHBOARD:
       return initialState;
