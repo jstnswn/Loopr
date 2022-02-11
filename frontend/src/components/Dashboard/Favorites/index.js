@@ -6,7 +6,6 @@ import FavoritesGrid from './FavoritesGrid';
 export default function Favorites() {
   const images = useSelector(getFavoriteImagesArray);
   const imagesLoaded = images.length > 0;
-  console.log('fav component: ', images);
 
   let header;
   let subHeader;
@@ -17,8 +16,6 @@ export default function Favorites() {
     header = 'Your Favorites'
     // subHeader = 'Like something you see ? Let the photographer know by clicking on the star icon.';
   }
-
-
   return (
 
     <div className='dashboard-body'>

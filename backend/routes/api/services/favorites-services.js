@@ -9,6 +9,11 @@ async function getFavImagesByUserId(userId) {
   });
 };
 
+async function favoriteImage(imageId, userId) {
+  return await db.ImageFavorite.create({ imageId, userId });
+}
+
 module.exports = {
   getFavImagesByUserId,
+  favoriteImage,
 };

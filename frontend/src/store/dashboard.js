@@ -12,6 +12,8 @@ const REMOVE_ALBUM = 'dashboard/REMOVE_ALBUM';
 const ADD_IMAGES_TO_ALBUM = 'dashboard/ADD_IMAGES_TO_ALBUM';
 
 const LOAD_FAVORITE_IMAGES = 'dashboard/LOAD_FAVORITE_IMAGES';
+const ADD_FAVORITE_IMAGE = 'dashboard/ADD_FAVORITE_IMAGE';
+const REMOVE_FAVORITE_IMAGE = 'dashboard/REMOVE_FAVORITE_IMAGE';
 
 const CLEAR_DASHBOARD = 'dashboard/CLEAR_DASHBOARD';
 
@@ -73,6 +75,13 @@ const loadFavoriteImages = (favorites) => {
   };
 };
 
+const addFavoriteImage = (image) => {
+  return {
+    type: ADD_FAVORITE_IMAGE,
+    image
+  };
+};
+
 export const clearDashboard = () => {
   return {
     type: CLEAR_DASHBOARD
@@ -125,8 +134,6 @@ export const postImage = (payload) => async dispatch => {
   dispatch(loadImage(image));
   return res;
 };
-
-
 
 export const postImages = (images, albumId) => async dispatch => {
   const formData = new FormData();
@@ -280,6 +287,19 @@ export const getFavoriteImages = () => async dispatch => {
   return res;
 };
 
+export const favoriteImage = (image) => async dispatch => {
+  const res = await csrfFetch('/api/favorites/images/users/current', {
+    method: 'POST',
+    body: JSON.stringify({imageId: image.id})
+  });
+
+  if (res.ok) {
+    dispatch(addFavoriteImage(image));
+  }
+
+  return res;
+};
+
 // Bulk dispatch
 export const loadDashboard = () => async dispatch => {
   await Promise.all([
@@ -389,6 +409,17 @@ const dashboardReducer = (state = initialState, action) => {
             ...formatted
           }
         }
+
+      case ADD_FAVORITE_IMAGE:
+        return {
+          ...state,
+          favoriteImages: {
+            ...state.favoriteImages,
+            [action.image.id]: action.image
+          }
+        }
+
+      
 
     case CLEAR_DASHBOARD:
       return initialState;

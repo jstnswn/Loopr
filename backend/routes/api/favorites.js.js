@@ -21,4 +21,18 @@ router.get('/images/users/current',
   })
 );
 
+router.post('/images/users/current',
+  restoreUser,
+  asyncHandler(async (req, res) => {
+    const { user } = req;
+    const { imageId } = req.body;
+
+    const favorite = await favoritesServices
+      .favoriteImage(imageId, user.id);
+
+    res.status(200).end();
+    // res.json()
+  })
+);
+
 module.exports = router;
