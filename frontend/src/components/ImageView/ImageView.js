@@ -38,8 +38,9 @@ export default function ImageView({ image, closeModal, option }) {
       <img className='modal-image' src={image.imageUrl} alt={image.title}></img>
       <div className='image-view-footer'>
         <div className='image-info'>
-          <p>{image.title}</p>
-          <p>{image.Album.title}</p>
+          <p className='title'>{image.title}</p>
+          <p className='album'>{image.Album.title}</p>
+          {option === 'explore' && <p className='user'>{`from @ ${image.User.username}`}</p>}
         </div>
         <p>{image.description}</p>
         <div className='image-view-icons'>

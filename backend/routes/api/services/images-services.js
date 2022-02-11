@@ -12,7 +12,8 @@ async function getSplashImages() {
 
 async function getAllPublicImages() {
   return await db.Image.findAll({
-    where: { isPrivate: false }
+    where: { isPrivate: false },
+    include: [db.Album, db.User]
   });
 };
 

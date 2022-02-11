@@ -26,7 +26,7 @@ function App() {
 
   useEffect(() => {
     if (user) {
-      // history.push('/dashboard/photostream');
+      history.push('/dashboard/photostream');
     }
       // <Redirect to="/dashboard/photostream" />
   }, [user, history])
@@ -50,7 +50,7 @@ function App() {
         <Switch>
           <Route exact path='/'>
             {!user && <SplashPage />}
-            {/* {user && <Dashboard />} */}
+            {user && <Dashboard />}
           </Route>
           <Route path='/explore'>
             <Explore />

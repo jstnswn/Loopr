@@ -9,6 +9,8 @@
 }
 
 .explore-container h2 {
-  align-self: flex-start;
-
+  /* align-self: flex-start; */
+  text-align: center;
+  padding-top: 30px;
+  /* padding-left: 90px; */
 }
