@@ -1,6 +1,7 @@
 .dashboard-container {
   display: grid;
   grid-template-rows: 320px 50px 1fr;
+  min-height: calc(100vh - 50px);
 }
 
 .cover-container {

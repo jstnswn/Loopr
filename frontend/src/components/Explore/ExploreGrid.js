@@ -1,6 +1,7 @@
 import React from 'react'
 
 import './ExploreGrid.css';
+import ExploreGridItem from './ExploreGridItem';
 
 export default function ExploreGrid({ images }) {
   const images2 = images.reverse();
@@ -9,11 +10,7 @@ export default function ExploreGrid({ images }) {
     <div className='explore-grid'>
       {images2.map((image, idx) => (
         <div className='grid-item-container' key={idx}>
-          <img
-            className='explore-grid-item'
-            src={image.imageUrl}
-            alt={image.title}
-          />
+          <ExploreGridItem image={image} />
         </div>
       ))}
     </div>
