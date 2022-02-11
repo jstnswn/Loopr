@@ -5,7 +5,7 @@ import ImageView from '../../ImageView/ImageView';
 export default function FavoritesGrid({ images }) {
   const [showIdx, setShowIdx] = useState(null);
 
-  const images2 = [...images, ...images, ...images].reverse();
+  const images2 = images.reverse();
 
   const openModal = (idx) => setShowIdx(idx);
   const closeModal = () => setShowIdx(null);
