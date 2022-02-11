@@ -9,15 +9,21 @@ import UploadImageModal from '../../UploadImageModal';
 
 
 export default function Photostream() {
+
   const images = useSelector(getUserImagesArray);
   const imagesLoaded = images.length > 0;
-  let header;
-  if (!imagesLoaded) header = 'You don\'t have any images';
-  else header = 'Your Images';
 
+  let header;
   let subHeader;
-  if (!images.length) subHeader = 'Your photostream is your public-facing portfolio. Start by uploading your first image!';
-  else subHeader = 'Your photostream is your public-facing portfolio. Set your photos to public using the Camera Roll to populate your photostream.';
+  if (!imagesLoaded) {
+    header = 'You don\'t have any images';
+    subHeader = 'Your photostream is your public-facing portfolio. Start by uploading your first image!';
+  } else {
+    header = 'Your Images';
+    subHeader = 'Your photostream is your public-facing portfolio. Set your photos to public using the Camera Roll to populate your photostream.';
+  }
+
+
 
   return (
 

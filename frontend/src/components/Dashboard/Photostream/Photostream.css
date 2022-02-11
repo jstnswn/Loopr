@@ -1,13 +1,12 @@
-.photostream-grid {
+.image-grid {
   display: grid;
-  /* width: 100%; */
   grid-template-columns: 1fr 1fr 1fr 1fr;
   align-self: center;
   margin-top: 35px;
 }
 
 
-.stream-image {
+.image-grid-item {
   height: 11rem;
   width: 11rem;
   object-fit: cover;
@@ -17,9 +16,6 @@
   cursor: pointer;
 }
 
-.stream-image:hover {
-  /* height: 11.2rem; */
-  /* width: 11.2rem; */
+.image-grid-item:hover {
   padding: 3px;
-  /* border: red 1px solid; */
 }

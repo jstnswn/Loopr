@@ -1,4 +1,4 @@
-import { normalizeAlbum, normalizeAlbums, normalizeImages } from "./utils";
+import { normalizeAlbum, normalizeAlbums, normalizeImages, normalizeFavImages } from "./utils";
 
 const { csrfFetch } = require("./csrf");
 
@@ -11,20 +11,24 @@ const LOAD_ALBUMS = 'dashboard/LOAD_ALBUMS';
 const REMOVE_ALBUM = 'dashboard/REMOVE_ALBUM';
 const ADD_IMAGES_TO_ALBUM = 'dashboard/ADD_IMAGES_TO_ALBUM';
 
+const LOAD_FAVORITE_IMAGES = 'dashboard/LOAD_FAVORITE_IMAGES';
+const ADD_FAVORITE_IMAGE = 'dashboard/ADD_FAVORITE_IMAGE';
+const REMOVE_FAVORITE_IMAGE = 'dashboard/REMOVE_FAVORITE_IMAGE';
+
 const CLEAR_DASHBOARD = 'dashboard/CLEAR_DASHBOARD';
 
 const loadImage = (image) => {
   return {
     type: LOAD_IMAGE,
     image
-  }
+  };
 };
 
 const loadImages = (images) => {
   return {
     type: LOAD_IMAGES,
     images
-  }
+  };
 };
 
 const removeImage = (imageId, albumId) => {
@@ -54,15 +58,29 @@ const addImagesToAlbum = (images, albumId) => {
     type: ADD_IMAGES_TO_ALBUM,
     images,
     albumId
-  }
+  };
 };
 
 const removeAlbum = (albumId) => {
   return {
     type: REMOVE_ALBUM,
     albumId
-  }
-}
+  };
+};
+
+const loadFavoriteImages = (favorites) => {
+  return {
+    type: LOAD_FAVORITE_IMAGES,
+    favorites
+  };
+};
+
+const addFavoriteImage = (image) => {
+  return {
+    type: ADD_FAVORITE_IMAGE,
+    image
+  };
+};
 
 export const clearDashboard = () => {
   return {
@@ -116,8 +134,6 @@ export const postImage = (payload) => async dispatch => {
   dispatch(loadImage(image));
   return res;
 };
-
-
 
 export const postImages = (images, albumId) => async dispatch => {
   const formData = new FormData();
@@ -260,11 +276,36 @@ export const patchAlbumWithImageDel = (payload) => async dispatch => {
   return dispatch(patchAlbum(payload))
 };
 
+export const getFavoriteImages = () => async dispatch => {
+  const res = await csrfFetch('/api/favorites/images/users/current');
+
+  if (res.ok) {
+    const favorites = await res.json();
+    dispatch(loadFavoriteImages(favorites));
+  }
+
+  return res;
+};
+
+export const favoriteImage = (image) => async dispatch => {
+  const res = await csrfFetch('/api/favorites/images/users/current', {
+    method: 'POST',
+    body: JSON.stringify({imageId: image.id})
+  });
+
+  if (res.ok) {
+    dispatch(addFavoriteImage(image));
+  }
+
+  return res;
+};
+
 // Bulk dispatch
 export const loadDashboard = () => async dispatch => {
   await Promise.all([
     dispatch(getUserAlbums()),
-    dispatch(getUserImages())
+    dispatch(getUserImages()),
+    dispatch(getFavoriteImages())
   ]);
 };
 
@@ -274,10 +315,12 @@ export const loadDashboard = () => async dispatch => {
 // Helper Functions
 export const getUserAlbumsArray = (state) => Object.values(state.dashboard.userAlbums);
 export const getUserImagesArray = (state) => Object.values(state.dashboard.userImages);
+export const getFavoriteImagesArray = (state) => Object.values(state.dashboard.favoriteImages)
 
 const initialState = {
   userAlbums: null,
-  userImages: null
+  userImages: null,
+  favoriteImages: null
 };
 
 const dashboardReducer = (state = initialState, action) => {
@@ -356,6 +399,27 @@ const dashboardReducer = (state = initialState, action) => {
         }
       }
       return stateCopy;
+
+      case LOAD_FAVORITE_IMAGES:
+        formatted = normalizeFavImages(action.favorites);
+        return {
+          ...state,
+          favoriteImages: {
+            ...state.favoriteImages,
+            ...formatted
+          }
+        }
+
+      case ADD_FAVORITE_IMAGE:
+        return {
+          ...state,
+          favoriteImages: {
+            ...state.favoriteImages,
+            [action.image.id]: action.image
+          }
+        }
+
+      
 
     case CLEAR_DASHBOARD:
       return initialState;

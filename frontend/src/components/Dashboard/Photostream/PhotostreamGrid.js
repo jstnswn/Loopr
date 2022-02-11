@@ -13,12 +13,11 @@ export default function PhotostreamGrid({ images }) {
   const closeModal = () => setShowIdx(null);
 
   return (
-    <div className='photostream-grid'>
+    <div className='image-grid'>
       {images2.map((image, idx) => (
         <div key={idx}>
           <img
-            className='stream-image'
-            key={idx}
+            className='image-grid-item'
             src={image.imageUrl}
             alt={image.title}
             onClick={() => openModal(idx)}
@@ -26,9 +25,10 @@ export default function PhotostreamGrid({ images }) {
               gridColumnStart: idx % 4 + 1,
             }}
           />
+
           {showIdx === idx && (
             <Modal onClose={closeModal}>
-              <ImageView image={image} closeModal={closeModal} />
+              <ImageView image={image} closeModal={closeModal} option={'user'}/>
             </Modal>
           )}
         </div>
