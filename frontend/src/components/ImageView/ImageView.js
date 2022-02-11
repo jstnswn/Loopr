@@ -3,13 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import './ImageView.css';
 import { deleteImage } from '../../store/dashboard';
 import EditImageForm from './EditImageForm';
+import EditIcon from './EditIcon';
 
 export default function ImageView({ image, closeModal, option }) {
   const dispatch = useDispatch();
   const [showConfirmDel, setShowConfirmDel] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
-
-  const favorites = useSelector(({ dashboard }) => dashboard.favoriteImages);
 
   const openDelConfirm = (e) => {
     e.stopPropagation()
@@ -33,25 +32,6 @@ export default function ImageView({ image, closeModal, option }) {
     return () => document.removeEventListener('click', closeMenu)
   }, [showConfirmDel]);
 
-  const isFavorite = image.id in favorites;
-
-  // Favorites icon
-  const activeClassName = 'fas fa-star favorite-icon active';
-  const inactiveClassName = 'far fa-star favorite-icon';
-  const toggleToActive = (e) => e.target.className = activeClassName;
-  const toggleToInactive = (e) => e.target.className = inactiveClassName;
-  let className;
-  let mouseEnter;
-  let mouseLeave;
-  if (isFavorite) {
-    className = activeClassName;
-    mouseEnter = toggleToInactive
-    mouseLeave = toggleToActive
-  } else {
-    className = inactiveClassName;
-    mouseEnter = toggleToActive 
-    mouseLeave = toggleToInactive
-  }
 
   return (
     <div className='modal-image-container'>
@@ -63,11 +43,7 @@ export default function ImageView({ image, closeModal, option }) {
         </div>
         <p>{image.description}</p>
         <div className='image-view-icons'>
-          <i
-            className={className}
-            onMouseEnter={mouseEnter}
-            onMouseLeave={mouseLeave}
-          />
+          <EditIcon image={image} />
           {option === 'user' && (
             <>
               <i className='far fa-edit edit-icon' onClick={openEditForm}></i>
