@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { favoriteImage } from '../../store/dashboard';
+import { favoriteImage, unfavoriteImage } from '../../store/dashboard';
 
 export default function EditIcon({ image }) {
   const dispatch = useDispatch();
@@ -10,10 +10,11 @@ export default function EditIcon({ image }) {
 
   const activeClassName = 'fas fa-star favorite-icon active';
   const inactiveClassName = 'far fa-star favorite-icon';
-  const favorite = () => {
-    dispatch(favoriteImage(image))
-    console.log('click')
+  const favorite = (e) => {
+    dispatch(favoriteImage(image));
+
   }
+  const unfavorite = () => dispatch(unfavoriteImage(image));
   const toggleToActive = (e) => e.target.className = activeClassName;
   const toggleToInactive = (e) => e.target.className = inactiveClassName;
 
@@ -26,6 +27,7 @@ export default function EditIcon({ image }) {
     className = activeClassName;
     mouseEnter = toggleToInactive
     mouseLeave = toggleToActive
+    onClick = unfavorite;
   } else {
     className = inactiveClassName;
     mouseEnter = toggleToActive

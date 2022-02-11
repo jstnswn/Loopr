@@ -31,7 +31,21 @@ router.post('/images/users/current',
       .favoriteImage(imageId, user.id);
 
     res.status(200).end();
-    // res.json()
+  })
+);
+
+router.delete('/images/:imageId(\\d+)/users/current',
+  restoreUser,
+  asyncHandler(async (req, res) => {
+    const { user } = req;
+    const { imageId } = req.params;
+
+    const deleted = await favoritesServices
+      .unfavoriteImage(imageId, user.id);
+
+    if (deleted) {
+      res.status(204).end();
+    }
   })
 );
 
