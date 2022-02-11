@@ -3,6 +3,7 @@
   width: 280px;
   display: flex;
   flex-direction: column;
+  /* z-index: 1000000; */
 }
 
 .signup-form input {

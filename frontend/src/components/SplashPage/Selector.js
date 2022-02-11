@@ -1,6 +1,5 @@
 import React from 'react';
 
-import './Selector.css'
 
 export default function Selector({ albums, setKey }) {
   return (
@@ -11,7 +10,8 @@ export default function Selector({ albums, setKey }) {
           className='splash-album-selector'
           onClick={() => setKey(idx + 1)}
         >
-          {album.title}
+          {/* {album.title} */}
+          <i className='fas fa-circle notch'></i>
         </div>
       ))}
 

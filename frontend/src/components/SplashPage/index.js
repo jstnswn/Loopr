@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTransition, config, animated } from 'react-spring';
 import { getSplashAlbums } from '../../store/splash';
+import SignupFormModal from '../SignupFormModal';
 import ImageCarousel from './ImageCarousel';
 import ImageCarousel2 from './ImageCarousel2';
 import Selector from './Selector';
@@ -21,6 +22,7 @@ export default function SplashPage() {
       .then(() => setIsLoaded(true));
   }, [dispatch])
 
+  // const splashAlbums = albums
 
   useEffect(() => {
     if (isLoaded) {
@@ -33,8 +35,15 @@ export default function SplashPage() {
     <div className='splash-container'>
       {/* <ImageCarousel images={images}/> */}
 
+      <h1 className='title-header'>Find your inspiration.</h1>
+      <h2 className='title-subheader'>Upload and share you images with friends and family/</h2>
+
       {key === 1 && <ImageCarousel2 images={images} />}
       {key === 2 && <ImageCarousel2 images={images} />}
+
+      <div className='splash-signup-container'>
+        <SignupFormModal option='splash'/>
+      </div>
 
       <Selector albums={Object.values(albums)} setKey={setKey} />
     </div>

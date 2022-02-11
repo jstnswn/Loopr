@@ -54,7 +54,13 @@ export default function ImageCarousel2({ images }) {
   return (
     <div className='splash-image-container'>
       {images.map(image => (
-        <img key={image.id} className='splash-image' src={image.imageUrl} alt={image.title}></img>
+
+          <img key={image.id} className='splash-image' src={image.imageUrl} alt={image.title}></img>
+          // {/* <div className='splash-image-info'> */}
+            // {/* <p>{image.title}</p> */}
+            // {/* <p></p> */}
+          // {/* </div> */}
+
       ))}
     </div>
   )
