@@ -1,0 +1,22 @@
+.explore-grid {
+  max-width: 80%;
+  min-width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  justify-content: space-around;
+  margin-top: 50px;
+}
+
+.explore-grid .grid-item-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2px;
+}
+
+.explore-grid-item {
+  max-width: 310px;
+  max-height: 310px;
+  object-fit: fill;
+}

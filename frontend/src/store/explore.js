@@ -22,6 +22,8 @@ export const getExploreMainImages = () => async dispatch => {
   return res;
 };
 
+export const getExploreMainImagesArray = (state) => Object.values(state.explore.mainImages);
+
 const initialState = {
   mainImages: null
 };

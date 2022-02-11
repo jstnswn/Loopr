@@ -26,7 +26,7 @@ function App() {
 
   useEffect(() => {
     if (user) {
-      history.push('/dashboard/photostream');
+      // history.push('/dashboard/photostream');
     }
       // <Redirect to="/dashboard/photostream" />
   }, [user, history])
