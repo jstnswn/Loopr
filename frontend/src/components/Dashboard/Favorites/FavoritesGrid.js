@@ -28,7 +28,7 @@ export default function FavoritesGrid({ images }) {
 
             {showIdx === idx && (
               <Modal onClose={closeViewImage}>
-                <ImageView image={image} closeModal={closeViewImage} />
+                <ImageView image={image} closeModal={closeViewImage} option='favorites'/>
               </Modal>
             )}
           </div>

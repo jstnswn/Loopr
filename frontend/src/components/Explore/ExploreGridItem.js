@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Modal } from '../../context/Modal';
-import EditIcon from '../ImageView/EditIcon';
+import EditIcon from '../ImageView/FavoriteIcon';
 import ImageView from '../ImageView/ImageView';
 
 export default function ExploreGridItem({ image }) {

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './ImageView.css';
 import { deleteImage } from '../../store/dashboard';
 import EditImageForm from './EditImageForm';
-import EditIcon from './EditIcon';
+import FavoriteIcon from './FavoriteIcon';
 
 export default function ImageView({ image, closeModal, option }) {
   const dispatch = useDispatch();
@@ -44,7 +44,7 @@ export default function ImageView({ image, closeModal, option }) {
         </div>
         <p>{image.description}</p>
         <div className='image-view-icons'>
-          <EditIcon image={image} />
+          <FavoriteIcon image={image} closeModal={closeModal} option={option}/>
           {option === 'user' && (
             <>
               <i className='far fa-edit edit-icon' onClick={openEditForm}></i>
