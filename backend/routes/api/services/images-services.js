@@ -10,6 +10,12 @@ async function getSplashImages() {
   });
 };
 
+async function getAllPublicImages() {
+  return await db.Image.findAll({
+    where: { isPrivate: false }
+  });
+};
+
 async function createImage(userId, title, description, albumId, imageUrl) {
   const image = await db.Image.create({
     userId, title, description, albumId, imageUrl
@@ -75,6 +81,7 @@ async function patchImage(imageId, updates) {
 
 module.exports = {
   getSplashImages,
+  getAllPublicImages,
   createImage,
   createImages,
   getImagesByUserId,

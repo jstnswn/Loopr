@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import Dashboard from './components/Dashboard';
-import Home from './components/Home';
+import Explore from './components/Explore';
 import Navigation from './components/Navigation';
 import SplashPage from './components/SplashPage';
 import BottomBar from './components/SplashPage/BottomBar';
@@ -52,8 +52,8 @@ function App() {
             {!user && <SplashPage />}
             {/* {user && <Dashboard />} */}
           </Route>
-          <Route path='/home'>
-            <Home />
+          <Route path='/explore'>
+            <Explore />
           </Route>
           <Route path='/dashboard'>
             {user && <Dashboard />}

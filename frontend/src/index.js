@@ -10,6 +10,7 @@ import { restoreCSRF, csrfFetch } from './store/csrf';
 import * as sessionActions from './store/session';
 import * as splashActions from './store/splash';
 import * as dashboardActions from './store/dashboard';
+import * as exploreActions from './store/explore';
 import { ModalProvider } from './context/Modal';
 
 const store = configureStore();
@@ -22,6 +23,7 @@ if (process.env.NODE_ENV !== 'production') {
   window.sessionActions = sessionActions;
   window.splashActions = splashActions;
   window.dashboardActions = dashboardActions;
+  window.exploreActions = exploreActions;
 }
 
 function Root() {
