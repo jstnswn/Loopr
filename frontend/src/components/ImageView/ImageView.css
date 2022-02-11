@@ -43,20 +43,34 @@
 
 .image-view-icons {
   align-self: flex-end;
-  /* padding-right: 50px; */
-  /* color: rgb(167, 167, 167); */
   font-size: 22px;
 }
 
 .image-view-icons i {
   padding: 7px;
-  transition: 0.4s;
   cursor: pointer;
 }
 
 .image-view-icons i:hover {
   color: white
 }
+
+.image-view-icons.edit-icon,
+.image-view-icons.trash-icon {
+  transition: 0.4s;
+}
+
+
+.favorite-icon {
+  /* color: */
+  transition: 0
+}
+.favorite-icon.active {
+  /* color: */
+  transition: 0
+}
+
+
 
 .confirm-delete-image {
   position: absolute;
