@@ -2,6 +2,7 @@ const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation')
+const { restoreUser } = require('../../utils/auth');
 
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User } = require('../../db/models');
@@ -42,14 +43,29 @@ router.post('/',
   })
 );
 
-router.patch('/:userId/profile-image',
+router.patch('/:userId(\\d+)/profile-image',
   singleMulterUpload('image'),
   asyncHandler(async (req, res) => {
-    const userId = parseInt(req.params.userId, 10);
+    const { userId } = req.params;
 
     const imageUrl = await singlePublicFileUpload(req.file);
 
     const user = await User.findByPk(userId)
+    const updatedUser = await user.update({ imageUrl });
+
+    return res.json({ updatedUser });
+  })
+);
+
+router.patch('/current/profile-image',
+  restoreUser,
+  singleMulterUpload('image'),
+  asyncHandler(async (req, res) => {
+    const currentUser = req.user;
+
+    const imageUrl = await singlePublicFileUpload(req.file);
+
+    const user = await User.findByPk(currentUser.id)
     const updatedUser = await user.update({ imageUrl });
 
     return res.json({ updatedUser });

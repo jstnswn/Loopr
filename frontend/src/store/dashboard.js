@@ -1,3 +1,4 @@
+import { getExploreMainImages } from "./explore";
 import { normalizeAlbum, normalizeAlbums, normalizeImages, normalizeFavImages } from "./utils";
 
 const { csrfFetch } = require("./csrf");
@@ -328,6 +329,12 @@ export const loadDashboard = () => async dispatch => {
   ]);
 };
 
+export const loadExplore = () => async dispatch => {
+  await Promise.all([
+    dispatch(getExploreMainImages()),
+    dispatch(getFavoriteImages())
+  ]);
+};
 
 // Helper Functions
 export const getUserAlbumsArray = (state) => Object.values(state.dashboard.userAlbums);

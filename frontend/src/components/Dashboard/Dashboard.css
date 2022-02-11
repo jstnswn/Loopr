@@ -1,6 +1,7 @@
 .dashboard-container {
   display: grid;
   grid-template-rows: 320px 50px 1fr;
+  min-height: calc(100vh - 50px);
 }
 
 .cover-container {
@@ -40,6 +41,28 @@
 
 .dashboard-user-info .top {
   grid-row-start: 2;
+  position: relative;
+}
+
+.dashboard-user-dropdown {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  width: 167px;
+  height: 30px;
+  padding-left: 1px;
+  /* margin-right: -5px; */
+  margin: 0;
+  border-radius: 5px;
+  bottom: -18px;
+  left: 35px;
+}
+
+.dashboard-user-dropdown li {
+  color: black;
+  font-size: .8em;
+  cursor: pointer;
 }
 
 .dashboard-user-info .bottom {
@@ -72,6 +95,7 @@
   font-size: 18px;
   line-height: 32px;
   padding-left: 10px;
+  cursor: pointer;
 }
 
 .dashboard-nav {

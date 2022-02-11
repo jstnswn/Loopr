@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, Route, Switch, useHistory } from 'react-router-dom';
+import { NavLink, Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './Dashboard.css';
@@ -7,22 +7,40 @@ import { loadDashboard } from '../../store/dashboard';
 import Photostream from './Photostream';
 import Albums from './Albums';
 import Favorites from './Favorites';
+import { Modal } from '../../context/Modal';
+import ChangeProfile from './ChangeProfile';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false)
   const history = useHistory();
+  const pathname = history.location.pathname;
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector(({ session }) => session.user)
 
-  if (history.location.pathname.endsWith('/dashboard')) {
-    // history.push('/dashboard/photostream');
-  }
-  // history.push('/dashboard');
+
+  const openModal = () => setShowModal(true);
+  const closeModal = () => setShowModal(false);
+  const openMenu = () => setShowDropdown(true);
+  const closeMenu = () => setShowDropdown(false);
+
+  useEffect(() => {
+    if (!showDropdown) return;
+
+    document.addEventListener('click', closeMenu)
+
+    return () => document.removeEventListener('click', closeMenu)
+  }, [showDropdown])
 
   useEffect(() => {
     dispatch(loadDashboard())
       .then(() => setIsLoaded(true));
   },[dispatch])
+
+  if (pathname.endsWith('/dashboard/') || pathname.endsWith('/dashboard')) {
+    return <Redirect to='/dashboard/photostream' />
+  }
 
   const avatarUrl = user.imageUrl
     ? user.imageUrl
@@ -37,7 +55,12 @@ export default function Dashboard() {
           <div className='dashboard-user-info'>
             <div className='top'>
               <h2>{user.username}</h2>
-              <i className='fas fa-ellipsis-h cover-more-button'></i>
+              <i onClick={openMenu} className='fas fa-ellipsis-h cover-more-button'></i>
+              {showDropdown && (
+                <ul className='dashboard-user-dropdown'>
+                  <li onClick={openModal}>Change Profile Picture</li>
+                </ul>
+              )}
             </div>
 
             <ul className='bottom'>
@@ -54,6 +77,12 @@ export default function Dashboard() {
         <NavLink activeClassName='active-dash-nav' to='/dashboard/favorites'>Favorites</NavLink>
         {/* <NavLink activeClassName='active-dash-nav' to=''>Loop Station</NavLink> */}
       </nav>
+
+      {showModal && (
+        <Modal onClose={closeModal}>
+          <ChangeProfile closeModal={closeModal}/>
+        </Modal>
+      )}
 
       {/* <DashboardBody /> */}
       <Switch>

@@ -6,7 +6,7 @@ export default function AlbumsGrid({ albums }) {
   // const [showIdx, setShowIdx] = useState(null);
 
 
-  const albums2 = [...albums].reverse();
+  // const albums2 = [...albums].reverse();
 
   // const openModal = (idx) => setShowIdx(idx);
   // const closeModal = () => setShowIdx(null);
@@ -15,7 +15,7 @@ export default function AlbumsGrid({ albums }) {
 
   return (
     <div className='album-grid'>
-      {albums2.map((album, idx) => (
+      {albums.map((album, idx) => (
         <Album key={idx} album={album} idx={idx}/>
       ))}
     </div>

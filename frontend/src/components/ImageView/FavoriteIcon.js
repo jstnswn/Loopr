@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { favoriteImage, unfavoriteImage } from '../../store/dashboard';
 
-export default function EditIcon({ image }) {
+export default function FavoriteIcon({ image, closeModal, option }) {
   const dispatch = useDispatch();
   const favorites = useSelector(({ dashboard }) => dashboard.favoriteImages);
 
@@ -12,9 +12,11 @@ export default function EditIcon({ image }) {
   const inactiveClassName = 'far fa-star favorite-icon';
   const favorite = (e) => {
     dispatch(favoriteImage(image));
-
   }
-  const unfavorite = () => dispatch(unfavoriteImage(image));
+  const unfavorite = () => {
+    dispatch(unfavoriteImage(image));
+    if (option === 'favorites') closeModal();
+  }
   const toggleToActive = (e) => e.target.className = activeClassName;
   const toggleToInactive = (e) => e.target.className = inactiveClassName;
 

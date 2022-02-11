@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf";
 
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
+const SET_USER_IMAGE = 'session/setUserImage';
 
 const setUser = (user) => {
   return {
@@ -13,6 +14,13 @@ const setUser = (user) => {
 const removeUser = () => {
   return {
     type: REMOVE_USER
+  };
+};
+
+const setUserImage = (imageUrl) => {
+  return {
+    type: SET_USER_IMAGE,
+    imageUrl
   };
 };
 
@@ -97,15 +105,33 @@ export const logout = () => async dispatch => {
   return res;
 };
 
+export const updateUserImage = (image) => async dispatch => {
+  const formData = new FormData();
+  formData.append('image', image);
+
+  const res = await csrfFetch(`/api/users/current/profile-image`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'multipart/form-data' },
+    body: formData,
+  });
+
+  const { updatedUser } = await res.json();
+  dispatch(setUser(updatedUser));
+};
+
 const initialState = { user: null };
 
 const sessionReducer = (state = initialState, action) => {
-  // let stateCopy;
+  let stateCopy;
   switch (action.type) {
     case SET_USER:
       return {...state, user: action.user}
     case REMOVE_USER:
       return {...state, user: null }
+    // case SET_USER_IMAGE:
+    //   stateCopy = {...state};
+    //   stateCopy.user.imageUrl = action.imageUrl;
+    //   return stateCopy;
     default:
       return state;
   }

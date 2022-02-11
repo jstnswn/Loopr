@@ -34,7 +34,7 @@ export default function Navigation({ isLoaded }) {
 
   return (
     <nav className={`navbar ${sessionUser && 'logged-in'}`}>
-      <NavLink exact to='/home' activeClassName='active-nav'>Home</NavLink>
+      <NavLink exact to='/explore' activeClassName='active-nav'>Explore</NavLink>
       {isLoaded && sessionLinks}
     </nav>
 

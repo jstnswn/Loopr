@@ -20,8 +20,6 @@ export default function Album({ album, idx }) {
   const showAdd = () => setShowAddImages(true);
   const closeAdd = () => setShowAddImages(false);
 
-
-
   const handleDelete = async () => {
     dispatch(deleteAlbum(album.id))
       .then(() => setShowConfirmDel(false));

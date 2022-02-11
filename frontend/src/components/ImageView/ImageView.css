@@ -42,7 +42,8 @@
 }
 
 .image-view-icons {
-  align-self: flex-end;
+  align-self: center;
+  /* padding-bottom: 20px; */
   font-size: 22px;
 }
 
@@ -108,9 +109,9 @@
   font-style: italic;
 }
 
-/* .image-info {
-  width: 500px;
-} */
+.image-info .user {
+  font-size: .8em;
+}
 
 /* .top {
   display: flex;

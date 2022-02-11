@@ -26,7 +26,8 @@ const validateImage = [
 
 router.get('/splash',
   asyncHandler(async (req, res) => {
-    const images = await imageServices.getSplashImages();
+    const images = await imageServices
+      .getSplashImages();
 
     res.status(200);
     res.json(images);
@@ -38,7 +39,20 @@ router.get('/users/current',
   asyncHandler(async (req, res) => {
     const { user } = req;
 
-    const images = await imageServices.getImagesByUserId(user.id);
+    const images = await imageServices
+      .getImagesByUserId(user.id);
+
+    if (images) {
+      res.status(200);
+      res.json(images);
+    }
+  })
+);
+
+router.get('/public',
+  asyncHandler(async (req, res) => {
+    const images = await imageServices
+      .getAllPublicImages();
 
     if (images) {
       res.status(200);
@@ -89,7 +103,8 @@ router.delete('/:imageId(\\d+)',
   asyncHandler(async (req, res) => {
     const { imageId } = req.params;
 
-    const deleted = await imageServices.deleteImage(imageId);
+    const deleted = await imageServices
+      .deleteImage(imageId);
 
     if (deleted) {
       res.status(204).end();
@@ -101,7 +116,8 @@ router.delete('/multi-delete',
   asyncHandler(async (req, res) => {
     const { imageIds } = req.body;
 
-    await imageServices.deleteImages(imageIds)
+    await imageServices
+      .deleteImages(imageIds)
     // Currently no return from deleteImages
 
     res.status(204).end();
@@ -115,7 +131,8 @@ router.patch('/:imageId(\\d+)',
     const { title, description, albumId } = req.body;
     const updates = { title, description, albumId };
 
-    const image = await imageServices.patchImage(imageId, updates);
+    const image = await imageServices
+      .patchImage(imageId, updates);
 
     if (image) {
       res.status(201);
