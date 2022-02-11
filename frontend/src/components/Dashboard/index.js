@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, Route, Switch, useHistory } from 'react-router-dom';
+import { NavLink, Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import './Dashboard.css';
@@ -11,18 +11,21 @@ import Favorites from './Favorites';
 export default function Dashboard() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const pathname = history.location.pathname;
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector(({ session }) => session.user)
 
-  if (history.location.pathname.endsWith('/dashboard')) {
-    // history.push('/dashboard/photostream');
-  }
+
   // history.push('/dashboard');
 
   useEffect(() => {
     dispatch(loadDashboard())
       .then(() => setIsLoaded(true));
   },[dispatch])
+
+  if (pathname.endsWith('/dashboard/') || pathname.endsWith('/dashboard')) {
+    return <Redirect to='/dashboard/photostream' />
+  }
 
   const avatarUrl = user.imageUrl
     ? user.imageUrl

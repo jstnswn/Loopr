@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { getFavoriteImagesArray } from '../../../store/dashboard';
 import FavoritesGrid from './FavoritesGrid';
 
+import './Favorites.css';
+
 export default function Favorites() {
   const images = useSelector(getFavoriteImagesArray);
   const imagesLoaded = images.length > 0;
@@ -19,7 +21,7 @@ export default function Favorites() {
   return (
 
     <div className='dashboard-body'>
-      <div className='dashboard-body-header'>
+      <div className='dashboard-body-header favorites'>
         <h2>{header}</h2>
         <p>{subHeader}</p>
       </div>

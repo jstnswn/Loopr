@@ -27,14 +27,9 @@ function App() {
   useEffect(() => {
     if (user) {
       history.push('/dashboard/photostream');
-    }
-      // <Redirect to="/dashboard/photostream" />
+    } else history.push('/')
   }, [user, history])
-
-  // if (!user) return (
-  //   history.push('/')
-  // );
-
+  
   return (
     <>
       <Navigation isLoaded={isLoaded} />
