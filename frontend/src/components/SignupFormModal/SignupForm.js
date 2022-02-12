@@ -37,7 +37,7 @@ export default function SignupForm() {
   };
 
   return (
-    <form className='signup-form' onSubmit={handleSubmit}>
+    <form className='signup-form form' onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
@@ -70,7 +70,7 @@ export default function SignupForm() {
         required
       />
       <label>Profile Image (optional)</label>
-      <input type='file' onChange={updateFile}/>
+      <input className='upload' type='file' onChange={updateFile}/>
       <button type='submit'>Sign Up</button>
     </form>
   );

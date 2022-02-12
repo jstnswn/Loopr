@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
 :root {
-  --border-gray: #e2e2e2;
+  --border-gray: #cac8c8;
   --text-light-gray: #737b80;
   --background-black: rgba(19, 22, 24, .9);
   --main-blue: #128FDC;

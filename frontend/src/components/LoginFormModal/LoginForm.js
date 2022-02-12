@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import './LoginForm.css'
+import '../Forms/Forms.css';
 
 export default function LoginForm() {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ export default function LoginForm() {
   }
 
   return (
-    <form className='login-form' onSubmit={handleSubmit}>
+    <form className='login-form form' onSubmit={handleSubmit}>
       <ul>
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>

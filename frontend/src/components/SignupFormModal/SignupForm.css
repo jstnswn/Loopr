@@ -1,22 +1,18 @@
 .signup-form {
-  height: 430px;
-  width: 280px;
-  display: flex;
+  /* height: 600px; */
+  width: 450px;
+  /* display: flex;
   flex-direction: column;
+  padding: 30px; */
   /* z-index: 1000000; */
 }
 
 .signup-form input {
-  height: 20px;
+  /* height: 20px; */
 }
 
-.signup-form label,
-.signup-form button {
-  margin-top: 5px;
-}
 
-.signup-form button {
-  width: 100px;
-  height: 30px;
-  align-self: center;
+.signup-form label {
+  margin: 0;
+  /* padding-top */
 }
