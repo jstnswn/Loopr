@@ -25,7 +25,6 @@ export default function AddImagesForm({ album, closeAdd }) {
     e.preventDefault();
 
     if (!errors.length) {
-      console.log('files: ', files);
       return dispatch(postImages(files, album.id))
         .then(() => closeAdd());
     }

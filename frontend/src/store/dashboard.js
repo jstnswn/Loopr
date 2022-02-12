@@ -194,7 +194,6 @@ export const getUserAlbums = () => async dispatch => {
   const res = await csrfFetch('/api/albums/users/current');
   const albums = await res.json();
 
-  console.log('ALBUMS: ', albums);
   dispatch(loadAlbums(albums));
   return res;
 };
