@@ -41,6 +41,11 @@ export default function UploadAlbumForm({ closeModal }) {
     }
     if (!files) {
       errors.push('Please select and image to upload');
+    } else {
+      const fileValues = Object.values(files);
+      if (!fileValues.find(file => file.type === 'image/jpeg' || file.type === 'image/png')) {
+        errors.push('Must select either .jpeg or .png file types')
+      }
     }
     if (description.length > 300) {
       errors.push('Description must be less than 300 characters');

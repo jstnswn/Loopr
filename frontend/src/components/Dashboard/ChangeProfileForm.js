@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { updateUserImage } from '../../store/session';
 import './ProfilePicForm.css';
 
-export default function ChangeProfile() {
+export default function ChangeProfileForm() {
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState([]);
@@ -34,7 +34,7 @@ export default function ChangeProfile() {
       <ul>
         {showErrors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
-      <label>Select a new profile image</label>
+      <h2>Select a new profile image</h2>
       <input
         type='file'
         onChange={e => setImage(e.target.files[0])}

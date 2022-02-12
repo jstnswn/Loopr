@@ -8,7 +8,7 @@ import Photostream from './Photostream';
 import Albums from './Albums';
 import Favorites from './Favorites';
 import { Modal } from '../../context/Modal';
-import ChangeProfile from './ChangeProfile';
+import ChangeProfileForm from './ChangeProfileForm';
 
 export default function Dashboard() {
   const dispatch = useDispatch();
@@ -80,7 +80,7 @@ export default function Dashboard() {
 
       {showModal && (
         <Modal onClose={closeModal}>
-          <ChangeProfile closeModal={closeModal}/>
+          <ChangeProfileForm closeModal={closeModal}/>
         </Modal>
       )}
 

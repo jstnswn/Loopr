@@ -1,28 +1,45 @@
-
 .profile-pic-form {
-  width: 480px;
-  display: flex;
+ display: flex;
   flex-direction: column;
-  padding: 30px;
+  width: 500px;
+  height: 370px;
+  /* padding-top: 20px; */
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 30px;
 }
 
-.profile-pic-form label {
-  padding-bottom: 20px;
-}
+/* .profile-pic-form label {
+  text-align: center;
+  padding-bottom: 10px;
+} */
 
 .profile-pic-form input {
-  height: 20px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: var(--border-gray) solid 1px;;
+  border-radius: 5px;
+  padding: 20px;
 }
 
-.profile-pic-form label,
+/* .profile-pic-form label,
 .profile-pic-form button {
   margin: 5px;
-}
+} */
 
 .profile-pic-form button {
-  width: 100px;
-  height: 30px;
+  cursor: pointer;
+  margin-top: 30px;
+  width: 170px;
+  height: 36px;
+  border-radius: 5px;
+  border: none;
   align-self: center;
+  background-color: var(--main-blue);
+  color: white;
 }
 
 .upload-image.button {

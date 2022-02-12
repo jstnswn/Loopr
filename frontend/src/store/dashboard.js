@@ -143,7 +143,8 @@ export const postImage = (payload) => async dispatch => {
   return res;
 };
 
-export const postImages = (images, albumId) => async dispatch => {
+export const postImages = (images, albumId, albumTitle) => async dispatch => {
+  // if (images.length === 0) images = [images];
   const formData = new FormData();
 
   if (images) {
@@ -151,6 +152,12 @@ export const postImages = (images, albumId) => async dispatch => {
       formData.append('images', image);
     }
   }
+
+  // if (albumTitle) {
+  //   const newAlbum = await dispatch(postAlbum({ title: albumTitle }));
+
+  //   albumId = newAlbum.id;
+  // }
   // if (images && images.length === 1) formData.append('image', images[0]);
   if (!images.length) images = [images];
 
@@ -172,9 +179,11 @@ export const postImages = (images, albumId) => async dispatch => {
 };
 
 export const createAlbumWithImages = (payload) => async dispatch => {
-  const { title, description, images } = payload;
+  const { albumTitle, description, images } = payload;
 
-  const newAlbum = await dispatch(postAlbum({ title, description }));
+  console.log('albumTitle: ', albumTitle)
+
+  const newAlbum = await dispatch(postAlbum({ title: albumTitle, description }));
   // dispatch(postAlbum({ title, description })),
   return dispatch(postImages(images, newAlbum.id));
 };

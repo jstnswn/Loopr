@@ -3,16 +3,18 @@ import React, { useState, useEffect } from 'react';
 import './UploadPhotos.css'
 import FileUploader from './FileUploader';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserAlbumsArray, postImage } from '../../store/dashboard';
+import { createAlbumWithImages, getUserAlbumsArray, postImage, postImages } from '../../store/dashboard';
+import FilesUploader from './FilesUploader';
 
 
 export default function UploadImageForm({ closeModal }) {
   const dispatch = useDispatch();
   const [imageTitle, setImageTitle] = useState('');
+  const [uploadOption, setUploadOption] = useState('single');
   const [albumTitle, setAlbumTitle] = useState('');
   const [newAlbumOption, setNewAlbumOption] = useState(false);
   const [description, setDescription] = useState('');
-  const [file, setFile] = useState(null);
+  const [files, setFiles] = useState(null);
   const [albumId, setAlbumId] = useState('--Select an Album--');
   const [errors, setErrors] = useState([]);
   const [showErrors, setShowErrors] = useState(false);
@@ -22,21 +24,44 @@ export default function UploadImageForm({ closeModal }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (errors.length) {
+      setShowErrors(true)
+      return
+    }
+
     const payload = {
       title: imageTitle,
       description,
-      imageFile: file,
     };
 
     if (newAlbumOption) payload.albumTitle = albumTitle;
     else payload.albumId = albumId;
 
-    if (!errors.length) {
-      return dispatch(postImage(payload))
-      .then(() => closeModal())
-    }
+    if (newAlbumOption) {
+      payload.albumTitle = albumTitle;
 
-    setShowErrors(true)
+      if (uploadOption === 'single') {
+        payload.imageFile = files[0];
+        return dispatch(postImage(payload))
+          .then(() => closeModal());
+      } else {
+        payload.images = files
+        return dispatch(createAlbumWithImages(payload))
+          .then(() => closeModal());
+      }
+
+    } else {
+      payload.albumId = albumId;
+      if (uploadOption === 'single') {
+        payload.imageFile = files[0];
+        return dispatch(postImage(payload))
+          .then(() => closeModal());
+      } else {
+        payload.images = files
+        return dispatch(postImages(files, albumId))
+          .then(() => closeModal());
+      }
+    }
   };
 
   useEffect(() => {
@@ -44,14 +69,22 @@ export default function UploadImageForm({ closeModal }) {
 
     const errors = [];
 
-    if (imageTitle.length > 30 || !imageTitle.length) {
-      errors.push('Image title must be between 1 and 30 characters');
+    if (uploadOption === 'single') {
+      if (imageTitle.length > 30 || !imageTitle.length) {
+        errors.push('Image title must be between 1 and 30 characters');
+      }
+      if (description.length > 300) {
+        errors.push('Description must be less than 300 characters');
+      }
     }
-    if (!file) {
+
+    if (!files) {
       errors.push('Please select and image to upload');
-    }
-    if (description.length > 300) {
-      errors.push('Description must be less than 300 characters');
+    } else {
+      const fileValues = Object.values(files);
+      if (!fileValues.find(file => file.type === 'image/jpeg' || file.type === 'image/png')) {
+        errors.push('Must select either .jpeg or .png file types')
+      }
     }
     if (newAlbumOption && !albumTitle.length) {
       errors.push('Album title must be between 1 and 30 characters');
@@ -62,7 +95,7 @@ export default function UploadImageForm({ closeModal }) {
 
     setErrors(errors);
 
-  }, [imageTitle, albumTitle, file, newAlbumOption, albumId, description])
+  }, [imageTitle, albumTitle, files, newAlbumOption, albumId, description, uploadOption])
 
   useEffect(() => {
     if (newAlbumOption) return;
@@ -99,12 +132,10 @@ export default function UploadImageForm({ closeModal }) {
     )
   }
 
-  return (
-    <div>
-      <form className='upload-photos-form' onSubmit={handleSubmit}>
-        <ul>
-          {showErrors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
-        </ul>
+  let formOption;
+  if (uploadOption === 'single') {
+    formOption = (
+      <>
         <label>Image Title</label>
         <input
           type='text'
@@ -116,10 +147,39 @@ export default function UploadImageForm({ closeModal }) {
           value={description}
           onChange={e => setDescription(e.target.value)}
         />
-        {albumOption}
-        <FileUploader
-          setFile={file => setFile(file)}
+        <FilesUploader setFiles={setFiles} />
+      </>
+    )
+  } else if (uploadOption === 'multi') {
+    formOption = (
+      <FilesUploader setFiles={setFiles}/>
+    )
+  }
+
+  return (
+    <div>
+      <form className='upload-photos-form' onSubmit={handleSubmit}>
+        <ul>
+          {showErrors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
+        <label htmlFor='single'>Single Image</label>
+        <input
+          onChange={e => setUploadOption(e.target.value)}
+          type='radio'
+          name='single'
+          value='single'
+          checked={uploadOption === 'single' ? true : false}
         />
+        <label htmlFor='multi'>Multiple Images</label>
+        <input
+          onChange={e => setUploadOption(e.target.value)}
+          type='radio'
+          name='multi'
+          value='multi'
+          checked={uploadOption === 'multi' ? true : false}
+        />
+        {formOption}
+        {albumOption}
         <button>Submit</button>
       </form>
     </div>

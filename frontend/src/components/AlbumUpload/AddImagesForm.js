@@ -16,13 +16,26 @@ export default function AddImagesForm({ album, closeAdd }) {
     setErrors([]);
     const errors = [];
 
+
+
     if (!files) errors.push('Please select image files to upload');
+    else {
+      const fileValues = Object.values(files);
+      if (!fileValues.find(file => file.type === 'image/jpeg' || file.type === 'image/png')) {
+        errors.push('Must select either .jpeg or .png file types')
+      }
+    }
+    // if ()
 
     setErrors(errors);
   }, [files])
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+
+
+    // console.log('files: ', Object.values(files).find(file => file.type === 'image/jpeg'))
 
     if (!errors.length) {
       return dispatch(postImages(files, album.id))
