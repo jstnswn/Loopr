@@ -7,7 +7,7 @@ module.exports = {
       {
         email: 'demo@demomail.com',
         username: 'demo',
-        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/profile-pic.jpeg',
+        imageUrl: 'https://photo-bucket-137.s3.amazonaws.com/1644660520164.jpeg',
         hashedPassword: bcrypt.hashSync('password')
       },
       {

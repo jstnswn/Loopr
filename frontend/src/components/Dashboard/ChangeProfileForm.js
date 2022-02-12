@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { updateUserImage } from '../../store/session';
 import './ProfilePicForm.css';
 
-export default function ChangeProfileForm() {
+export default function ChangeProfileForm({ closeModal }) {
   const dispatch = useDispatch();
   const [image, setImage] = useState(null);
   const [errors, setErrors] = useState([]);
@@ -23,6 +23,7 @@ export default function ChangeProfileForm() {
 
     if (!errors.length) {
       return dispatch(updateUserImage(image))
+        .then(() => closeModal());
     }
 
     setShowErrors(true);
