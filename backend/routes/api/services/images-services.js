@@ -5,7 +5,7 @@ const Op = Sequelize.Op;
 async function getSplashImages() {
   return await db.Image.findAll({
     where: { albumId: 1 },
-    limit: 5,
+    limit: 3,
     include: [db.Album]
   });
 };

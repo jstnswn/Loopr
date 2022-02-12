@@ -10,6 +10,8 @@ export default function ImageView({ image, closeModal, option }) {
   const [showConfirmDel, setShowConfirmDel] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
 
+  const sessionUser = useSelector(({ session }) => session.user);
+
   const openDelConfirm = (e) => {
     e.stopPropagation()
     if (showConfirmDel) return;
@@ -44,7 +46,8 @@ export default function ImageView({ image, closeModal, option }) {
         </div>
         <p>{image.description}</p>
         <div className='image-view-icons'>
-          <FavoriteIcon image={image} closeModal={closeModal} option={option}/>
+          {sessionUser && <FavoriteIcon image={image} closeModal={closeModal} option={option} />}
+
           {option === 'user' && (
             <>
               <i className='far fa-edit edit-icon' onClick={openEditForm}></i>

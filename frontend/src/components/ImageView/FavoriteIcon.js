@@ -4,9 +4,12 @@ import { favoriteImage, unfavoriteImage } from '../../store/dashboard';
 
 export default function FavoriteIcon({ image, closeModal, option }) {
   const dispatch = useDispatch();
-  const favorites = useSelector(({ dashboard }) => dashboard.favoriteImages);
+  const favorites = useSelector(({ dashboard }) => dashboard?.favoriteImages);
 
-  const isFavorite = image.id in favorites;
+  let isFavorite;
+  if (favorites) {
+    isFavorite = image.id in favorites;
+  }
 
   const activeClassName = 'fas fa-star favorite-icon active';
   const inactiveClassName = 'far fa-star favorite-icon';

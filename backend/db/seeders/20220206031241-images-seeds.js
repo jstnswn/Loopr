@@ -3,16 +3,38 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.bulkInsert('Images', [
+
+      {
+        title: 'Hiking on Mars',
+        description: null,
+        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/51860299804_f030250fef_o.jpeg',
+        albumId: 1,
+        userId: 2,
+        isPrivate: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        title: 'Fast Nights',
+        description: null,
+        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/24567976694_9e77e1dd48_o.jpeg',
+        albumId: 1,
+        userId: 2,
+        isPrivate: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
       {
         title: 'Strawberry Milky Way',
         description: null,
         imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/47264397422_b3ed6b1c0b_o.jpeg',
         albumId: 1,
-        userId: 1,
+        userId: 2,
         isPrivate: false,
         createdAt: new Date(),
         updatedAt: new Date()
       },
+
       {
         title: 'Switchboard',
         description: null,
@@ -23,16 +45,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      {
-        title: 'Hiking on Mars',
-        description: null,
-        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/51860299804_f030250fef_o.jpeg',
-        albumId: 1,
-        userId: 1,
-        isPrivate: false,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
+
       {
         title: 'Neon Path',
         description: null,
@@ -47,7 +60,7 @@ module.exports = {
         title: 'Space Travel',
         description: null,
         imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/47264397312_d991cc6ef6_k.jpeg',
-        albumId: 1,
+        albumId: 3,
         userId: 1,
         isPrivate: false,
         createdAt: new Date(),
@@ -103,16 +116,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      {
-        title: 'Fast Nights',
-        description: null,
-        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/24567976694_9e77e1dd48_o.jpeg',
-        albumId: 3,
-        userId: 1,
-        isPrivate: false,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
+
       {
         title: 'Blood Moon',
         description: null,
