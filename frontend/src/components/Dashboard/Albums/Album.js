@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Modal } from '../../../context/Modal';
 import { deleteAlbum } from '../../../store/dashboard';
@@ -35,6 +35,8 @@ export default function Album({ album, idx }) {
   } else {
     message = 'Delete Album?'
   }
+
+  useEffect(() => setShowConfirmDel(false), [])
 
   return (
     <div className='album-container'>
