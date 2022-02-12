@@ -83,7 +83,6 @@ export default function UploadImageForm({ closeModal }) {
       errors.push('Please select and image to upload');
     } else {
       const fileValues = Object.values(files);
-      console.log("fileValuesL ', ", fileValues);
       if (fileValues.find(file => file.type !== 'image/jpeg' && file.type !== 'image/png')) {
         errors.push('Must select either .jpeg or .png file types')
       }
