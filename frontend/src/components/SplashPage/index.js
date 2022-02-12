@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useTransition, config, animated } from 'react-spring';
 import { getSplashAlbums } from '../../store/splash';
 import SignupFormModal from '../SignupFormModal';
 import ImageCarousel from './ImageCarousel';
@@ -45,7 +44,7 @@ export default function SplashPage() {
         <SignupFormModal option='splash'/>
       </div>
 
-      <Selector albums={Object.values(albums)} setKey={setKey} />
+      {/* <Selector albums={Object.values(albums)} setKey={setKey} /> */}
     </div>
   );
 }

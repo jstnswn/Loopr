@@ -6,7 +6,7 @@ module.exports = {
       {
         title: 'First Album',
         description: null,
-        userId: 1,
+        userId: 2,
         createdAt: new Date(),
         updatedAt: new Date()
       },

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useSelector } from 'react-redux';
 import { Modal } from '../../context/Modal';
 import EditIcon from '../ImageView/FavoriteIcon';
 import ImageView from '../ImageView/ImageView';
@@ -8,8 +9,11 @@ export default function ExploreGridItem({ image }) {
   const [hovered1, setHovered1] = useState(false);
   const [hovered2, setHovered2] = useState(false);
 
+  const sessionUser = useSelector(({ session }) => session.user);
+
   const viewImage = () => setShowModal(true);
   const closeViewImage = () => setShowModal(false);
+
 
   return (
     <>
@@ -33,7 +37,7 @@ export default function ExploreGridItem({ image }) {
           <p className='user'>{`from: @${image.User.username}`}</p>
         </div>
         <div className='icons'>
-          <EditIcon image={image} />
+          {sessionUser && <EditIcon image={image} />}
         </div>
       </div>
 
