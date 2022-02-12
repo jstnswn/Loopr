@@ -21,7 +21,7 @@ export default function AddImagesForm({ album, closeAdd }) {
     if (!files) errors.push('Please select image files to upload');
     else {
       const fileValues = Object.values(files);
-      if (!fileValues.find(file => file.type === 'image/jpeg' || file.type === 'image/png')) {
+      if (fileValues.find(file => file.type !== 'image/jpeg' || file.type !== 'image/png')) {
         errors.push('Must select either .jpeg or .png file types')
       }
     }
