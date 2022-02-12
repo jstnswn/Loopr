@@ -38,9 +38,12 @@ export default function SignupForm() {
 
   return (
     <form className='signup-form form' onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
+      <h2>Sign Up</h2>
+      {errors.length !== 0 && (
+        <ul>
+          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
+      )}
       <label>Username</label>
       <input
         type='text'

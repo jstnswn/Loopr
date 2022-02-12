@@ -1,25 +1,30 @@
-.upload-photos-form {
+.upload-images-form {
   width: 480px;
-  display: flex;
-  flex-direction: column;
-  padding: 30px;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* padding: 30px; */
 }
 
-.upload-photos-form input {
-  height: 20px;
+.upload-images-form input {
+  /* height: 20px; */
 }
 
-.upload-photos-form label,
-.upload-photos-form button {
+.upload-images-form label,
+.upload-images-form button {
   margin-top: 5px;
 }
 
-.upload-photos-form button {
+/* .upload-images-form button {
   width: 100px;
   height: 30px;
   align-self: center;
-}
+} */
 
 .upload-image.button {
   cursor: pointer;
+}
+
+
+.upload-images-form .upload {
+  margin-top: 37px;
 }

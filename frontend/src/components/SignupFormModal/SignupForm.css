@@ -7,6 +7,11 @@
   /* z-index: 1000000; */
 }
 
+.signup-form h2 {
+  text-align: start;
+  padding-left: 32px
+}
+
 .signup-form input {
   /* height: 20px; */
 }

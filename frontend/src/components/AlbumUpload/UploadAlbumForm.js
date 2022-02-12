@@ -55,11 +55,13 @@ export default function UploadAlbumForm({ closeModal }) {
   }, [title, description, files]);
 
   return (
-    <form onSubmit={handleSubmit} className='upload-album-form'>
+    <form onSubmit={handleSubmit} className='upload-album-form form'>
       <h2>Create New Album</h2>
-      <ul>
-        {showErrors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
+      {showErrors && (
+        <ul>
+          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+        </ul>
+      )}
       <label>Title</label>
       <input
         value={title}

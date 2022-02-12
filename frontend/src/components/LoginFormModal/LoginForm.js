@@ -29,9 +29,12 @@ export default function LoginForm() {
 
   return (
     <form className='login-form form' onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
+      <h2>Log In</h2>
+      {errors.length !== 0 && (
+        <ul>
+          {(error, idx) => <li key={idx}>{error}</li>}
+        </ul>
+      )}
       <label>Username or Email</label>
       <input
         type="text"
