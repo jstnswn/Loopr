@@ -33,8 +33,6 @@ export default function ProfileButton({ user }) {
       // e.preventDefault();
       if (!e.target.classList.contains('dd')) {
         setShowDropdown(false);
-        console.log('e.target.classList', e.target.classList)
-
       }
     };
 
