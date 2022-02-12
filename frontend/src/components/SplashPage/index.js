@@ -35,7 +35,7 @@ export default function SplashPage() {
       {/* <ImageCarousel images={images}/> */}
 
       <h1 className='title-header'>Find your inspiration.</h1>
-      <h2 className='title-subheader'>Upload and share you images with friends and family/</h2>
+      <h2 className='title-subheader'>Upload and share you images with friends and family</h2>
 
       {key === 1 && <ImageCarousel2 images={images} />}
       {key === 2 && <ImageCarousel2 images={images} />}
