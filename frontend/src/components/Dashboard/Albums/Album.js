@@ -4,15 +4,19 @@ import { Modal } from '../../../context/Modal';
 import { deleteAlbum } from '../../../store/dashboard';
 import AddImagesForm from '../../AlbumUpload/AddImagesForm';
 import EditAlbumForm from '../../AlbumEdit/EditAlbumForm';
+import AlbumView from '../../AlbumView/AlbumView';
 
 export default function Album({ album, idx }) {
   const dispatch = useDispatch();
   const [hovered1, setHovered1] = useState(false);
   const [hovered2, setHovered2] = useState(false);
+  const [showAlbumView, setShowAlbumView] = useState(false);
   const [showConfirmDel, setShowConfirmDel] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
   const [showAddImages, setShowAddImages] = useState(false);
 
+  const openAlbumView = () => setShowAlbumView(true);
+  const closeAlbumView = () => setShowAlbumView(false);
   const showConfirm = () => setShowConfirmDel(true);
   const closeConfirm = () => setShowConfirmDel(false);
   const showEdit = () => setShowEditForm(true);
@@ -37,6 +41,9 @@ export default function Album({ album, idx }) {
       <div className='album-overlay'></div>
       <div className='icon-cover'></div>
       <img
+
+        onClick={openAlbumView}
+
         className='album-grid-image'
         alt={album.title}
         src={album.images[0]?.imageUrl}
@@ -84,6 +91,12 @@ export default function Album({ album, idx }) {
       {showAddImages && (
         <Modal onClose={closeAdd}>
           <AddImagesForm album={album} closeAdd={closeAdd}/>
+        </Modal>
+      )}
+
+      {showAlbumView && (
+        <Modal onClose={closeAlbumView}>
+          <AlbumView album={album} closeModal={closeAlbumView} />
         </Modal>
       )}
     </div>
