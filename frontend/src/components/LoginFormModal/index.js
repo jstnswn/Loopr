@@ -14,7 +14,7 @@ export default function LoginFormModal() {
 
   return (
     <>
-      <div className='nav-login' onClick={openModal}>Log In</div>
+      <div className='nav-link' onClick={openModal}>Log In</div>
       {showModal && (
         <Modal onClose={closeModal}>
           <LoginForm />

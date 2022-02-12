@@ -23,14 +23,19 @@ export default function ProfileButton({ user }) {
     await dispatch(sessionActions.logout())
       .then(() => dispatch(clearDashboard()))
       .then(() => history.push('/'));
-      // .then(() => window.location.href = '/');
   };
 
   useEffect(() => {
     if (!showDropdown) return;
 
-    const closeDropdown = () => {
-      setShowDropdown(false);
+    const closeDropdown = (e) => {
+      // e.stopPropagation();
+      // e.preventDefault();
+      if (!e.target.classList.contains('dd')) {
+        setShowDropdown(false);
+        console.log('e.target.classList', e.target.classList)
+
+      }
     };
 
     document.addEventListener('click', closeDropdown);
@@ -49,9 +54,15 @@ export default function ProfileButton({ user }) {
       ></img>
       {showDropdown && (
         <ul className='profile-dropdown'>
-          <li>{user.username}</li>
+          <div className='profile-dropdown-select dd'>
+            <li className='fa-solid fa-square-user icon dd'></li>
+            <li className='title dd'>{user.username}</li>
+          </div>
           <li>
-            <button onClick={logout}>Log Out</button>
+            <div className='profile-dropdown-select dd'>
+              <i className='fa-solid fa-arrow-right-from-bracket icon dd'></i>
+              <li className='logout' onClick={logout}>Log Out</li>
+            </div>
           </li>
         </ul>
       )}

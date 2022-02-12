@@ -57,7 +57,7 @@ export default function Dashboard() {
               <h2>{user.username}</h2>
               <i onClick={openMenu} className='fas fa-ellipsis-h cover-more-button'></i>
               {showDropdown && (
-                <ul className='dashboard-user-dropdown'>
+                <ul className='dashboard-user-dropdown dropdown'>
                   <li onClick={openModal}>Change Profile Picture</li>
                 </ul>
               )}

@@ -3,9 +3,10 @@
 :root {
   --border-gray: #cac8c8;
   --text-light-gray: #737b80;
-  --background-black: rgba(19, 22, 24, .9);
+  --background-black: rgba(19, 22, 24);
   --main-blue: #128FDC;
   --body-color: rgb(242, 242, 242);
+  --dropdown-dark-gray: rgb(39, 39, 39);
 }
 
 /* TODO Add site wide styles */

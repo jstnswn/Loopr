@@ -37,6 +37,9 @@
   margin-bottom: 33px;
 }
 
+.form textarea {
+  padding: 10px;
+}
 
 .form input {
   padding-left: 10px;
