@@ -7,8 +7,8 @@ export default function BottomBar() {
     <nav className='bottom-bar'>
       <a href='https://www.linkedin.com/in/jstnswn/' target='_blank' rel="noopener noreferrer">LinkedIn</a>
       <a href='https://github.com/jstnswn' target='_blank' rel="noopener noreferrer">GitHub</a>
-      <a href=''>About</a>
-      <a href=''>Contact</a>
+      {/* <a href=''>About</a> */}
+      {/* <a href=''>Contact</a> */}
     </nav>
   )
 }
