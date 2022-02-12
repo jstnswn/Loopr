@@ -1,20 +1,25 @@
 .login-form {
-  width: 280px;
-  display: flex;
-  flex-direction: column;
+  width: 480px;
+  /* display: flex;
+  flex-direction: column; */
 }
 
+.login-form h2 {
+  text-align: start;
+  padding-left: 32px
+}
+/*
 .login-form input {
   height: 20px;
-}
+} */
 
-.login-form label,
+/* .login-form label,
 .login-form button {
   margin-top: 5px;
-}
+} */
 
-.login-form button {
+/* .login-form button {
   width: 100px;
   height: 30px;
   align-self: center;
-}
+} */

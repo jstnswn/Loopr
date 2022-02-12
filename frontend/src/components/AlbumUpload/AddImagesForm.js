@@ -46,7 +46,7 @@ export default function AddImagesForm({ album, closeAdd }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='add-images-form'>
+    <form onSubmit={handleSubmit} className='add-images-form form'>
       <h2>Select Images to Add</h2>
       {showErrors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
       <FileUploader setFiles={setFiles}/>

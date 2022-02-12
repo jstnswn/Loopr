@@ -1,23 +1,21 @@
 .edit-album-form {
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   width: 600px;
-  height: 470px;
-  padding-top: 20px;
+  /* height: 470px; */
+  /* padding-top: 20px; */
   border-radius: 5px;
 }
 
-.edit-album-form h2 {
+/* .edit-album-form h2 {
   text-align: center;
-}
+} */
 
-.edit-album-form label {
+/* .edit-album-form label {
   padding: 10px 35px;
-}
+} */
 
-.edit-album-form input,
-.edit-album-form .select,
-.edit-album-form textarea {
+.edit-album-form .select {
   height: 30px;
   margin: 0 35px;
 }
@@ -31,7 +29,7 @@
   transform: translateY(7px);
 }
 
-.edit-album-form button {
+/* .edit-album-form button {
   cursor: pointer;
   margin-top: 10px;
   width: 170px;
@@ -41,4 +39,4 @@
   align-self: center;
   background-color: var(--main-blue);
   color: white;
-}
+} */

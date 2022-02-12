@@ -65,6 +65,7 @@ export default function UploadImageForm({ closeModal }) {
   };
 
   useEffect(() => {
+    console.log('upload option: ', uploadOption)
     setErrors([]);
 
     const errors = [];
@@ -132,53 +133,72 @@ export default function UploadImageForm({ closeModal }) {
     )
   }
 
-  let formOption;
-  if (uploadOption === 'single') {
-    formOption = (
-      <>
-        <label>Image Title</label>
-        <input
-          type='text'
-          value={imageTitle}
-          onChange={e => setImageTitle(e.target.value)}
-        />
-        <label>Description (optional)</label>
-        <textarea
-          value={description}
-          onChange={e => setDescription(e.target.value)}
-        />
-        <FilesUploader setFiles={setFiles} />
-      </>
-    )
-  } else if (uploadOption === 'multi') {
-    formOption = (
-      <FilesUploader setFiles={setFiles}/>
-    )
-  }
+  // let formOption;
+  // if (uploadOption === 'single') {
+  //   formOption = (
+  //     <>
+  //       <label>Image Title</label>
+  //       <input
+  //         type='text'
+  //         value={imageTitle}
+  //         onChange={e => setImageTitle(e.target.value)}
+  //       />
+  //       <label>Description (optional)</label>
+  //       <textarea
+  //         value={description}
+  //         onChange={e => setDescription(e.target.value)}
+  //       />
+  //       <FilesUploader setFiles={setFiles} />
+  //     </>
+  //   )
+  // } else if (uploadOption === 'multi') {
+  //   formOption = (
+  //     <FilesUploader setFiles={setFiles}/>
+  //   )
+  // }
 
   return (
     <div>
-      <form className='upload-photos-form' onSubmit={handleSubmit}>
+      <form className='upload-images-form form' onSubmit={handleSubmit}>
         <ul>
           {showErrors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
-        <label htmlFor='single'>Single Image</label>
-        <input
-          onChange={e => setUploadOption(e.target.value)}
-          type='radio'
-          name='single'
-          value='single'
-          checked={uploadOption === 'single' ? true : false}
-        />
-        <label htmlFor='multi'>Multiple Images</label>
-        <input
-          onChange={e => setUploadOption(e.target.value)}
-          type='radio'
-          name='multi'
-          value='multi'
-          checked={uploadOption === 'multi' ? true : false}
-        />
-        {formOption}
+        <div className='radio-container'>
+          <label htmlFor='single'>Single Image</label>
+          <input
+            onChange={e => setUploadOption(e.target.value)}
+            type='radio'
+            name='single'
+            value='single'
+            checked={uploadOption === 'single' ? true : false}
+          />
+          <label htmlFor='multi'>Multiple Images</label>
+          <input
+            onChange={e => setUploadOption(e.target.value)}
+            type='radio'
+            name='multi'
+            value='multi'
+            checked={uploadOption === 'multi' ? true : false}
+          />
+        </div>
+        {uploadOption === 'single' && (
+          <>
+            <label>Image Title</label>
+            <input
+              type='text'
+              value={imageTitle}
+              onChange={e => setImageTitle(e.target.value)}
+            />
+            <label>Description (optional)</label>
+            <textarea
+              value={description}
+              onChange={e => setDescription(e.target.value)}
+            />
+            {/* <FilesUploader setFiles={setFiles} /> */}
+          </>
+
+        )}
+        <FilesUploader setFiles={setFiles} />
         {albumOption}
         <button>Submit</button>
       </form>
