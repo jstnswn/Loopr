@@ -8,13 +8,38 @@
 
 
 .image-grid-item {
-  height: 11rem;
-  width: 11rem;
+  height: 19rem;
+  width: 19em;
   object-fit: cover;
   padding: 5px;
   display: flex;
   transition: .5s;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 1800px) {
+  .image-grid-item {
+    height: 17rem;
+    width: 17rem;
+  }
+}
+@media only screen and (max-width: 1600px) {
+  .image-grid-item {
+    height: 14.5rem;
+    width: 14.5rem;
+  }
+}
+@media only screen and (max-width: 1300px) {
+  .image-grid-item {
+    height: 13rem;
+    width: 13rem;
+  }
+}
+@media only screen and (max-width: 850px) {
+  .image-grid-item {
+    height: 11rem;
+    width: 11rem;
+  }
 }
 
 .image-grid-item:hover {
