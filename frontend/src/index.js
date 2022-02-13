@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import './components/Forms/Forms.css'
+import './components/DarkMode/DarkMode.css';
 
 import App from './App';
 import configureStore from './store';

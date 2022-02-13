@@ -19,6 +19,8 @@ export default function Dashboard() {
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector(({ session }) => session.user)
 
+  const darkModeOn = true;
+
 
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
@@ -71,7 +73,7 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
-      <nav className='dashboard-nav'>
+      <nav className='dashboard-nav' id={darkModeOn && 'dark-background'}>
         <NavLink activeClassName='active-dash-nav' to='/dashboard/photostream'>Photostream</NavLink>
         <NavLink activeClassName='active-dash-nav' to='/dashboard/albums'>Albums</NavLink>
         <NavLink activeClassName='active-dash-nav' to='/dashboard/favorites'>Favorites</NavLink>
@@ -85,17 +87,19 @@ export default function Dashboard() {
       )}
 
       {/* <DashboardBody /> */}
-      <Switch>
-        <Route path='/dashboard/photostream'>
-          <Photostream />
-        </Route>
-        <Route path='/dashboard/albums'>
-          <Albums />
-        </Route>
-        <Route path='/dashboard/favorites'>
-          <Favorites />
-        </Route>
-      </Switch>
+      <div className='dashboard-body' id={darkModeOn && 'dark-background'}>
+        <Switch>
+          <Route path='/dashboard/photostream'>
+            <Photostream />
+          </Route>
+          <Route path='/dashboard/albums'>
+            <Albums />
+          </Route>
+          <Route path='/dashboard/favorites'>
+            <Favorites />
+          </Route>
+        </Switch>
+      </div>
     </div>
   );
 }
