@@ -46,7 +46,7 @@ export default function Album({ album, idx }) {
       <div className='icon-cover' id={darkModeOn ? 'dark-background' : ''}></div>
       <img
 
-        onClick={openAlbumView}
+        onClick={album.images.length && openAlbumView}
 
         className='album-grid-image'
         alt={album.title}
