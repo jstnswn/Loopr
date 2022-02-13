@@ -4,7 +4,7 @@ import './AlbumView.css';
 
 export default function AlbumView({ album, closeAlumView }) {
   const [selectedImage, setSelectedImage] = useState(album?.images[0])
-  console.log('album: ', album)
+  // console.log('album: ', album)
 
   if (!selectedImage) return <h2>You don't have any alums</h2>
 
@@ -20,7 +20,7 @@ export default function AlbumView({ album, closeAlumView }) {
       <div className='album-view footer'>
         <div className='album-view image-selector'>
           {album.images.map((image, idx) => (
-            <div className='album-view image-container'>
+            <div key={idx} className='album-view image-container'>
               <img
                 className='album-view image'
                 onClick={() => setSelectedImage(image)}
