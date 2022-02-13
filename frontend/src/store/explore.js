@@ -3,11 +3,27 @@ import { normalizeImages } from "./utils";
 
 
 const LOAD_MAIN_IMAGES = 'explore/LOAD_MAIN_IMAGES';
+const LOAD_IMAGE = 'explore/LOAD_IMAGE';
+const REMOVE_IMAGE = 'explore/REMOVE_IMAGE';
 
 const loadMainImages = (images) => {
   return {
     type: LOAD_MAIN_IMAGES,
     images
+  };
+};
+
+export const loadExploreImage = (image) => {
+  return {
+    type: LOAD_IMAGE,
+    image
+  };
+};
+
+export const removeExploreImage = (imageId) => {
+  return {
+    type: REMOVE_IMAGE,
+    imageId
   };
 };
 
@@ -41,6 +57,18 @@ const exploreReducer = (state = initialState, action) => {
           ...formatted
         }
       }
+
+    case LOAD_IMAGE:
+      stateCopy = {...state};
+
+      if (stateCopy.mainImages) stateCopy.mainImages[action.image.id] = action.iamge;
+
+      return stateCopy;
+
+    case REMOVE_IMAGE:
+      stateCopy= {...state};
+      delete stateCopy.mainImages?.[action.imageId];
+      return stateCopy;
 
     default:
       return state;
