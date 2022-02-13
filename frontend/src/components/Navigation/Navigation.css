@@ -47,16 +47,17 @@
   /* margin-right: 5px; */
 }
 
-.profile-dropdown li {
+.profile-dropdown li,
+.profile-dropdown div {
   color: rgb(221, 219, 219);
 
-  font-size: .85em;
+  /* font-size: .95em; */
+  /* border: red 1px solid; */
   /* cursor: pointer; */
   padding: 7px 4px;
   /* margin-right: -20px; */
   padding-left: 10px;
   transition: .4s;
-
 }
 /*
 .dashboard-user-dropdown li:hover {
@@ -78,7 +79,7 @@
 
 
 .profile-dropdown-select .title {
-  font-size: .9em;
+  font-size: .95em;
   font-weight: 300;
   padding-bottom: 12px;
   transition: .4s;

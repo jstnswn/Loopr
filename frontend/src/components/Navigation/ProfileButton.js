@@ -59,7 +59,7 @@ export default function ProfileButton({ user }) {
           <li>
             <div className='profile-dropdown-select dd'>
               <i className='fa-solid fa-arrow-right-from-bracket icon dd'></i>
-              <li className='logout' onClick={logout}>Log Out</li>
+              <div className='logout title' onClick={logout}>Log Out</div>
             </div>
           </li>
         </ul>
