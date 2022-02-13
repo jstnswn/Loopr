@@ -138,7 +138,7 @@ const sessionReducer = (state = initialState, action) => {
     case SET_USER:
       return {...state, user: action.user}
     case REMOVE_USER:
-      return {...state, user: null }
+      return initialState
     case TOGGLE_THEME:
       stateCopy = {...state};
       stateCopy.darkMode = !stateCopy.darkMode;
