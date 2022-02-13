@@ -28,7 +28,7 @@ export default function Album({ album, idx }) {
 
   const handleDelete = async () => {
     dispatch(deleteAlbum(album.id))
-      .then(() => setShowConfirmDel(false));
+      // .then(() => setShowConfirmDel(false));
   };
 
   let message;
@@ -38,7 +38,7 @@ export default function Album({ album, idx }) {
     message = 'Delete Album?'
   }
 
-  useEffect(() => setShowConfirmDel(false), [])
+  // useEffect(() => setShowConfirmDel(false), [])
 
   return (
     <div className='album-container'>

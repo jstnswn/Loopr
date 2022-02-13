@@ -25,7 +25,7 @@ export default function Explore() {
   }, [dispatch, sessionUser])
 
   return isLoaded && (
-    <div className='explore-container' id={darkModeOn && 'dark-background'}>
+    <div className='explore-container' id={darkModeOn ? 'dark-background' : ''}>
       <h2>Explore public facing images from all users.</h2>
       <MainImagesModule />
     </div>

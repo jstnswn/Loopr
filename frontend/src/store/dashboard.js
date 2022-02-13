@@ -1,4 +1,4 @@
-import { getExploreMainImages } from "./explore";
+import { getExploreMainImages, removeExploreImage } from "./explore";
 import { normalizeAlbum, normalizeAlbums, normalizeImages, normalizeFavImages } from "./utils";
 
 const { csrfFetch } = require("./csrf");
@@ -248,6 +248,7 @@ export const deleteImage = (image) => async dispatch => {
 
   if (res.ok) {
     dispatch(removeImage(image.id, image.albumId));
+    dispatch(removeExploreImage(image.id));
   }
   return res;
 };
