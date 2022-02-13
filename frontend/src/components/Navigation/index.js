@@ -13,6 +13,8 @@ export default function Navigation({ isLoaded }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector(({ session }) => session.user);
 
+  const darkModeOn = true;
+
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
@@ -33,7 +35,7 @@ export default function Navigation({ isLoaded }) {
   }
 
   return (
-    <nav className={`navbar ${sessionUser && 'logged-in'}`}>
+    <nav className={`navbar ${sessionUser && 'logged-in'}`} id={darkModeOn && 'dark-background'}>
       <NavLink exact to='/explore' activeClassName='active-nav'>Explore</NavLink>
       {isLoaded && sessionLinks}
     </nav>

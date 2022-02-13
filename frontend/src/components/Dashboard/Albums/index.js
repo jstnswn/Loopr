@@ -14,14 +14,13 @@ export default function Albums() {
   const closeModal = () => setShowModal(false);
 
   return (
-
-    <div className='dashboard-body'>
+    <>
       {!hasAlbums && (
-      <div className='dashboard-body-header'>
-        <h2>Let's make an album.</h2>
-        <p>Easily organize all your photos into beautiful albums to share with friends, or family.</p>
-        <button>Upload album</button>
-      </div>
+        <div className='dashboard-body-header'>
+          <h2>Let's make an album.</h2>
+          <p>Easily organize all your photos into beautiful albums to share with friends, or family.</p>
+          <button>Upload album</button>
+        </div>
       )}
       <div className='dashboard-body-content'>
 
@@ -42,6 +41,6 @@ export default function Albums() {
         )}
 
       </div>
-    </div>
+    </>
   );
 }

@@ -15,6 +15,7 @@ export default function EditImageForm({ image, setShowEdit }) {
   const [showErrors, setShowErrors] = useState(false);
 
   const userAlbums = useSelector(getUserAlbumsArray);
+  const darkModeOn = useSelector(({ session }) => session.darkMode);
 
   useEffect(() => {
     const errors = [];
@@ -103,6 +104,7 @@ export default function EditImageForm({ image, setShowEdit }) {
     <>
     <form
       className='edit-image-form'
+      id={darkModeOn ? 'dark-background' : ''}
       onSubmit={handleSubmit}
       >
       <h2>Edit Image</h2>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import { postImages } from '../../store/dashboard';
 import './AddImagesForm.css'
@@ -11,6 +11,8 @@ export default function AddImagesForm({ album, closeAdd }) {
   const [files, setFiles] = useState(null);
   const [errors, setErrors] = useState([]);
   const [showErrors, setShowErrors] = useState(false);
+
+  const darkModeOn = useSelector(({ session }) => session.darkMode);
 
   useEffect(() => {
     setErrors([]);
@@ -46,7 +48,7 @@ export default function AddImagesForm({ album, closeAdd }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='add-images-form form'>
+    <form onSubmit={handleSubmit} className='add-images-form form' id={darkModeOn ? 'dark-background' : ''}>
       <h2>Select Images to Add</h2>
       {showErrors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
       <FileUploader setFiles={setFiles}/>

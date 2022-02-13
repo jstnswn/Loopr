@@ -4,6 +4,8 @@ const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 const SET_USER_IMAGE = 'session/setUserImage';
 
+const TOGGLE_THEME = 'session/ToggleTheme';
+
 const setUser = (user) => {
   return {
     type: SET_USER,
@@ -21,6 +23,12 @@ const setUserImage = (imageUrl) => {
   return {
     type: SET_USER_IMAGE,
     imageUrl
+  };
+};
+
+export const toggleTheme = () => {
+  return {
+    type: TOGGLE_THEME
   };
 };
 
@@ -119,7 +127,10 @@ export const updateUserImage = (image) => async dispatch => {
   dispatch(setUser(updatedUser));
 };
 
-const initialState = { user: null };
+const initialState = {
+  user: null,
+  darkMode: false
+};
 
 const sessionReducer = (state = initialState, action) => {
   let stateCopy;
@@ -128,6 +139,10 @@ const sessionReducer = (state = initialState, action) => {
       return {...state, user: action.user}
     case REMOVE_USER:
       return {...state, user: null }
+    case TOGGLE_THEME:
+      stateCopy = {...state};
+      stateCopy.darkMode = !stateCopy.darkMode;
+      return stateCopy;
     // case SET_USER_IMAGE:
     //   stateCopy = {...state};
     //   stateCopy.user.imageUrl = action.imageUrl;

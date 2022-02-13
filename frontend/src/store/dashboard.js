@@ -179,6 +179,7 @@ export const postImages = (images, albumId, albumTitle) => async dispatch => {
 };
 
 export const createAlbumWithImages = (payload) => async dispatch => {
+  console.log('payload: ', payload)
   const { albumTitle, description, images } = payload;
 
   console.log('albumTitle: ', albumTitle)

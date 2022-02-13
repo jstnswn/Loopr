@@ -19,6 +19,8 @@ export default function UploadImageForm({ closeModal }) {
   const [errors, setErrors] = useState([]);
   const [showErrors, setShowErrors] = useState(false);
 
+  const darkModeOn = useSelector(({ session }) => session.darkMode);
+
   const userAlbums = useSelector(getUserAlbumsArray);
 
   const handleSubmit = async (e) => {
@@ -159,7 +161,7 @@ export default function UploadImageForm({ closeModal }) {
 
   return (
     <div>
-      <form className='upload-images-form form' onSubmit={handleSubmit}>
+      <form className='upload-images-form form' onSubmit={handleSubmit} id={darkModeOn ? 'dark-background' : ''}>
         <ul>
           {showErrors && errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>

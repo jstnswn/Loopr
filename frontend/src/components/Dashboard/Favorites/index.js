@@ -18,17 +18,16 @@ export default function Favorites() {
     header = 'Your Favorites'
   }
   return (
-
-    <div className='dashboard-body'>
+    <>
       <div className='dashboard-body-header favorites'>
         <h2>{header}</h2>
         <p>{subHeader}</p>
       </div>
       <div className='dashboard-body-content'>
 
-      {imagesLoaded && <FavoritesGrid images={images}/>}
+        {imagesLoaded && <FavoritesGrid images={images} />}
 
       </div>
-    </div>
+    </>
   );
 }
