@@ -39,4 +39,6 @@ Live DemoL [Loopr](https://loopr.herokuapp.com/dashboard/photostream)
 
     ```npm start```
 
-## Overall Structure
+# Index
+
+ | [MVP Feature List](github.com/jstnswn/Loopr/wiki/MVP-Feature-List)
