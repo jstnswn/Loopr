@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createAlbumWithImages } from '../../store/dashboard';
 import FileUploader from './FileUploader';
 
@@ -13,11 +13,13 @@ export default function UploadAlbumForm({ closeModal }) {
   const [errors, setErrors] = useState([]);
   const [showErrors, setShowErrors] = useState(false);
 
+  const darkModeOn = useSelector(({ session }) => session.darkMode);
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const payload = {
-      title,
+      albumTitle: title,
       description,
       images: files
     };
@@ -43,7 +45,7 @@ export default function UploadAlbumForm({ closeModal }) {
       errors.push('Please select and image to upload');
     } else {
       const fileValues = Object.values(files);
-      if (!fileValues.find(file => file.type === 'image/jpeg' || file.type === 'image/png')) {
+      if (fileValues.find(file => file.type !== 'image/jpeg' && file.type !== 'image/png')) {
         errors.push('Must select either .jpeg or .png file types')
       }
     }
@@ -55,7 +57,7 @@ export default function UploadAlbumForm({ closeModal }) {
   }, [title, description, files]);
 
   return (
-    <form onSubmit={handleSubmit} className='upload-album-form form'>
+    <form onSubmit={handleSubmit} className='upload-album-form form' id={darkModeOn ? 'dark-background' : ''}>
       <h2>Create New Album</h2>
       {showErrors && (
         <ul>
