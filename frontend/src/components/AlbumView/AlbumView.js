@@ -20,14 +20,15 @@ export default function AlbumView({ album, closeAlumView }) {
       <div className='album-view footer'>
         <div className='album-view image-selector'>
           {album.images.map((image, idx) => (
-            <div key={idx} className='album-view image-container'>
+            // <div key={idx} className='album-view image-container'>
               <img
+                key={idx}
                 className='album-view image'
                 onClick={() => setSelectedImage(image)}
                 alt={image.title}
                 src={image.imageUrl}
               />
-            </div>
+            // </div>
           ))}
         </div>
       </div>
