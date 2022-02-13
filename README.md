@@ -42,5 +42,5 @@ Live DemoL [Loopr](https://loopr.herokuapp.com/dashboard/photostream)
 7. Open up two terminals and cd into the backend and frontend directories, respectively. Start the server in each by running:
 
     ```npm start```
-
+    
 
