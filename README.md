@@ -4,7 +4,7 @@ Live DemoL [Loopr](https://loopr.herokuapp.com/dashboard/photostream)
 
 # Index
 
- | [MVP Feature List](github.com/jstnswn/Loopr/wiki/MVP-Feature-List) | [Database Scheme](github.com/jstnswn/Loopr/wiki/Database-Schema) | [API Routes](github.com/jstnswn/Loopr/wiki/API-Routes) | [Frontend Routes](github.com/jstnswn/Loopr/wiki/Frontend-Routes)
+ | [MVP Feature List](https://github.com/jstnswn/Loopr/wiki/MVP-Feature-List) | [Database Scheme](https://github.com/jstnswn/Loopr/wiki/Database-Schema) | [API Routes](https://github.com/jstnswn/Loopr/wiki/API-Routes) | [Frontend Routes](https://github.com/jstnswn/Loopr/wiki/Frontend-Routes)
 
 # Technologies Used
 
