@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import { deleteImages, patchAlbum, patchAlbumWithImageDel } from '../../store/dashboard';
 
@@ -12,6 +12,8 @@ export default function EditAlbumForm({ album, closeEdit }) {
   const [multiValue, setMultiValue] = useState({ option: [] });
   const [errors, setErrors] = useState([]);
   const [showErrors, setShowErrors] = useState(false);
+
+  const darkModeOn = useSelector(({ session }) => session.darkMode);
 
   useEffect(() => {
     setErrors([]);
@@ -68,8 +70,16 @@ export default function EditAlbumForm({ album, closeEdit }) {
     }
   ))
 
+  const selectStyle = {
+    option: (provided, state) => ({
+      ...provided,
+      color: 'rgb(38, 38, 38)'
+
+    })
+  }
+
   return (
-    <form onSubmit={handleSubmit} className='edit-album-form form'>
+    <form onSubmit={handleSubmit} className='edit-album-form form' id={darkModeOn ? 'dark-background' : ''}>
       <h2>Edit Album</h2>
       {showErrors && (
         <ul>
@@ -96,6 +106,7 @@ export default function EditAlbumForm({ album, closeEdit }) {
         onChange={handleMultiChange}
         isMulti
         closeMenuOnSelect={false}
+        styles={selectStyle}
       />
       <button>Submit Changes</button>
     </form>

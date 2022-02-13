@@ -7,6 +7,10 @@
   --main-blue: #128FDC;
   --body-color: rgb(242, 242, 242);
   --dropdown-dark-gray: rgb(39, 39, 39);
+
+  --dm-background-color: rgb(29, 31, 32);
+  --dm-color: rgb(228, 226, 223);
+  --dm-border-color: rgb(85, 85, 85)
 }
 
 /* TODO Add site wide styles */
@@ -41,4 +45,3 @@ a {
 li {
   list-style: none;
 }
-

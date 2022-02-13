@@ -1,0 +1,54 @@
+.profile-dropdown {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 80px;
+  min-width: 150px;
+  right: 0;
+  top: 33px;
+  padding: 5px;
+  background-color: var(--dropdown-dark-gray);
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.profile-dropdown li,
+.profile-dropdown div {
+  color: rgb(221, 219, 219);
+  padding: 7px 4px;
+  padding-left: 10px;
+  transition: .4s;
+}
+
+.profile-dropdown-select {
+  display: flex;
+  padding: 6px;
+  align-items: center;
+}
+
+
+.profile-dropdown-select .title {
+  font-size: .95em;
+  font-weight: 300;
+  padding-bottom: 12px;
+  transition: .4s;
+}
+
+.profile-dropdown-select .title:hover {
+  color: white;
+}
+
+.profile-dropdown-select .icon {
+  color: white;
+  font-size: 20px;
+}
+
+.profile-dropdown-select .logout {
+  cursor: pointer;
+}
+
+.profile-dropdown-select .dark-mode.title {
+  cursor: pointer;
+}

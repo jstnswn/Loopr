@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Redirect, useHistory, useLocation } from 'react-router-dom';
 import { clearDashboard } from '../../store/dashboard';
 import * as sessionActions from '../../store/session';
+import NavDropdown from './NavDropdown';
 
 export default function ProfileButton({ user }) {
   const history = useHistory();
@@ -50,20 +51,7 @@ export default function ProfileButton({ user }) {
         src={imageUrl}
         alt='profile'
       ></img>
-      {showDropdown && (
-        <ul className='profile-dropdown'>
-          <div className='profile-dropdown-select dd'>
-            <li className='fa-solid fa-square-user icon dd'></li>
-            <li className='title dd'>{user.username}</li>
-          </div>
-          <li>
-            <div className='profile-dropdown-select dd'>
-              <i className='fa-solid fa-arrow-right-from-bracket icon dd'></i>
-              <div className='logout title' onClick={logout}>Log Out</div>
-            </div>
-          </li>
-        </ul>
-      )}
+      {showDropdown && <NavDropdown user={user} logout={logout}/>}
     </>
   )
 

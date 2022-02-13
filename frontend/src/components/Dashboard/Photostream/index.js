@@ -10,7 +10,7 @@ import UploadImageModal from '../../UploadImageModal';
 
 export default function Photostream() {
 
-  const darkModeOn = true;
+  const darkModeOn = useSelector(({ session }) => session.darkMode);
 
   const images = useSelector(getUserImagesArray);
   const imagesLoaded = images.length > 0;
@@ -29,7 +29,7 @@ export default function Photostream() {
 
   return (
     <>
-      <div className='dashboard-body-header' id={darkModeOn && 'dark-background'}>
+      <div className='dashboard-body-header' id={darkModeOn ? 'dark-background' : ''}>
         <h2>{header}</h2>
         <p>{subHeader}</p>
         {/* <UploadPhotos /> */}

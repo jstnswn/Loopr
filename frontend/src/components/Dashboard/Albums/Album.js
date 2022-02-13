@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from '../../../context/Modal';
 import { deleteAlbum } from '../../../store/dashboard';
 import AddImagesForm from '../../AlbumUpload/AddImagesForm';
@@ -14,6 +14,8 @@ export default function Album({ album, idx }) {
   const [showConfirmDel, setShowConfirmDel] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
   const [showAddImages, setShowAddImages] = useState(false);
+
+  const darkModeOn = useSelector(({ session }) => session.darkMode);
 
   const openAlbumView = () => setShowAlbumView(true);
   const closeAlbumView = () => setShowAlbumView(false);
@@ -41,7 +43,7 @@ export default function Album({ album, idx }) {
   return (
     <div className='album-container'>
       <div className='album-overlay'></div>
-      <div className='icon-cover'></div>
+      <div className='icon-cover' id={darkModeOn ? 'dark-background' : ''}></div>
       <img
 
         onClick={openAlbumView}
@@ -74,7 +76,7 @@ export default function Album({ album, idx }) {
 
       {showConfirmDel && (
         <Modal onClose={closeConfirm}>
-          <div className='confirm-delete-album'>
+          <div className='confirm-delete-album' id={darkModeOn ? 'dark-background' : ''}>
             <p>{message}</p>
             <div>
               <p onClick={closeConfirm}>No</p>
