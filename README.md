@@ -29,7 +29,7 @@
 
     ```npm install```
 
-4.  Create a .env file based on the .env.example given
+4.  Create a .env file based on the .env.example given (**An AWS S3 account is required to upload and delete images**)
 
 5.  Create a user in psql based on your .env DB_USERNAME
 
