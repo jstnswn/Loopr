@@ -66,7 +66,16 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
-
+      {
+        title: 'Meow Spectrum',
+        description: null,
+        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/51819764685_0326502e86_o.jpeg',
+        albumId: 2,
+        userId: 1,
+        isPrivate: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
 
       {
         title: 'Under the bridge downtown',
@@ -122,7 +131,7 @@ module.exports = {
         title: 'Catching the Sunset',
         description: null,
         imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/image-seeds/23908810719_958e8b647f_c.jpeg',
-        albumId: 2,
+        albumId: 4,
         userId: 1,
         isPrivate: false,
         createdAt: new Date(),
@@ -172,7 +181,7 @@ module.exports = {
         title: 'The Face',
         description: null,
         imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/5119634826_bac89f136e_o.jpeg',
-        albumId: 2,
+        albumId: 4,
         userId: 1,
         isPrivate: false,
         createdAt: new Date(),
