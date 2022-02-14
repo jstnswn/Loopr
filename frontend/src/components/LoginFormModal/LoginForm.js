@@ -32,7 +32,7 @@ export default function LoginForm() {
       <h2>Log In</h2>
       {errors.length !== 0 && (
         <ul>
-          {(error, idx) => <li key={idx}>{error}</li>}
+          {errors.map((error, idx) => <li key={idx}>{error}</li>)}
         </ul>
       )}
       <label>Username or Email</label>

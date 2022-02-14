@@ -15,11 +15,21 @@ module.exports = {
         updatedAt: new Date()
       },
       {
+        title: 'Analog',
+        description: null,
+        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/image-seeds/33936570484_e0f56d0da8_c.jpeg',
+        albumId: 1,
+        userId: 2,
+        isPrivate: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
         title: 'Fast Nights',
         description: null,
         imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/24567976694_9e77e1dd48_o.jpeg',
-        albumId: 1,
-        userId: 2,
+        albumId: 5,
+        userId: 3,
         isPrivate: false,
         createdAt: new Date(),
         updatedAt: new Date()
@@ -199,16 +209,7 @@ module.exports = {
       },
 
 
-      {
-        title: 'Analog',
-        description: null,
-        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/image-seeds/33936570484_e0f56d0da8_c.jpeg',
-        albumId: 5,
-        userId: 3,
-        isPrivate: false,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
+
       {
         title: 'Macro Wheel',
         description: null,
