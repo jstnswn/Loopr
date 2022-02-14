@@ -1,8 +1,10 @@
 const AWS = require('aws-sdk');
-
-const NAME_OF_BUCKET = 'photo-bucket-137';
-
 const multer = require('multer');
+
+const { aws } = require('./config');
+
+const NAME_OF_BUCKET = aws.bucketName
+
 
 const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
 

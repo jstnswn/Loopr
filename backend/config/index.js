@@ -10,5 +10,7 @@ module.exports = {
   jwtConfig: {
     secret: process.env.JWT_SECRET,
     expiresIn: process.env.JWT_EXPIRES_IN
+  }, aws: {
+    bucketName: process.env.AWS_NAME_OF_BUCKET
   }
 };
