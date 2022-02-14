@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../../../db/models');
 const Op = Sequelize.Op;
+const favoritesServices = require('./favorites-services');
 
 async function getSplashImages() {
   return await db.Image.findAll({
@@ -57,7 +58,11 @@ async function getImagesByUserId(userId) {
 async function deleteImage(imageId) {
   const image = await db.Image.findByPk(imageId);
 
-  if (image) return await image.destroy();
+  if (image) {
+    await favoritesServices.unfavoriteAll(imageId);
+    return await image.destroy();
+  }
+  return 'Image not found';
 };
 
 async function deleteImages(imageIds) {

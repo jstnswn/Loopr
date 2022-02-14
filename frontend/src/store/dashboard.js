@@ -389,6 +389,7 @@ const dashboardReducer = (state = initialState, action) => {
 
       imagesCopy.splice(idx, 1);
       delete stateCopy.userImages[action.imageId];
+      delete stateCopy.favoriteImages[action.imageId];
       return stateCopy;
     case LOAD_ALBUM:
       formatted = normalizeAlbum(action.album);
@@ -429,6 +430,14 @@ const dashboardReducer = (state = initialState, action) => {
 
         if (image.albumId === action.albumId) {
           delete stateCopy.userImages[key];
+        }
+      }
+
+      for (let key in stateCopy.favoriteImages) {
+        let favorite = stateCopy.favoriteImages[key];
+
+        if (favorite.albumId === action.albumId) {
+          delete stateCopy.favoriteImages[key];
         }
       }
       return stateCopy;

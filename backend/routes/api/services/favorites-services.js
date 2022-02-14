@@ -18,8 +18,17 @@ async function unfavoriteImage(imageId, userId) {
   return await favorite.destroy();
 };
 
+async function unfavoriteAll(imageId) {
+  const favorites = await db.ImageFavorite.findAll({ where: { imageId }});
+
+  for (let favorite of favorites) {
+    await favorite.destroy();
+  }
+};
+
 module.exports = {
   getFavImagesByUserId,
   favoriteImage,
-  unfavoriteImage
+  unfavoriteImage,
+  unfavoriteAll
 };
