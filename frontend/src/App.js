@@ -6,7 +6,7 @@ import Explore from './components/Explore';
 import Navigation from './components/Navigation';
 import SplashPage from './components/SplashPage';
 import BottomBar from './components/SplashPage/BottomBar';
-import { restoreUser } from './store/session';
+import { restoreUser, toggleTheme } from './store/session';
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +19,8 @@ function App() {
 
 
   useEffect(() => {
+    const theme = localStorage.getItem('theme');
+    if (theme === 'dark') dispatch(toggleTheme())
     dispatch(restoreUser())
       .then(() => setIsLoaded(true));
   }, [dispatch])
@@ -29,18 +31,10 @@ function App() {
       history.push('/dashboard/photostream');
     } else history.push('/')
   }, [user, history])
-  
+
   return (
     <>
       <Navigation isLoaded={isLoaded} />
-      {/* <UploadPhotos /> */}
-      {/* {user?.imageUrl && (
-        <img
-          style={{ width: "150px" }}
-          src={user.imageUrl}
-          alt="profile"
-        />
-      )} */}
       {isLoaded && (
         <Switch>
           <Route exact path='/'>

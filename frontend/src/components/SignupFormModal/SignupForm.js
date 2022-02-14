@@ -21,8 +21,14 @@ export default function SignupForm() {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors([]);
+        if (image.type !== 'image/jpeg' && image.type !== 'image/png') {
+          setErrors(prev => ['Must select either .jpeg or .png file types', ...prev]);
+          return
+        }
+
       return dispatch(createUser({ email, username, image, password }))
         .catch(async (res) => {
+
           const data = await res.json();
           if (data && data.errors) setErrors(data.errors);
         });
