@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 import './UploadPhotos.css'
-import FileUploader from './FileUploader';
 import { useDispatch, useSelector } from 'react-redux';
 import { createAlbumWithImages, getUserAlbumsArray, postImage, postImages } from '../../store/dashboard';
 import FilesUploader from './FilesUploader';
@@ -67,7 +66,6 @@ export default function UploadImageForm({ closeModal }) {
   };
 
   useEffect(() => {
-    console.log('upload option: ', uploadOption)
     setErrors([]);
 
     const errors = [];
@@ -134,30 +132,6 @@ export default function UploadImageForm({ closeModal }) {
       </>
     )
   }
-
-  // let formOption;
-  // if (uploadOption === 'single') {
-  //   formOption = (
-  //     <>
-  //       <label>Image Title</label>
-  //       <input
-  //         type='text'
-  //         value={imageTitle}
-  //         onChange={e => setImageTitle(e.target.value)}
-  //       />
-  //       <label>Description (optional)</label>
-  //       <textarea
-  //         value={description}
-  //         onChange={e => setDescription(e.target.value)}
-  //       />
-  //       <FilesUploader setFiles={setFiles} />
-  //     </>
-  //   )
-  // } else if (uploadOption === 'multi') {
-  //   formOption = (
-  //     <FilesUploader setFiles={setFiles}/>
-  //   )
-  // }
 
   return (
     <div>

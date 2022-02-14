@@ -17,8 +17,6 @@ export default function Dashboard() {
   const history = useHistory();
   const pathname = history.location.pathname;
 
-  console.log('pathname: ', pathname)
-
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector(({ session }) => session.user)
 
@@ -70,8 +68,6 @@ export default function Dashboard() {
             </div>
 
             <ul className='bottom'>
-              {/* <li>Follower</li>
-              <li>Following</li> */}
             </ul>
 
           </div>
@@ -81,7 +77,6 @@ export default function Dashboard() {
         <NavLink activeClassName='active-dash-nav' to='/dashboard/photostream'>Photostream</NavLink>
         <NavLink activeClassName='active-dash-nav' to='/dashboard/albums'>Albums</NavLink>
         <NavLink activeClassName='active-dash-nav' to='/dashboard/favorites'>Favorites</NavLink>
-        {/* <NavLink activeClassName='active-dash-nav' to=''>Loop Station</NavLink> */}
       </nav>
 
       {showModal && (

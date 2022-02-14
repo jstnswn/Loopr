@@ -28,7 +28,7 @@ export default function Album({ album, idx }) {
 
   const handleDelete = async () => {
     dispatch(deleteAlbum(album.id))
-      // .then(() => setShowConfirmDel(false));
+      .then(() => setShowConfirmDel(false));
   };
 
   let message;
@@ -38,7 +38,10 @@ export default function Album({ album, idx }) {
     message = 'Delete Album?'
   }
 
-  // useEffect(() => setShowConfirmDel(false), [])
+  useEffect(() => {
+
+    return () => setShowConfirmDel(false)
+  }, [])
 
   return (
     <div className='album-container'>
@@ -46,7 +49,9 @@ export default function Album({ album, idx }) {
       <div className='icon-cover' id={darkModeOn ? 'dark-background' : ''}></div>
       <img
 
-        onClick={album.images.length && openAlbumView}
+        onClick={() => {
+          if (album.images.length) openAlbumView()
+        }}
 
         className='album-grid-image'
         alt={album.title}
