@@ -16,6 +16,9 @@ export default function Dashboard() {
   const [showDropdown, setShowDropdown] = useState(false)
   const history = useHistory();
   const pathname = history.location.pathname;
+
+  console.log('pathname: ', pathname)
+
   const [isLoaded, setIsLoaded] = useState(false);
   const user = useSelector(({ session }) => session.user)
 
@@ -41,6 +44,7 @@ export default function Dashboard() {
   },[dispatch])
 
   if (pathname.endsWith('/dashboard/') || pathname.endsWith('/dashboard')) {
+    console.log("hi")
     return <Redirect to='/dashboard/photostream' />
   }
 

@@ -11,19 +11,34 @@ module.exports = {
         updatedAt: new Date()
       },
       {
-        title: 'Second Album',
+        title: 'My First Album',
         description: null,
         userId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
       {
-        title: 'Third Album',
+        title: 'New Project',
         description: null,
         userId: 1,
         createdAt: new Date(),
         updatedAt: new Date()
       },
+      {
+        title: 'Personal Favorites',
+        description: null,
+        userId: 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        title: 'User 3 Images',
+        description: null,
+        userId: 3,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+
     ]);
   },
 
