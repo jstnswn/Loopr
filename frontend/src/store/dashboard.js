@@ -218,7 +218,7 @@ export const updateImage = (payload) => async dispatch => {
   let { imageId, title, description, albumTitle, albumId, originalImage } = payload;
 
   if (albumTitle) {
-    const newAlbum = await dispatch(postAlbum({ title: albumTitle }));
+    const newAlbum = await dispatch(postAlbum({ albumTitle }));
     albumId = newAlbum.id;
   }
 
