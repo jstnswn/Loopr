@@ -23,7 +23,7 @@ Loopr is a image sharing website inspred inspired by [Flickr](https://www.flickr
 
 1. Clone this repository
 
-   ```git clone https://github.com/jstnswn/co-fi.git```
+   ```git clone hhttps://github.com/jstnswn/Loopr.git```
 
 2. CD into the backend directory and install dependencies
 
