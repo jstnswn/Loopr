@@ -13,9 +13,12 @@ export default function NavDropdown({ user, logout }) {
 
     if (darkModeOn) {
       document.body.classList.remove('dark-scroll');
-      // const 
+      localStorage.removeItem('theme');
     }
-    else document.body.classList.add('dark-scroll');
+    else {
+      document.body.classList.add('dark-scroll')
+      localStorage.setItem('theme', 'dark');
+    };
   };
 
   const toggleThemeClass = darkModeOn
