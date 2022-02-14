@@ -62,7 +62,10 @@ export default function ImageView({ image, closeModal, option }) {
           <p>Delete image?</p>
           <div>
             <p onClick={closeMenu}>No</p>
-            <p onClick={() => dispatch(deleteImage(image))}>Yes</p>
+            <p onClick={() => {
+              dispatch(deleteImage(image));
+              closeModal();
+            }}>Yes</p>
           </div>
         </div>
       )}

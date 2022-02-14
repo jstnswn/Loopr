@@ -24,7 +24,6 @@ export default function SignupForm() {
       return dispatch(createUser({ email, username, image, password }))
         .catch(async (res) => {
           const data = await res.json();
-          console.log('data errors: ', data.errors);
           if (data && data.errors) setErrors(data.errors);
         });
     }

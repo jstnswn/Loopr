@@ -18,11 +18,11 @@ export default function Photostream() {
   let header;
   let subHeader;
   if (!imagesLoaded) {
-    header = 'You don\'t have any images';
-    subHeader = 'Your photostream is your public-facing portfolio. Start by uploading your first image!';
+    header = 'You don\'t have any images.';
+    subHeader = 'Your photostream is your public-facing images. Start by uploading your first image!';
   } else {
-    header = 'Your Images';
-    subHeader = 'Your photostream is your public-facing portfolio. Set your photos to public using the Camera Roll to populate your photostream.';
+    header = 'Your Images.';
+    subHeader = 'Your photostream is your public-facing images.';
   }
 
 

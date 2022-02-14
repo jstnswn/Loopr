@@ -42,7 +42,6 @@ export default function Dashboard() {
   },[dispatch])
 
   if (pathname.endsWith('/dashboard/') || pathname.endsWith('/dashboard')) {
-    console.log("hi")
     return <Redirect to='/dashboard/photostream' />
   }
 

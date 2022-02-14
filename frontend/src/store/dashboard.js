@@ -100,10 +100,10 @@ export const clearDashboard = () => {
 // Thunks
 
 export const postAlbum = (payload) => async dispatch => {
-  const { title, description } = payload;
+  const { albumTitle, description } = payload;
   const res = await csrfFetch('/api/albums/users/current', {
     method: 'POST',
-    body: JSON.stringify({title, description})
+    body: JSON.stringify({title: albumTitle, description})
   });
 
   const { album } = await res.json();
@@ -117,7 +117,7 @@ export const postImage = (payload) => async dispatch => {
 
   // let album;
   if (albumTitle) {
-    const newAlbum = await dispatch(postAlbum({ title: albumTitle }));
+    const newAlbum = await dispatch(postAlbum({ albumTitle }));
 
     albumId = newAlbum.id;
   }
@@ -181,8 +181,7 @@ export const postImages = (images, albumId, albumTitle) => async dispatch => {
 export const createAlbumWithImages = (payload) => async dispatch => {
   const { albumTitle, description, images } = payload;
 
-
-  const newAlbum = await dispatch(postAlbum({ title: albumTitle, description }));
+  const newAlbum = await dispatch(postAlbum({ albumTitle, description }));
   // dispatch(postAlbum({ title, description })),
   return dispatch(postImages(images, newAlbum.id));
 };

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createAlbumWithImages } from '../../store/dashboard';
+import { createAlbumWithImages, postAlbum } from '../../store/dashboard';
 import FileUploader from './FileUploader';
 
 import './UploadAlbum.css';
@@ -21,12 +21,18 @@ export default function UploadAlbumForm({ closeModal }) {
     const payload = {
       albumTitle: title,
       description,
-      images: files
+      // images: files
     };
 
     if (!errors.length) {
 
-      return dispatch(createAlbumWithImages(payload))
+      if (files) {
+        payload.images = files;
+        return dispatch(createAlbumWithImages(payload))
+        .then(() => closeModal(true));
+      }
+
+      return dispatch(postAlbum(payload))
         .then(() => closeModal(true));
     }
 
@@ -41,14 +47,14 @@ export default function UploadAlbumForm({ closeModal }) {
     if (title.length > 30 || !title.length) {
       errors.push('Image title must be between 1 and 30 characters');
     }
-    if (!files) {
-      errors.push('Please select and image to upload');
-    } else {
+
+    if(files) {
       const fileValues = Object.values(files);
       if (fileValues.find(file => file.type !== 'image/jpeg' && file.type !== 'image/png')) {
         errors.push('Must select either .jpeg or .png file types')
       }
     }
+
     if (description.length > 300) {
       errors.push('Description must be less than 300 characters');
     }
