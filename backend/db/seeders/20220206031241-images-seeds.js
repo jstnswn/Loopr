@@ -76,16 +76,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
-      {
-        title: 'Blur',
-        description: null,
-        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/30828267453_47de3ddac0_o.jpeg',
-        albumId: 3,
-        userId: 1,
-        isPrivate: false,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      },
+
       {
         title: 'Under the bridge downtown',
         description: null,
@@ -127,6 +118,46 @@ module.exports = {
         updatedAt: new Date()
       },
       {
+        title: 'Lazy Day',
+        description: null,
+        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/image-seeds/10532612145_e92d061c9c_c.jpeg',
+        albumId: 4,
+        userId: 1,
+        isPrivate: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        title: 'Catching the Sunset',
+        description: null,
+        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/image-seeds/23908810719_958e8b647f_c.jpeg',
+        albumId: 4,
+        userId: 1,
+        isPrivate: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        title: 'Bridge Street',
+        description: null,
+        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/image-seeds/26746275681_1a59d198fb_h.jpeg',
+        albumId: 4,
+        userId: 1,
+        isPrivate: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        title: 'Ollie',
+        description: null,
+        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/image-seeds/3295488473_917b974d43_h.jpeg',
+        albumId: 2,
+        userId: 1,
+        isPrivate: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
         title: 'Rusted Wheels',
         description: null,
         imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/2421911331_c02e4d9e96_c.jpeg',
@@ -156,13 +187,64 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
-
       {
         title: 'Blood Moon',
         description: null,
         imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/33441048278_52e8b58374_o.jpeg',
         albumId: 3,
         userId: 1,
+        isPrivate: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+
+
+      {
+        title: 'Analog',
+        description: null,
+        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/image-seeds/33936570484_e0f56d0da8_c.jpeg',
+        albumId: 5,
+        userId: 3,
+        isPrivate: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        title: 'Macro Wheel',
+        description: null,
+        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/image-seeds/3447658628_e1586a880d_c.jpeg',
+        albumId: 5,
+        userId: 3,
+        isPrivate: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        title: 'Flying Melon',
+        description: null,
+        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/image-seeds/4311579519_722b0c0e71_b.jpeg',
+        albumId: 5,
+        userId: 3,
+        isPrivate: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        title: 'Spector Fig',
+        description: null,
+        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/image-seeds/51839069965_847f56e6d0_c.jpeg',
+        albumId: 5,
+        userId: 3,
+        isPrivate: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        title: 'Pug Mug',
+        description: null,
+        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/image-seeds/9405022111_8e0811279a_c.jpeg',
+        albumId: 5,
+        userId: 3,
         isPrivate: false,
         createdAt: new Date(),
         updatedAt: new Date()

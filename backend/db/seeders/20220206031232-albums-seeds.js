@@ -31,6 +31,14 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
+      {
+        title: 'User 3 Images',
+        description: null,
+        userId: 3,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+
     ]);
   },
 
