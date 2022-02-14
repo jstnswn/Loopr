@@ -2,6 +2,8 @@
 
 Live DemoL [Loopr](https://loopr.herokuapp.com/dashboard/photostream)
 
+[![dashboard.png](https://i.postimg.cc/tg6Dd8rZ/Screen-Shot-2022-02-13-at-10-02-48-PM.png)](https://postimg.cc/cKsQ0kG0)
+
 # Index
 
  | [MVP Feature List](https://github.com/jstnswn/Loopr/wiki/MVP-Feature-List) | [Database Scheme](https://github.com/jstnswn/Loopr/wiki/Database-Schema) | [API Routes](https://github.com/jstnswn/Loopr/wiki/API-Routes) | [Frontend Routes](https://github.com/jstnswn/Loopr/wiki/Frontend-Routes)
