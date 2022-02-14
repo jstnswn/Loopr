@@ -10,6 +10,10 @@
 
  | [MVP Feature List](https://github.com/jstnswn/Loopr/wiki/MVP-Feature-List) | [Database Scheme](https://github.com/jstnswn/Loopr/wiki/Database-Schema) | [API Routes](https://github.com/jstnswn/Loopr/wiki/API-Routes) | [Frontend Routes](https://github.com/jstnswn/Loopr/wiki/Frontend-Routes)
 
+# General Overview
+
+Loopr is a image sharing website inspred inspired by [Flickr](https://www.flickr.com/). User can upload their own images, create albums, and browse images from other users.  
+
 # Technologies Used
 
 <img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"  height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-plain-wordmark.svg" height=40/><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original-wordmark.svg" height=50/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"  height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sequelize/sequelize-original.svg"  height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"  height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"  height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"  height=40/><img  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg"  height=40/>
