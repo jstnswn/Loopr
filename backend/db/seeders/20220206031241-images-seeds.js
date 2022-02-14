@@ -50,7 +50,7 @@ module.exports = {
         title: 'Neon Path',
         description: null,
         imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/50308012142_08fbce710d_c.jpeg',
-        albumId: 3,
+        albumId: 2,
         userId: 1,
         isPrivate: false,
         createdAt: new Date(),
@@ -80,7 +80,47 @@ module.exports = {
         title: 'Blur',
         description: null,
         imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/30828267453_47de3ddac0_o.jpeg',
-        albumId: 2,
+        albumId: 3,
+        userId: 1,
+        isPrivate: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        title: 'Under the bridge downtown',
+        description: null,
+        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/51877069653_0feeb27ccb_c.jpeg',
+        albumId: 3,
+        userId: 1,
+        isPrivate: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        title: 'Industrial Complex',
+        description: null,
+        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/51877484946_df2a5b399e_c.jpeg',
+        albumId: 3,
+        userId: 1,
+        isPrivate: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        title: 'First Stop',
+        description: null,
+        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/51877680327_ccd10f373d_c.jpeg',
+        albumId: 3,
+        userId: 1,
+        isPrivate: false,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      },
+      {
+        title: 'Flying',
+        description: null,
+        imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/51878704764_0702b32bd4_c.jpeg',
+        albumId: 3,
         userId: 1,
         isPrivate: false,
         createdAt: new Date(),
@@ -110,7 +150,7 @@ module.exports = {
         title: 'The Face',
         description: null,
         imageUrl: 'https://photo-bucket-137.s3.us-east-2.amazonaws.com/5119634826_bac89f136e_o.jpeg',
-        albumId: 3,
+        albumId: 4,
         userId: 1,
         isPrivate: false,
         createdAt: new Date(),
@@ -127,6 +167,7 @@ module.exports = {
         createdAt: new Date(),
         updatedAt: new Date()
       },
+
 
     ]);
   },

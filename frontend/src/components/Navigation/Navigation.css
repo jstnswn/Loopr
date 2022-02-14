@@ -47,6 +47,7 @@
 
 .active-nav {
   text-decoration: underline;
+  pointer-events: none;
 }
 
 .upload.nav {

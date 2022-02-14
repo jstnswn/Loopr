@@ -163,6 +163,7 @@
 
 .active-dash-nav {
   position: relative;
+  pointer-events: none;
 }
 
 .active-dash-nav:after {
