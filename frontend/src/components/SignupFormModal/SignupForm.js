@@ -39,8 +39,10 @@ export default function SignupForm() {
   const updateFile = (e) => {
     const file = e.target.files[0];
     if (file) setImage(file);
+
   };
 
+  
   return (
     <form className='signup-form form' onSubmit={handleSubmit}>
       <h2>Sign Up</h2>
