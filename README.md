@@ -6,7 +6,7 @@
 
 # Index
 
-* [Live Site](https://loopr.herokuapp.com/dashboard/photostream)
+* [Live Site](https://loopr.herokuapp.com/)
 
  | [MVP Feature List](https://github.com/jstnswn/Loopr/wiki/MVP-Feature-List) | [Database Scheme](https://github.com/jstnswn/Loopr/wiki/Database-Schema) | [API Routes](https://github.com/jstnswn/Loopr/wiki/API-Routes) | [Frontend Routes](https://github.com/jstnswn/Loopr/wiki/Frontend-Routes)
 
