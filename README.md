@@ -12,7 +12,7 @@
 
 # General Overview
 
-Loopr is a image sharing website inspred inspired by [Flickr](https://www.flickr.com/). User can upload their own images, create albums, and browse images from other users.  
+Loopr is an image sharing website inspred inspired by [Flickr](https://www.flickr.com/). User can upload their own images, create albums, and browse images from other users.  
 
 # Technologies Used
 
