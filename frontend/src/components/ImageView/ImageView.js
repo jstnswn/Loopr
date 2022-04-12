@@ -37,7 +37,9 @@ export default function ImageView({ image, closeModal, option }) {
 
   return (
     <div className='modal-image-container'>
-      <img className='modal-image' src={image.imageUrl} alt={image.title}></img>
+      <div className='image-container'>
+        <img className='modal-image' src={image.imageUrl} alt={image.title}></img>
+      </div>
       <div className='image-view-footer'>
         <div className='image-info'>
           <p className='title'>{image.title}</p>
