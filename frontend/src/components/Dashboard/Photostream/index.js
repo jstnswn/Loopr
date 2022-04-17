@@ -19,10 +19,10 @@ export default function Photostream() {
   let subHeader;
   if (!imagesLoaded) {
     header = 'You don\'t have any images.';
-    subHeader = 'Your photostream is your public-facing images. Start by uploading your first image!';
+    subHeader = 'Your photostream is your public-facing image collection. Start by uploading your first image!';
   } else {
     header = 'Your Images.';
-    subHeader = 'Your photostream is your public-facing images.';
+    subHeader = 'Your photostream is your public-facing image collection.';
   }
 
 
