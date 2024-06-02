@@ -6,13 +6,13 @@
 
 # Index
 
-* [Live Site](https://loopr.herokuapp.com/)
+* [Live Site](https://loopr-7f64b5b313b0.herokuapp.com/dashboard/photostream)
 
  | [MVP Feature List](https://github.com/jstnswn/Loopr/wiki/MVP-Feature-List) | [Database Scheme](https://github.com/jstnswn/Loopr/wiki/Database-Schema) | [API Routes](https://github.com/jstnswn/Loopr/wiki/API-Routes) | [Frontend Routes](https://github.com/jstnswn/Loopr/wiki/Frontend-Routes)
 
 # General Overview
 
-Loopr is an image sharing website inspred inspired by [Flickr](https://www.flickr.com/). User can upload their own images, create albums, and browse images from other users.  
+Loopr is an image sharing website inspred inspired by [Flickr](https://www.flickr.com/). User can upload their own images, create albums, and browse images from other users.
 
 # Technologies Used
 
@@ -50,5 +50,3 @@ Loopr is an image sharing website inspred inspired by [Flickr](https://www.flick
 7. Open up two terminals and cd into the backend and frontend directories, respectively. Start the server in each by running:
 
     ```npm start```
-    
-
